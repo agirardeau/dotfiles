@@ -80,8 +80,7 @@ def createLinks(fileList):
                 os.mkdir("{0}/dotfiles_old".format(home))
             except:
                 pass
-            pdb.set_trace()
-            os.renames(link, "{0}/dotfiles_old/{1}".format(home, link[2:]))
+            os.renames(link, "{0}/dotfiles_old/{1}".format(home, file["link"][2:]))
         os.symlink(source, link)
 
 ################################ Control FLow #################################
