@@ -56,7 +56,20 @@ files = {
                 "source" : "~/dotfiles/bash/bashrc",
                 "link"   : "~/.bashrc"
             },
+            {
+                "source" : "~/dotfiles/bash/dircolors",
+                "link"   : "~/.dircolors"
+            },
         ],
+
+    "tmux" :
+        [
+            {
+                "source" : "~/dotfiles/tmux/tmux.conf",
+                "link"   : "~/.tmux.conf"
+            },
+        ],
+
 }
 
 potentialGroups = files.keys()
