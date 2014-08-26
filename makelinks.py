@@ -40,6 +40,10 @@ files = {
                 "source" : "~/dotfiles/vim/python.vim",
                 "link"   : "~/.vim/python.vim"
             },
+            {
+                "source" : "~/dotfiles/vim/solarized.vim",
+                "link"   : "~/.vim/colors/solarized.vim"
+            },
         ],
 
     "git" :
@@ -48,6 +52,10 @@ files = {
                 "source" : "~/dotfiles/git/gitconfig",
                 "link"   : "~/.gitconfig"
             },
+            {
+                "source" : "~/dotfiles/git/gitignore",
+                "link"   : "~/.gitignore"
+            },
         ],
 
     "bash" :
@@ -55,6 +63,10 @@ files = {
             {
                 "source" : "~/dotfiles/bash/bashrc",
                 "link"   : "~/.bashrc"
+            },
+            {
+                "source" : "~/dotfiles/bash/bash_aliases",
+                "link"   : "~/.bash_aliases"
             },
             {
                 "source" : "~/dotfiles/bash/dircolors",
