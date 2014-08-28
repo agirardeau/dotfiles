@@ -1,4 +1,6 @@
+"------------------------------------------------------------
 " User created settings
+
 " Enable syntax highlighting
 syntax enable
 set background=dark
@@ -6,6 +8,19 @@ set t_Co=256
 let g:solarized_termcolors=256
 colorscheme solarized
 
+" Split creation
+" http://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
+set splitbelow
+set splitright
+
+"--------------------------------
+" Key bindings
+
+" window split navigation
+" navigationnnoremap <C-H> <C-W><C-H>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
 
 "------------------------------------------------------------
 " Settings from internet {{{1

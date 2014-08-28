@@ -1,0 +1,80 @@
+MOVEMENT
+<h> - left
+<l> - right
+<j> - down
+<k> - up
+
+<$>     - end
+<0>/<^> - home
+
+<H> - move cursor to top of screen
+<M> - move cursor to middle of screen
+<L> - move cursor to bottom of screen
+
+<C-e> - scroll 1 line downwards
+<C-y> - scroll 1 line upwards
+<z><Enter>    - scroll so that cursor is at the top of the screen
+<z><z>/<z><.> - scroll so that cursor is in the middle of the screen
+<z><->        - scroll so that the cursor is at the bottom of the screen
+
+NORMAL EDITING
+:%s/foo/bar/gc - replace foo with bar globally, asking for confirmation
+:%s/foo/bar/g  - replace foo with bar globally, without asking for confirmation
+
+<u>   - undo
+<C-r> - redo
+
+TEXT INSERTION
+<i> - insert mode, inserting before cursor
+<a> - insert mode, appending after cursor
+<o> - insert mode, creating blank line after cursor line
+<O> - insert mode, creating blank line before cursor line
+
+SELECTION
+<v> - visual mode
+<V> - visual block mode
+<y> - yank
+<d> - delete
+<p> - paste
+<P> - paste before cursor
+
+HELP
+:help [command] - open documentation for [command] in a new horizontal pane.
+
+----------------------------------------
+- DEALING WITH MULTIPLE FILES
+
+BUFFERS
+:e[dit] {bufferId}    - open a buffer for the specified {bufferId}. {bufferId}
+                        can be specified as a full relative path or by the 
+                        buffer number with preceding pound symbol, eg. "#2".
+:b[uffer] {bufferId}  - open a buffer for the specified {bufferId}. {bufferId}
+                        can be specified as a partial filename match or as the
+                        buffer number.
+:bad[d] {bufferId}    - opens a new buffer like :edit does but does not switch
+                        from the current buffer or load the file contents for
+                        the buffer.
+:bd[elete] {bufferId} - delete the buffer specified by {bufferId}. {bufferId}
+                        can be a number or partial match. Some data is retained
+                        as an 'unlisted-buffer' (mark locations, etc). 
+:bw[ipeout]           - like bd[elete] but totally deletes the buffer.
+:ls                   - list the currently open buffers.
+
+SPLITS
+:vsp[lit] {filename} - new vertical pane containing {filename}
+:sp[lit] {filename}  - new horizontal pane containing {filename}
+:hid[e]              - close current pane
+:on[ly]              - close all other panes
+
+<C-w><h> - move cursor one pane leftward
+<C-w><l> - move cursor one pane rightward
+<C-w><j> - move cursor one pane downward
+<C-w><k> - move cursor one pane upward
+
+<C-w><-> - maximize current pane
+<C-w><=> - make panes equal in size
+
+TABS
+:q                 - close current tab
+:tabnew {filename} - open a buffer in a new tab for {filename}
+

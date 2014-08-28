@@ -1,0 +1,41 @@
+----------------------------------------
+- BASIC
+
+<C-b> - <prefix>
+
+----------------------------------------
+- WINDOWS
+
+<prefix><c>       - create a new window
+<prefix><,>       - rename current window
+<prefix><&>/<C-d> - delete the current window
+<prefix><.>       - move window to new number (prompt)
+
+<prefix><{#}> - go to window {#}
+<prefix><l>   - go to last active window
+<prefix><n>   - go to next window in list
+<prefix><C-l> - go to next window in list (custom keybinding)
+<prefix><p>   - go to previous window in list
+<prefix><C-h> - go to previous window in list (custom keybinding)
+
+----------------------------------------
+- PANES
+
+<prefix><%>   - split pane vertically
+<prefix><">   - split pane horizontally
+<prefix><x>   - kill the current pane
+<prefix><!>   - kill all other panes
+
+<prefix><o>   - switch to another pane
+<prefix><h>   - switch to the next pane moving leftward (custom keybinding)
+<prefix><l>   - switch to the next pane moving rightward (custom keybinding)
+<prefix><j>   - switch to the next pane moving downward (custom keybinding)
+<prefix><k>   - switch to the next pane moving upward (custom keybinding)
+
+<prefix><z> - zoom in/out of current split
+<prefix><C-o> - swap location of panes
+
+----------------------------------------
+- SESSIONS
+
+<prefix><d>   - detach from the current session
