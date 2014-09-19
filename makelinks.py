@@ -74,6 +74,14 @@ files = {
             },
         ],
 
+    "python" :
+        [
+            {
+                "source" : "~/dotfiles/python/ipython",
+                "link"   : "~/.ipython"
+            },
+        ],
+
     "tmux" :
         [
             {

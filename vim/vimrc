@@ -13,6 +13,10 @@ colorscheme solarized
 set splitbelow
 set splitright
 
+" Word wrapping
+set nowrap
+set sidescroll=1
+
 "--------------------------------
 " Key bindings
 
