@@ -36,7 +36,7 @@ AREAS WHERE I COULD LEARN MORE:
 <prefix><j>   - switch to the next pane moving downward (custom keybinding)
 <prefix><k>   - switch to the next pane moving upward (custom keybinding)
 
-<prefix><z> - zoom in/out of current split
+<prefix><z>   - zoom in/out of current split
 <prefix><C-o> - swap location of panes
 
 ----------------------------------------
