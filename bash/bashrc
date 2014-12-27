@@ -19,6 +19,11 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Include .bash_local, if it exists
+if [ -f ~/.bash_local ]; then
+    . ~/.bash_local
+fi 
+
 # Load colors for ls-like commands
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"

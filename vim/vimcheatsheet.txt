@@ -39,6 +39,8 @@ TEXT INSERTION
 <a> - insert mode, appending after cursor
 <o> - insert mode, creating blank line after cursor line
 <O> - insert mode, creating blank line before cursor line
+<r> - replace character under cursor
+<x> - delete character under cursor
 
 SELECTION
 <v> - visual mode

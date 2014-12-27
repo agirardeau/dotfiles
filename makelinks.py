@@ -41,6 +41,10 @@ files = {
                 "link"   : "~/.vim/python.vim"
             },
             {
+                "source" : "~/dotfiles/vim/vinegar.vim",
+                "link"   : "~/.vim/vinegar.vim"
+            },
+            {
                 "source" : "~/dotfiles/vim/solarized.vim",
                 "link"   : "~/.vim/colors/solarized.vim"
             },
