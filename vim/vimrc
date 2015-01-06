@@ -17,6 +17,10 @@ set splitright
 set nowrap
 set sidescroll=1
 
+" System clipboard
+set clipboard=unnamed,unnamedplus
+xnoremap p pgvy
+
 "--------------------------------
 " Key bindings
 
