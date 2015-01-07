@@ -32,6 +32,12 @@ c.InteractiveShellApp.exec_lines = []
 c.InteractiveShellApp.exec_lines.append("%load_ext autoreload")
 c.InteractiveShellApp.exec_lines.append("%autoreload 2")
 
+pdbLines = "\n".join(["try:",
+        "    import ipdb as pdb",
+        "except ImportError:",
+        "    import pdb"])
+c.InteractiveShellApp.exec_lines.append(pdbLines)
+
 # Enable GUI event loop integration with any of ('glut', 'gtk', 'gtk3', 'none',
 # 'osx', 'pyglet', 'qt', 'qt4', 'tk', 'wx').
 # c.InteractiveShellApp.gui = None

@@ -49,6 +49,7 @@ SELECTION
 <d> - delete
 <p> - paste
 <P> - paste before cursor
+<o> - move cursor to other end of selection
 
 HELP
 :help [command] - open documentation for [command] in a new horizontal pane.
