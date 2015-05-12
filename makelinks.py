@@ -36,18 +36,6 @@ files = {
                 "source" : "~/dotfiles/vim/vimrc",
                 "link"   : "~/.vimrc"
             },
-            {
-                "source" : "~/dotfiles/vim/python.vim",
-                "link"   : "~/.vim/python.vim"
-            },
-            {
-                "source" : "~/dotfiles/vim/vinegar.vim",
-                "link"   : "~/.vim/vinegar.vim"
-            },
-            {
-                "source" : "~/dotfiles/vim/solarized.vim",
-                "link"   : "~/.vim/colors/solarized.vim"
-            },
         ],
 
     "git" :
@@ -114,10 +102,10 @@ def createLinks(fileList):
             pass
         if os.path.lexists(link):
             try:
-                os.mkdir("{0}/dotfiles_old".format(home))
+                os.mkdir("{0}/old_dotfiles".format(home))
             except:
                 pass
-            os.renames(link, "{0}/dotfiles_old/{1}".format(home, file["link"][2:]))
+            os.renames(link, "{0}/old_dotfiles/{1}".format(home, file["link"][2:]))
         os.symlink(source, link)
 
 ################################ Control FLow #################################

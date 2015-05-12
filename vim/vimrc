@@ -1,15 +1,20 @@
 "------------------------------------------------------------
 " User created settings
 
+" Enable Pathogen
+call pathogen#infect()
+call pathogen#helptags()
+
 " Enable syntax highlighting
 syntax enable
+set syntax=c.doxygen
 set background=dark
 set t_Co=256
 let g:solarized_termcolors=256
 colorscheme solarized
 
 " Split creation
-" http://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
+"  from: http://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 set splitbelow
 set splitright
 
@@ -17,18 +22,27 @@ set splitright
 set nowrap
 set sidescroll=1
 
-" System clipboard
+" clipboard
 set clipboard=unnamed,unnamedplus
 xnoremap p pgvy
+noremap x "_x
+noremap s "_s
 
 "--------------------------------
 " Key bindings
 
-" window split navigation
-" navigationnnoremap <C-H> <C-W><C-H>
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-L> <C-W><C-L>
+" smooth scrolling
+nnoremap <C-j> j<C-e>
+nnoremap <C-k> k<C-y>
+
+" Shortcut for NERDTree
+nmap <C-n> :NERDTreeToggle<CR>
+
+" Shortcut for Tagbar
+nmap <C-q> :TagbarToggle<CR>
+
+" Shortcut for Tagbar
+nmap <C-q> :TagbarToggle<CR>
 
 "------------------------------------------------------------
 " Settings from internet {{{1

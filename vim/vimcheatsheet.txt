@@ -5,7 +5,8 @@ code folding
 
 AREAS WHERE I COULD USE PLUGINS:
 lint / code suggestions - pyflakes
-
+nerdtree
+ctags
 
 
 MOVEMENT
@@ -86,7 +87,7 @@ SPLITS (Note - what I call panes or splits, vim often calls windows)
 
 <C-w><->   - maximize current pane
 <C-w><=>   - make panes equal in size
-<C-w><C-r> - rotate panes within one row or column of panes
+<C-w><r> - rotate panes within one row or column of panes
 
 TABS
 :q                 - close current tab
