@@ -39,10 +39,7 @@ nnoremap <C-k> k<C-y>
 nmap <C-n> :NERDTreeToggle<CR>
 
 " Shortcut for Tagbar
-nmap <C-q> :TagbarToggle<CR>
-
-" Shortcut for Tagbar
-nmap <C-q> :TagbarToggle<CR>
+nmap <C-m> :TagbarToggle<CR>
 
 "------------------------------------------------------------
 " Settings from internet {{{1
