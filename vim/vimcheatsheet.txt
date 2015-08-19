@@ -1,3 +1,4 @@
+----------------------------------------
 AREAS WHERE I COULD IMPROVE:
 use registers
 insert visual?
@@ -5,9 +6,9 @@ code folding
 
 AREAS WHERE I COULD USE PLUGINS:
 lint / code suggestions - pyflakes
-nerdtree
-ctags
 
+----------------------------------------
+- GENERAL
 
 MOVEMENT
 <h> - left
@@ -38,6 +39,7 @@ NORMAL EDITING
 TEXT INSERTION
 <i> - insert mode, inserting before cursor
 <a> - insert mode, appending after cursor
+<A> - insert mode, appending at end of line
 <o> - insert mode, creating blank line after cursor line
 <O> - insert mode, creating blank line before cursor line
 <r> - replace character under cursor
@@ -92,4 +94,18 @@ SPLITS (Note - what I call panes or splits, vim often calls windows)
 TABS
 :q                 - close current tab
 :tabnew {filename} - open a buffer in a new tab for {filename}
+
+----------------------------------------
+- PLUGINS
+
+TAGBAR
+<s> toggle between alphabetical order and file order
+
+----------------------------------------
+- ISSUES
+What to do when I accidentally create extra statusbar line
+
+
+
+
 

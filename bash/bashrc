@@ -1,7 +1,10 @@
 #-------------------------
 # User defined settings
 
-# make caps lock act as another control key
+# Add ~/bin to path
+export PATH=$PATH:$HOME/bin
+
+# Make caps lock act as another control key
 setxkbmap -option ctrl:nocaps
 
 #-------------------------

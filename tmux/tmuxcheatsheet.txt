@@ -5,7 +5,8 @@ AREAS WHERE I COULD LEARN MORE:
 ----------------------------------------
 - BASIC
 
-<C-b> - <prefix>
+<C-b>       - <prefix>
+<prefix><:> - command prompt
 
 ----------------------------------------
 - WINDOWS
@@ -25,19 +26,25 @@ AREAS WHERE I COULD LEARN MORE:
 ----------------------------------------
 - PANES
 
-<prefix><%>   - split pane vertically
-<prefix><">   - split pane horizontally
-<prefix><x>   - kill the current pane
-<prefix><!>   - kill all other panes
+<prefix><%>     - split pane vertically
+<prefix><">     - split pane horizontally
+<prefix><x>     - kill the current pane
+<prefix><!>     - kill all other panes
 
-<prefix><o>   - switch to another pane
-<prefix><h>   - switch to the next pane moving leftward (custom keybinding)
-<prefix><l>   - switch to the next pane moving rightward (custom keybinding)
-<prefix><j>   - switch to the next pane moving downward (custom keybinding)
-<prefix><k>   - switch to the next pane moving upward (custom keybinding)
+<prefix><o>     - switch to another pane
+<prefix><h>     - switch to the next pane moving leftward (custom keybinding)
+<prefix><l>     - switch to the next pane moving rightward (custom keybinding)
+<prefix><j>     - switch to the next pane moving downward (custom keybinding)
+<prefix><k>     - switch to the next pane moving upward (custom keybinding)
 
-<prefix><z>   - zoom in/out of current split
-<prefix><C-o> - swap location of panes
+<prefix><z>     - zoom in/out of current split
+<prefix><C-o>   - swap location of panes
+<prefix><space> - toggle vertical vs horizontal panes
+
+----------------------------------------
+- PANE/WINDOW INTERACTION
+
+<cmd> break-pane - split current pane into new window
 
 ----------------------------------------
 - SESSIONS

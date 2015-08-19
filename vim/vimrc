@@ -28,18 +28,23 @@ xnoremap p pgvy
 noremap x "_x
 noremap s "_s
 
+" find
+nnoremap n nzz
+
 "--------------------------------
 " Key bindings
 
 " smooth scrolling
 nnoremap <C-j> j<C-e>
 nnoremap <C-k> k<C-y>
+vnoremap <C-j> j<C-e>
+vnoremap <C-k> k<C-y>
 
 " Shortcut for NERDTree
 nmap <C-n> :NERDTreeToggle<CR>
 
 " Shortcut for Tagbar
-nmap <C-m> :TagbarToggle<CR>
+"nmap <C-m> :TagbarToggle<CR>
 
 "------------------------------------------------------------
 " Settings from internet {{{1

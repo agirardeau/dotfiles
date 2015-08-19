@@ -4,9 +4,10 @@ echo "Removing existing plugins..."
 rm -rf ~/.vim/bundle/*
 
 git clone git://github.com/altercation/vim-colors-solarized ~/.vim/bundle/solarized
-git clone git://github.com/majutsushi/tagbar ~/.vim/bundle/tagbar
+# git clone git://github.com/majutsushi/tagbar ~/.vim/bundle/tagbar
 git clone git://github.com/scrooloose/nerdtree ~/.vim/bundle/nerdtree
 git clone git://github.com/hdima/python-syntax ~/.vim/bundle/python
+git clone git://github.com/chrisbra/Recover.vim ~/.vim/bundle/recover
 
 # git clone git://github.com/rbgrouleff/bclose.vim ~/.vim/bundle/bclose
 # git clone git://github.com/tpope/vim-fugitive ~/.vim/bundle/fugitive
