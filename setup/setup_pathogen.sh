@@ -9,7 +9,7 @@ mkdir ~/.vim/autoload
 mkdir ~/.vim/bundle
 
 echo "Downloading latest version of pathogen.vim..."
-cd .vim/autoload
+cd ~/.vim/autoload
 wget -P ~/.vim/autoload -nv \
         https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 

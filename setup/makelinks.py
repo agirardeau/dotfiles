@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """ Andrew Girardeau-Dale
 8/22/14
 
@@ -8,7 +9,10 @@
 import os
 import sys
 import argparse
-import pdb
+try:
+    import ipdb as pdb
+except ImportError:
+    import pdb
 
 
 ################################# Utility ###################################
@@ -69,8 +73,8 @@ files = {
     "python" :
         [
             {
-                "source" : "~/dotfiles/python/ipython",
-                "link"   : "~/.ipython"
+                "source" : "~/dotfiles/python/ipython_config.py",
+                "link"   : "~/.ipython/profile_default/ipython_config.py"
             },
         ],
 
