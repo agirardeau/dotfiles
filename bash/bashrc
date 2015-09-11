@@ -7,6 +7,9 @@ export PATH=$PATH:$HOME/bin
 # Make caps lock act as another control key
 setxkbmap -option ctrl:nocaps
 
+# Set bash prompt
+export PS1='\u@\h:w$ '
+
 #-------------------------
 # Include other configuration files
 
