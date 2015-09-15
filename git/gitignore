@@ -2,4 +2,4 @@
 *.swo
 *~
 *.sqlite
-*.startvim
+*startvim.sh
