@@ -31,6 +31,15 @@ noremap s "_s
 " find
 nnoremap n nzz
 
+" delete trailing whitespace on write
+function! TrimWhitespace()
+    %s/\s\+$//e
+endfunction
+autocmd FileWritePre   * :call TrimWhitespace()
+autocmd FileAppendPre  * :call TrimWhitespace()
+autocmd FilterWritePre * :call TrimWhitespace()
+autocmd BufWritePre    * :call TrimWhitespace()
+
 "--------------------------------
 " Key bindings
 

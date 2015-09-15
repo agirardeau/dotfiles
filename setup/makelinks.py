@@ -86,6 +86,14 @@ files = {
             },
         ],
 
+    "scripts" :
+        [
+            {
+                "source" : "~/dotflies/scripts/ctagdisplay.py",
+                "link"   : "/usr/local/bin"
+            },
+        ],
+
 }
 
 potentialGroups = files.keys()
