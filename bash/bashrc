@@ -10,6 +10,9 @@ setxkbmap -option ctrl:nocaps
 # Set bash prompt
 export PS1='\u@\h:\w$ '
 
+# Make vim default editor for stuff like git commits
+export EDITOR=vim
+
 #-------------------------
 # Include other configuration files
 
