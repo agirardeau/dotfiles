@@ -89,8 +89,12 @@ files = {
     "scripts" :
         [
             {
-                "source" : "~/dotflies/scripts/ctagdisplay.py",
+                "source" : "~/dotfiles/scripts/ctagdisplay.py",
                 "link"   : "~/bin/ctagdisplay"
+            },
+            {
+                "source" : "~/dotfiles/scripts/gitlog.sh",
+                "link"   : "~/bin/gitlog"
             },
         ],
 
