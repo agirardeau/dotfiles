@@ -90,7 +90,7 @@ files = {
         [
             {
                 "source" : "~/dotflies/scripts/ctagdisplay.py",
-                "link"   : "/usr/local/bin"
+                "link"   : "~/bin/ctagdisplay"
             },
         ],
 
@@ -117,8 +117,16 @@ def createLinks(fileList):
                 os.mkdir("{0}/old_dotfiles".format(home))
             except:
                 pass
-            os.renames(link, "{0}/old_dotfiles/{1}".format(home, file["link"][2:]))
-        os.symlink(source, link)
+            try:
+                os.renames(link, "{0}/old_dotfiles/{1}".format(home, file["link"][2:]))
+            except OSError:
+                print("Couldn't remove existing link at {0}".format(link))
+
+        try:
+            os.symlink(source, link)
+        except OSError:
+            print("Error linking {0} to {1}".format(link, source))
+
 
 ################################ Control FLow #################################
 
