@@ -114,18 +114,14 @@ def createLinks(fileList):
             pass
         if os.path.lexists(link):
             try:
-                os.mkdir("{0}/old_dotfiles".format(home))
-            except:
-                pass
-            try:
-                os.renames(link, "{0}/old_dotfiles/{1}".format(home, file["link"][2:]))
-            except OSError:
-                print("Couldn't remove existing link at {0}".format(link))
+                os.unlink(link)
+            except OSError as e:
+                print("Couldn't remove existing link at {0}".format(link, str(e)))
 
         try:
             os.symlink(source, link)
-        except OSError:
-            print("Error linking {0} to {1}".format(link, source))
+        except OSError as e:
+            print("Error linking {0} to {1}: {2}".format(link, source, str(e)))
 
 
 ################################ Control FLow #################################
@@ -170,26 +166,8 @@ def main(argList):
                 raise ValueError('Group "{0}" not recognized. Options are {1}.'
                         .format(group, potentialGroupString))
     
-    # wasErrorRaised = False
-    # try:
     for group in groups:
         createLinks(files[group])
-    # except Exception as error:
-    #     wasErrorRaised = True
-    #     raisedError = error
-    # finally:
-    #     pass
-        
-    # if wasErrorRaised:
-    #     raise raisedError
-    # else:
-    #     if not args.quiet:
-    #         print("Log file contents parsed successfully")
 
 if __name__ == "__main__":
-    # try:
     main(sys.argv[1:])
-    # except Exception as E:
-    #     print("{0}: {1}".format(E.__class__.__name__, E))
-
-
