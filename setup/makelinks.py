@@ -33,6 +33,9 @@ def make_link(source, target):
     except OSError as e:
         print("Error linking {0} to {1}: {2}"
                 .format(source, target, str(e)))
+        return
+
+    print("Created link for {0} at {1}".format(target, source))
 
 if __name__ == "__main__":
     with open(LINKFILE, "r") as f:
