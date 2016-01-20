@@ -4,6 +4,9 @@ alias lla='ls -lA'
 
 alias tmux='tmux -2'
 
+alias grepr='grep . -rn'
+alias grepri='grep . -rni'
+
 # customtree() {
 #     tree "$@"
 #     eval "$(dircolors ~/.dircolors)"
