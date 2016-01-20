@@ -159,3 +159,5 @@ bar {
 # Application specific preferences
 # for_window [class="spotify"] floating enable, border normal
 exec --no-startup-id nm-applet
+
+focus_follows_mouse no
