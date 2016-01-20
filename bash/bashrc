@@ -13,6 +13,10 @@ export PS1='\u@\h:\w$ '
 # Make vim default editor for stuff like git commits
 export EDITOR=vim
 
+# set up virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+. /usr/local/bin/virtualenvwrapper.sh 2>@1 /dev/null || true
+
 #-------------------------
 # Include other configuration files
 
