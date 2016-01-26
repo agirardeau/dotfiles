@@ -2,9 +2,11 @@
 
 import os
 import json
+import platform
 
 HOME = os.path.expanduser("~")
 LINKFILE = os.path.abspath(os.path.join(os.path.dirname(__file__), "links.json"))
+NODENAME = platform.node()
 
 def make_link(source, target):
     target = target.replace("~", HOME, 1)
@@ -41,5 +43,11 @@ if __name__ == "__main__":
     with open(LINKFILE, "r") as f:
         link_data = json.load(f)
 
-    for target, source in link_data:
+    print("Constructing common links...")
+    for target, source in link_data["common"]:
         make_link(source, target)
+
+    if NODENAME in link_data:
+        print("Constructing links specific to {0}...".format(NODENAME))
+        for target, source in link_data[NODENAME]:
+            make_link(source, target)

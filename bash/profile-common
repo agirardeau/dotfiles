@@ -1,0 +1,4 @@
+# Make caps lock act as another control key
+setxkbmap -option ctrl:nocaps
+
+. ~/.profile_local
