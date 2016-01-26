@@ -4,8 +4,10 @@ alias lla='ls -lA'
 
 alias tmux='tmux -2'
 
-alias grepr='grep . -rn'
-alias grepri='grep . -rni'
+alias findr='find . -name'
+
+alias grepr='grep -rn . -e'
+alias grepri='grep -rni . -e'
 
 # customtree() {
 #     tree "$@"
