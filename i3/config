@@ -161,3 +161,6 @@ bar {
 exec --no-startup-id nm-applet
 
 focus_follows_mouse no
+
+bindsym $mod+Shift+n move container to output down
+bindsym $mod+Shift+m move container to output right
