@@ -2,7 +2,7 @@
 # User defined settings
 
 # Add ~/bin to path
-export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin:$HOME/bin/scratch
 
 # Set bash prompt
 export PS1='\u@\h:\w$ '
