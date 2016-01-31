@@ -6,8 +6,10 @@ alias tmux='tmux -2'
 
 alias findr='find . -name'
 
-alias grepr='grep -rn . -e'
-alias grepri='grep -rni . -e'
+alias grepr='grep -rni . -e'
+alias greprs='grep -rn . -e'
+
+alias psfind='ps -A | grep'
 
 # customtree() {
 #     tree "$@"
