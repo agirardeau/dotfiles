@@ -1,3 +1,6 @@
 # Disable touchpad tap
 touchpad=`xinput | grep -oP "Synaptics TouchPad\s+id=\K[0-9]+"`
 xinput --set-prop $touchpad "Synaptics Tap Action" 0 0 0 0 0 0 0
+
+# Make nautilis not open another window showing the desktop
+gsettings set org.gnome.desktop.background show-desktop-icons false
