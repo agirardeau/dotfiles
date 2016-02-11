@@ -1,8 +1,8 @@
 #-------------------------
 # User defined settings
 
-# Add ~/bin to path
-export PATH=$PATH:$HOME/bin:$HOME/bin/scratch
+# Add ~/bin and subdirectories to path
+export PATH="${PATH}$(find ~/bin -name '.*' -prune -o -type d -printf ':%p')"
 
 # Set bash prompt
 export PS1='\u@\h:\w$ '
