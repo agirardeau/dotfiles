@@ -8,13 +8,12 @@ HOME = os.path.expanduser("~")
 LINK_FILE = os.path.join(os.path.dirname(os.path.realpath(__file__)), "links.json")
 NODE_NAME = platform.node()
 XDG_DATA_HOME_DEFAULT = "~/.local/share"
+STATE_FILENAME = "dotfile-link-state.json"
 
 def update_link(link, target):
     """Returns True if after execution a link exists (regardless of if it
     points to the intended target)
     """
-    target = target.replace("~", HOME, 1)
-    link = link.replace("~", HOME, 1)
     if os.path.lexists(link):
         if os.readlink(link) == target:
             return True
@@ -32,8 +31,6 @@ def update_link(link, target):
     return True
 
 def create_link(link, target):
-    target = target.replace("~", HOME, 1)
-    link = link.replace("~", HOME, 1)
     (link_directory, _) = os.path.split(link)
 
     if not os.path.exists(target):
@@ -55,22 +52,32 @@ def create_link(link, target):
     print("Created link for {0} at {1}".format(target, link))
 
 def remove_link(link):
-    link = link.replace("~", HOME, 1)
     try:
         os.unlink(link)
-        print("Removed obsolete link at {0}")
+        print("Removed obsolete link at {0}".format(link))
     except OSError as e:
-        print("Unable to remove obsolete link at {0}: {1}"
-                .format(link, str(e)))
+        print("Unable to remove obsolete link at {0}: {1}".format(link, str(e)))
         raise
 
+def load_link_data():
+    with open(LINK_FILE, "r") as f:
+        link_data = json.load(f)
+
+    #import ipdb
+    #ipdb.set_trace()
+    return {x : [[replace_tilde(a[0]), replace_tilde(a[1])] for a in link_data[x]]
+            for x in link_data}
+
+def replace_tilde(path_string):
+    return path_string.replace("~", HOME, 1)
+
 if __name__ == "__main__":
-    xdg_data_home = os.getenv("XDG_DATA_HOME", XDG_DATA_HOME_DEFAULT).replace("~", HOME, 1)
+    xdg_data_home = replace_tilde(os.getenv("XDG_DATA_HOME", XDG_DATA_HOME_DEFAULT))
     try:
         os.makedirs(xdg_data_home)
     except:
         pass
-    state_file = os.path.join(xdg_data_home, "makelinks-state.json")
+    state_file = os.path.join(xdg_data_home, STATE_FILENAME)
 
     new_state = []
     try:
@@ -79,8 +86,7 @@ if __name__ == "__main__":
     except:
         previous_state = []
 
-    with open(LINK_FILE, "r") as f:
-        link_data = json.load(f)
+    link_data = load_link_data()
 
     print("Constructing common links...")
     for target, link in link_data["common"]:
@@ -96,7 +102,10 @@ if __name__ == "__main__":
     for link in previous_state:
         if link not in [x[1] for x in link_data["common"] + link_data[NODE_NAME]]:
             if os.path.lexists(link):
-                delete_link(link)
+                try:
+                    remove_link(link)
+                except:
+                    new_state.append(link)
 
     with open(state_file, "w") as f:
         json.dump(new_state, f)

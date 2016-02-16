@@ -16,7 +16,7 @@
         [ "~/dotfiles/scripts/newcontainer.sh", "~/bin/newcontainer" ],
         [ "~/dotfiles/scripts/run-in-directory.sh", "~/bin/run-in-directory" ],
         [ "~/dotfiles/scripts/sedr.sh", "~/bin/sedr" ],
-        [ "~/dotfiles/setup/makelinks.py", "~/bin/makelinks" ]
+        [ "~/dotfiles/setup/dotfile-link-setup.py", "~/bin/dotfile-link-setup" ]
     ],
 
     "chucklebot" : [
