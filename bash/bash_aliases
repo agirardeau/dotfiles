@@ -11,6 +11,8 @@ alias greprs='grep -rn . -e'
 
 alias psfind='ps -A | grep'
 
+alias prettyjson='python -m json.tool'
+
 # customtree() {
 #     tree "$@"
 #     eval "$(dircolors ~/.dircolors)"
