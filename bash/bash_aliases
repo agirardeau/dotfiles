@@ -6,8 +6,8 @@ alias tmux='tmux -2'
 
 alias findr='find . -name'
 
-alias grepr='grep -rni . -e'
-alias greprs='grep -rn . -e'
+alias grepr='grep -rniI . -e'
+alias greprs='grep -rnI . -e'
 
 alias psfind='ps -A | grep'
 
