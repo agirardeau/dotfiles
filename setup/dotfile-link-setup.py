@@ -7,7 +7,7 @@ import platform
 HOME = os.path.expanduser("~")
 LINK_FILE = os.path.join(os.path.dirname(os.path.realpath(__file__)), "links.json")
 NODE_NAME = platform.node()
-XDG_DATA_HOME_DEFAULT = "~/.local/share"
+XDG_CACHE_HOME_DEFAULT = "~/.cache"
 STATE_FILENAME = "dotfile-link-state.json"
 
 def update_link(link, target):
@@ -72,12 +72,12 @@ def replace_tilde(path_string):
     return path_string.replace("~", HOME, 1)
 
 if __name__ == "__main__":
-    xdg_data_home = replace_tilde(os.getenv("XDG_DATA_HOME", XDG_DATA_HOME_DEFAULT))
+    xdg_cache_home = replace_tilde(os.getenv("XDG_CACHE_HOME", XDG_CACHE_HOME_DEFAULT))
     try:
-        os.makedirs(xdg_data_home)
+        os.makedirs(xdg_cache_home)
     except:
         pass
-    state_file = os.path.join(xdg_data_home, STATE_FILENAME)
+    state_file = os.path.join(xdg_cache_home, STATE_FILENAME)
 
     new_state = []
     try:
