@@ -15,6 +15,7 @@
         [ "~/dotfiles/scripts/ctagdisplay.py", "~/bin/ctagdisplay" ],
         [ "~/dotfiles/scripts/gitlog.sh", "~/bin/gitlog" ],
         [ "~/dotfiles/scripts/newcontainer.sh", "~/bin/newcontainer" ],
+        [ "~/dotfiles/scripts/rmsw.sh", "~/bin/rmsw" ],
         [ "~/dotfiles/scripts/run-in-directory.sh", "~/bin/run-in-directory" ],
         [ "~/dotfiles/scripts/sedr.sh", "~/bin/sedr" ],
         [ "~/dotfiles/scripts/setscreen.sh", "~/bin/setscreen" ],
