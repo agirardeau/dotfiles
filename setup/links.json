@@ -9,6 +9,7 @@
         [ "~/dotfiles/bash/bash_aliases", "~/.bash_aliases" ],
         [ "~/dotfiles/bash/dircolors", "~/.dircolors" ],
         [ "~/dotfiles/bash/profile-common", "~/.profile" ],
+        [ "~/dotfiles/bash/completions/complete-setscreen.sh", "~/.local/share/bash_completions.d/complete-setscreen.sh" ],
         [ "~/dotfiles/python/ipython_config.py", "~/.ipython/profile_default/ipython_config.py" ],
         [ "~/dotfiles/tmux/tmux.conf", "~/.tmux.conf" ],
         [ "~/dotfiles/scripts/ctagdisplay.py", "~/bin/ctagdisplay" ],
@@ -16,6 +17,7 @@
         [ "~/dotfiles/scripts/newcontainer.sh", "~/bin/newcontainer" ],
         [ "~/dotfiles/scripts/run-in-directory.sh", "~/bin/run-in-directory" ],
         [ "~/dotfiles/scripts/sedr.sh", "~/bin/sedr" ],
+        [ "~/dotfiles/scripts/setscreen.sh", "~/bin/setscreen" ],
         [ "~/dotfiles/setup/dotfile-link-setup.py", "~/bin/dotfile-link-setup" ]
     ],
 

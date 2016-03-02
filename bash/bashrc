@@ -14,6 +14,11 @@ export EDITOR=vim
 export WORKON_HOME=$HOME/.virtualenvs
 . /usr/local/bin/virtualenvwrapper.sh 2>&1 /dev/null || true
 
+# set up bash completions for custom scripts
+for script in ~/.local/share/bash_completions.d/*; do
+    source $script
+done
+
 #-------------------------
 # Include other configuration files
 
