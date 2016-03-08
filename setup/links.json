@@ -17,7 +17,7 @@
         [ "~/dotfiles/scripts/newcontainer.sh", "~/bin/newcontainer" ],
         [ "~/dotfiles/scripts/rmsw.sh", "~/bin/rmsw" ],
         [ "~/dotfiles/scripts/run-in-directory.sh", "~/bin/run-in-directory" ],
-        [ "~/dotfiles/scripts/sedr.sh", "~/bin/sedr" ],
+        [ "~/dotfiles/scripts/sedw.sh", "~/bin/sedw" ],
         [ "~/dotfiles/scripts/setscreen.sh", "~/bin/setscreen" ],
         [ "~/dotfiles/setup/dotfile-link-setup.py", "~/bin/dotfile-link-setup" ]
     ],
