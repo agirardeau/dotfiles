@@ -2,6 +2,8 @@ alias la='ls -A'
 alias ll='ls -l'
 alias lla='ls -lA'
 
+alias treea='tree -a'
+
 alias tmux='tmux -2'
 
 alias findr='find . -name'
