@@ -3,4 +3,4 @@
 # because cd is a shell builtin and not an executable.
 newcwd=$1
 shift
-cd $newcwd && $@
+cd $newcwd && "$@"
