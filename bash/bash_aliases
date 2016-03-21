@@ -2,7 +2,11 @@ alias la='ls -A'
 alias ll='ls -l'
 alias lla='ls -lA'
 
+treepyexcludes="__pycache__|*.py[cod]"
+
 alias treea='tree -a'
+alias treep='tree -I "$treepyexcludes"'
+alias treepa='tree -a -I "$treepyexcludes|.git"'
 
 alias tmux='tmux -2'
 
