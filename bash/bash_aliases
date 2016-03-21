@@ -15,6 +15,9 @@ alias findr='find . -name'
 alias grepr='grep -rniI . -e'
 alias greprs='grep -rnI . -e'
 
+alias rmsw='rm .*.sw?'
+alias rmswr='rm -r .*.sw?'
+
 alias psfind='ps -A | grep'
 
 alias prettyjson='python -m json.tool'
