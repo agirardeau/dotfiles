@@ -4,3 +4,4 @@
 *.sqlite
 *startvim.sh
 *.iml
+*startvim
