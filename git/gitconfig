@@ -6,5 +6,4 @@
 [http]
 	sslVerify = false
 [push]
-	defaul = simple
 	default = simple
