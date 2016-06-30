@@ -1,3 +1,6 @@
+# Make caps lock act as another control key
+setxkbmap -option ctrl:nocaps
+
 # Disable touchpad tap
 touchpad=`xinput | grep -oP "Synaptics TouchPad\s+id=\K[0-9]+"`
 xinput --set-prop $touchpad "Synaptics Tap Action" 0 0 0 0 0 0 0

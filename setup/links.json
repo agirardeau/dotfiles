@@ -1,12 +1,12 @@
 {
     "common" : [
         [ "~/dotfiles/vim/vimrc", "~/.vimrc" ],
-        [ "~/dotfiles/git/gitconfig", "~/.gitconfig" ],
         [ "~/dotfiles/git/gitignore", "~/.gitignore" ],
         [ "~/dotfiles/i3/config", "~/.i3/config" ],
         [ "~/dotfiles/i3/i3status.conf", "~/.config/i3status/config" ],
         [ "~/dotfiles/bash/bashrc", "~/.bashrc" ],
         [ "~/dotfiles/bash/bash_aliases", "~/.bash_aliases" ],
+        [ "~/dotfiles/bash/bash_profile", "~/.bash_profile" ],
         [ "~/dotfiles/bash/dircolors", "~/.dircolors" ],
         [ "~/dotfiles/bash/profile-common", "~/.profile" ],
         [ "~/dotfiles/bash/completions/complete-setscreen.sh", "~/.local/share/bash_completions.d/complete-setscreen.sh" ],
@@ -22,6 +22,7 @@
     ],
 
     "chucklebot" : [
+        [ "~/dotfiles/git/gitconfig", "~/.gitconfig" ],
         [ "~/dotfiles/bash/profile-chucklebot", "~/.profile_local" ]
     ]
 }
