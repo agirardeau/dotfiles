@@ -12,7 +12,10 @@ export EDITOR=vim
 
 # set up virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
-. /usr/local/bin/virtualenvwrapper.sh 2>&1 /dev/null || true
+venvpath="/usr/local/bin/virtualenvwrapper.sh"
+if [ -f "$venvpath" ]; then
+    . $venvpath 2>&1 /dev/null || true
+fi
 
 # set up bash completions for custom scripts
 for script in ~/.local/share/bash_completions.d/*; do
