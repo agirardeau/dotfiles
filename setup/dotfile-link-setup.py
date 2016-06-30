@@ -14,7 +14,7 @@ def update_link(link, target):
     """Returns True if after execution a link exists (regardless of if it
     points to the intended target)
     """
-    if os.path.lexists(link):
+    if os.path.lexists(link) and os.path.islink(link):
         if os.readlink(link) == target:
             return True
         else:
@@ -100,7 +100,7 @@ if __name__ == "__main__":
                 new_state.append(link)
 
     for link in previous_state:
-        if link not in [x[1] for x in link_data["common"] + link_data[NODE_NAME]]:
+        if link not in [x[1] for x in link_data["common"] + link_data.get(NODE_NAME, [])]:
             if os.path.lexists(link):
                 try:
                     remove_link(link)
