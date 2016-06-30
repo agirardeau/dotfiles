@@ -13,5 +13,5 @@ echo "Running configure-solarized.sh..."
 $directory/configure-solarized.sh
 
 echo "==================================="
-echo "Running makelinks.py..."
-$directory/makelinks.py
+echo "Running dotfile-link-setup.py..."
+$directory/dotfile-link-setup.py
