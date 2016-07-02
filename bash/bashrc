@@ -1,8 +1,8 @@
 #-------------------------
 # User defined settings
 
-# Add ~/bin and subdirectories to path
-export PATH="~/.local/bin:${PATH}$(find ~/bin -name '.*' -prune -o -type d -printf ':%p')"
+# Add ~/bin to path
+export PATH="~/.local/bin:${PATH}"
 
 # Set bash prompt
 export PS1='\u@\h:\w$ '
