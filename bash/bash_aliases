@@ -1,3 +1,5 @@
+alias sudo="sudo "
+
 alias la='ls -A'
 alias ll='ls -l'
 alias lla='ls -lA'
@@ -27,3 +29,6 @@ alias prettyjson='python -m json.tool'
 #     eval "$(dircolors ~/.dircolors)"
 # }
 
+if [ -f ~/.local_aliases ]; then
+    . ~/.local_aliases
+fi
