@@ -24,11 +24,6 @@ alias psfind='ps -A | grep'
 
 alias prettyjson='python -m json.tool'
 
-# customtree() {
-#     tree "$@"
-#     eval "$(dircolors ~/.dircolors)"
-# }
-
-if [ -f ~/.local_aliases ]; then
-    . ~/.local_aliases
+if [ -f ~/.bash_aliases_local ]; then
+    . ~/.bash_aliases_local
 fi
