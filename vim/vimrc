@@ -1,6 +1,15 @@
 "------------------------------------------------------------
 " User created settings
 
+" Include local vimrc
+if filereadable("~/.vimrc_local")
+    source ~/.vimrc_local
+endif
+
+" Store .swp files in /tmp
+set backupdir=/tmp//
+set directory=/tmp//
+
 " Enable Pathogen
 call pathogen#infect()
 call pathogen#helptags()
