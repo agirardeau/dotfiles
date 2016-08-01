@@ -12,6 +12,6 @@ else
     commits=$1
 fi
 
-git --no-pager log -n $commits --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%a%D%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+git --no-pager log -n $commits --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(reset)%C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 
 echo ""
