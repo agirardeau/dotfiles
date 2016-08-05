@@ -11,6 +11,9 @@ alias treep='tree -I "$treepyexcludes"'
 alias treepa='tree -a -I "$treepyexcludes|.git"'
 
 alias tmux='tmux -2'
+alias tattach='tmux attach-session'
+alias tdetach='tmux detach-session'
+alias tlist='tmux list-sessions'
 
 alias findr='find . -name'
 
