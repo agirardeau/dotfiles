@@ -33,25 +33,14 @@ set sidescroll=1
 
 " clipboard
 set clipboard=unnamed,unnamedplus
-xnoremap p pgvy
-noremap x "_x
-noremap s "_s
-
-" find
-nnoremap n nzz
-
-" delete trailing whitespace on write
-"function! TrimWhitespace()
-"    %s/\s\+$//e
-"    %s/[\n\r]\+\'//e
-"endfunction
-"autocmd FileWritePre   * :call TrimWhitespace()
-"autocmd FileAppendPre  * :call TrimWhitespace()
-"autocmd FilterWritePre * :call TrimWhitespace()
-"autocmd BufWritePre    * :call TrimWhitespace()
 
 "--------------------------------
 " Key bindings
+
+let mapleader = ","
+
+" find
+nnoremap n nzz
 
 " smooth scrolling
 nnoremap <C-j> j<C-e>
@@ -59,11 +48,20 @@ nnoremap <C-k> k<C-y>
 vnoremap <C-j> j<C-e>
 vnoremap <C-k> k<C-y>
 
+" copy/paste
+xnoremap p pgvy
+noremap x "_x
+noremap s "_s
+
+" Tabular
+noremap <Leader>t :Tabular /*<CR>
+
 " Shortcut for NERDTree
 " nmap <C-n> :NERDTreeToggle<CR>
 
 " Shortcut for Tagbar
 "nmap <C-m> :TagbarToggle<CR>
+
 
 "------------------------------------------------------------
 " Settings from internet {{{1
