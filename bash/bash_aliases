@@ -27,6 +27,10 @@ alias psfind='ps -A | grep'
 
 alias prettyjson='python -m json.tool'
 
+alias gitbr='git checkout -b'
+alias gitch='git checkout'
+alias gitdel='git branch -D'
+
 if [ -f ~/.bash_aliases_local ]; then
     . ~/.bash_aliases_local
 fi
