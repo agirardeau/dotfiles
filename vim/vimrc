@@ -55,7 +55,11 @@ noremap s "_s
 
 " Tabular
 noremap <Leader>t :Tabular /*<CR>
-"
+
+" Formatting
+noremap <Leader>w :set wrap lbr<CR>
+noremap <Leader>s :syntax off<CR>
+
 " scrolling with line wrap
 nmap j gj
 nmap k gk
