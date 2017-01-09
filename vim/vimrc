@@ -53,6 +53,9 @@ xnoremap p pgvy
 noremap x "_x
 noremap s "_s
 
+map j gj
+map k gk
+
 " Tabular
 noremap <Leader>t :Tabular /*<CR>
 
