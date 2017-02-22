@@ -5,3 +5,4 @@
 *startvim.sh
 *.iml
 *startvim
+*.DS_Store
