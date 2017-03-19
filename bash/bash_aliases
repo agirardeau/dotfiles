@@ -34,6 +34,8 @@ alias gitbr='git checkout -b'
 alias gitch='git checkout'
 alias gitdel='git branch -D'
 
+alias tvim='vim -c "syntax off" -c "set wrap lbr"'
+
 if [ -f ~/.bash_aliases_local ]; then
     . ~/.bash_aliases_local
 fi
