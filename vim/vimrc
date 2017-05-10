@@ -60,7 +60,7 @@ map k gk
 noremap <Leader>t :Tabular /*<CR>
 
 " Formatting
-noremap <Leader>w :set wrap lbr<CR>
+noremap <Leader>w :set wrap! lbr! wrap? lbr?<CR>
 noremap <Leader>s :syntax off<CR>
 
 " scrolling with line wrap
@@ -69,8 +69,8 @@ nmap k gk
 vmap j gj
 vmap k gk
 
-" Shortcut for NERDTree
-" nmap <C-n> :NERDTreeToggle<CR>
+" NERDTree
+noremap <Leader>e :NERDTreeToggle<CR>
 
 " Shortcut for Tagbar
 "nmap <C-m> :TagbarToggle<CR>
