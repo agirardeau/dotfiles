@@ -36,6 +36,11 @@ alias gitdel='git branch -D'
 
 alias tvim='vim -c "syntax off" -c "set wrap lbr"'
 
+alias portlist='netstat -a | grep LISTEN | grep -v "unix  2"'
+function portdetail {
+    lsof -i :$1
+}
+
 if [ -f ~/.bash_aliases_local ]; then
     . ~/.bash_aliases_local
 fi
