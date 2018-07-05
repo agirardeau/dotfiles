@@ -6,3 +6,4 @@
 *.iml
 *startvim
 *.DS_Store
+ignoreme/
