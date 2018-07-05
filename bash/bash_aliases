@@ -26,6 +26,10 @@ alias greprs='grep -rnI . -e'
 alias rmsw='rm .*.sw?'
 alias rmswr='find . -type f -name "*.sw?" -exec rm {} \;'
 
+alias cpr='cp -rv'
+
+alias dur='du -sh *'
+
 alias psfind='ps -A | grep'
 
 alias prettyjson='python -m json.tool'
