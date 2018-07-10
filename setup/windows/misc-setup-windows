@@ -1,0 +1,1 @@
+ln -s /mnt/c/Users/Andrew/scoop/apps/neovim/current/Neovim/bin/win32yank.exe /usr/bin/win32yank
