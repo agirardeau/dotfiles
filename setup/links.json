@@ -1,5 +1,7 @@
 {
     "common" : [
+        [ "~/.config/nvim", "~/.vim" ],
+        [ "~/.config/nvim/init.vim", "~/.vimrc" ],
         [ "~/dotfiles/vim/vimrc", "~/.vimrc" ],
         [ "~/dotfiles/git/gitignore", "~/.gitignore" ],
         [ "~/dotfiles/i3/config", "~/.i3/config" ],
