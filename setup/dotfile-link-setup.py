@@ -11,8 +11,9 @@ XDG_CACHE_HOME_DEFAULT = "~/.cache"
 STATE_FILENAME = "dotfile-link-state.json"
 
 def update_link(link, target):
-    """Returns True if after execution a link exists (regardless of if it
-    points to the intended target)
+    """Returns True if after execution a link exists, regardless of if it
+    points to the intended target. The link will be pointing to the wrong
+    target only if the operation to remove an existing link failed.
     """
     if os.path.lexists(link) and os.path.islink(link):
         if os.readlink(link) == target:
@@ -63,8 +64,6 @@ def load_link_data():
     with open(LINK_FILE, "r") as f:
         link_data = json.load(f)
 
-    #import ipdb
-    #ipdb.set_trace()
     return {x : [[replace_tilde(a[0]), replace_tilde(a[1])] for a in link_data[x]]
             for x in link_data}
 
