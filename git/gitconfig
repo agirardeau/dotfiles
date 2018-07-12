@@ -1,8 +1,6 @@
 [user]
 	name = agirardeaudale
 	email = agirardeaudale@users.noreply.github.com
-[core]
-	excludesfile = ~/.gitignore
 [http]
 	sslVerify = false
 [push]
