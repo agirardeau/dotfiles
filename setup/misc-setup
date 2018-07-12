@@ -1,6 +1,6 @@
-git config --global core.excludesfile ~/.gitignore
+# Currently no miscellaneous setup to do that isn't environment specific.
 
 if grep -q Microsoft /proc/version; then
     echo "Running on WSL. Consider running setup/windows/misc-setup-windows (with"
-    echo "appropriate changes to path."
+    echo "appropriate changes to path)."
 fi
