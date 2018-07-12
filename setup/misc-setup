@@ -1,6 +1,32 @@
-# Currently no miscellaneous setup to do that isn't environment specific.
+# Generate ssh key if none exists
+start-ssh-agent-or-exit() {
+    if [[ ! $(pidof ssh-agent) ]]; then
+        echo "[setup] No ssh-agent running, starting "
+        eval "$(ssh-agent -s)"
+        if ! ps -p $SSH_AGENT_PID > /dev/null; then
+            exit 1
+        fi
+    fi
+    return 0
+}
 
-if grep -q Microsoft /proc/version; then
-    echo "Running on WSL. Consider running setup/windows/misc-setup-windows (with"
-    echo "appropriate changes to path)."
+if ! [ -f ~/.ssh/id_rsa ]; then
+    echo "[setup] Creating ~/.ssh/id_rsa and adding it to ssh-agent..."
+    if ! start-ssh-agent-or-exit; then
+        echo "[setup] Unable to start ssh-agent. Exiting."
+        exit 1
+    fi
+    ssh-keygen -f id_rsa -t rsa -N ''
+    ssh-add ~/.ssh/id_rsa
+    link="https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/"
+    echo "[setup] Successfully created ssh key. Add it to you github account following $link."
+    echo "[setup] Once added to githup, switch the local dotfiles repo to use ssl via:"
+    echo "[setup]     git remote set-url origin git@github.com:agirardeaudale/dotfiles"
 fi
+
+# Print a suggestion to run the wsl-specific setup when running on wsl
+if grep -q Microsoft /proc/version; then
+    echo "[setup] Running on WSL. Consider running setup/windows/misc-setup-windows (with appropriate changes to path)."
+fi
+
+
