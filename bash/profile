@@ -7,6 +7,6 @@ else
 fi
 
 # load machine-specific profile
-if [ -e ~/.profile_local ]; then
-    . ~/.profile_local
+if [ -e ~/.config/dotfiles/local/profile-local ]; then
+    . ~/.config/dotfiles/local/profile-local
 fi

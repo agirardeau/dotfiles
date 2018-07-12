@@ -45,6 +45,6 @@ function portdetail {
     lsof -i :$1
 }
 
-if [ -f ~/.bash_aliases_local ]; then
-    . ~/.bash_aliases_local
+if [ -f ~/.config/dotfiles/local/bash-aliases-local ]; then
+    . ~/.config/dotfiles/local/bash-aliases-local
 fi

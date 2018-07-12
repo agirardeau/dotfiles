@@ -38,8 +38,8 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Include .bash_local, if it exists
-if [ -f ~/.bash_local ]; then
-    . ~/.bash_local
+if [ -f ~/.config/dotfiles/local/bashrc-local ]; then
+    . ~/.config/dotfiles/local/bashrc-local
 fi 
 
 # Load colors for ls-like commands
