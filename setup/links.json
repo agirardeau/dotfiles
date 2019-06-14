@@ -1,20 +1,23 @@
 {
     "common" : [
+        [ "~/dotfiles/vim", "~/.config/dotfiles/vim" ],
+        [ "~/.config/dotfiles/vim/init.vim", "~/.vimrc"],
         [ "~/.vim", "~/.config/nvim" ],
         [ "~/.vimrc", "~/.vim/init.vim" ],
-        [ "~/.config/dotfiles/vim/init.vim", "~/.vimrc"],
-        [ "~/dotfiles/vim", "~/.config/dotfiles/vim" ],
+
+        [ "~/dotfiles/bash", "~/.config/dotfiles/bash" ],
+        [ "~/.config/dotfiles/bash/bashrc", "~/.bashrc" ],
+        [ "~/.config/dotfiles/bash/profile", "~/.profile" ],
+        [ "~/.config/dotfiles/bash/bash-profile", "~/.bash_profile" ],
+        [ "~/.config/dotfiles/bash/dircolors", "~/.dircolors" ],
+        [ "~/.config/dotfiles/bash/completions/complete-setscreen.sh", "~/.local/share/bash_completions.d/complete-setscreen.sh" ],
+
         [ "~/dotfiles/git/gitignore", "~/.config/git/ignore" ],
         [ "~/dotfiles/git/gitconfig", "~/.config/git/config" ],
-        [ "~/dotfiles/bash/bashrc", "~/.bashrc" ],
-        [ "~/dotfiles/bash/bash_aliases", "~/.bash_aliases" ],
-        [ "~/dotfiles/bash/bash_profile", "~/.bash_profile" ],
-        [ "~/dotfiles/bash/dircolors", "~/.dircolors" ],
-        [ "~/dotfiles/bash/profile", "~/.profile" ],
-        [ "~/dotfiles/bash/completions/complete-setscreen.sh", "~/.local/share/bash_completions.d/complete-setscreen.sh" ],
         [ "~/dotfiles/gradle/properties", "~/.gradle/gradle.properties" ],
         [ "~/dotfiles/python/ipython_config.py", "~/.ipython/profile_default/ipython_config.py" ],
         [ "~/dotfiles/tmux/tmux.conf", "~/.tmux.conf" ],
+
         [ "~/dotfiles/scripts/ctagdisplay.py", "~/bin/ctagdisplay" ],
         [ "~/dotfiles/scripts/gitlog.sh", "~/bin/gitlog" ],
         [ "~/dotfiles/scripts/newcontainer.sh", "~/bin/newcontainer" ],
