@@ -2,11 +2,10 @@
     "common" : [
         [ "~/.vim", "~/.config/nvim" ],
         [ "~/.vimrc", "~/.vim/init.vim" ],
-        [ "~/dotfiles/vim/vimrc", "~/.vimrc" ],
+        [ "~/.config/dotfiles/vim/init.vim", "~/.vimrc"],
+        [ "~/dotfiles/vim", "~/.config/dotfiles/vim" ],
         [ "~/dotfiles/git/gitignore", "~/.config/git/ignore" ],
         [ "~/dotfiles/git/gitconfig", "~/.config/git/config" ],
-        [ "~/dotfiles/i3/config", "~/.i3/config" ],
-        [ "~/dotfiles/i3/i3status.conf", "~/.config/i3status/config" ],
         [ "~/dotfiles/bash/bashrc", "~/.bashrc" ],
         [ "~/dotfiles/bash/bash_aliases", "~/.bash_aliases" ],
         [ "~/dotfiles/bash/bash_profile", "~/.bash_profile" ],
@@ -26,7 +25,9 @@
     ],
 
     "chucklebot" : [
-        [ "~/dotfiles/local/chucklebot/", "~/.config/dotfiles/local" ]
+        [ "~/dotfiles/local/chucklebot/", "~/.config/dotfiles/local" ],
+        [ "~/dotfiles/i3/config", "~/.i3/config" ],
+        [ "~/dotfiles/i3/i3status.conf", "~/.config/i3status/config" ]
     ],
 
     "glitterbot" : [

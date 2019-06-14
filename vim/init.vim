@@ -2,8 +2,8 @@
 " User created settings
 
 " Include local vimrc
-if filereadable("~/.vimrc_local")
-    source ~/.vimrc_local
+if filereadable("~/.config/dotfiles/local/vimrc-local")
+    source "~/.config/dotfiles/local/vimrc-local"
 endif
 
 " Store .swp files in /tmp
