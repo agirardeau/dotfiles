@@ -47,6 +47,8 @@ function portdetail {
     lsof -i :$1
 }
 
+alias activate='source env/bin/activate'
+
 if [ -f ~/.config/dotfiles/local/bash-aliases-local ]; then
     . ~/.config/dotfiles/local/bash-aliases-local
 fi
