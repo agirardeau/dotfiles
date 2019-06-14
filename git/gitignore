@@ -7,3 +7,9 @@
 *startvim
 *.DS_Store
 ignoreme/
+
+.vs/
+*.sln
+*.njsproj
+*.njsproj.user
+
