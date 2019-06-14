@@ -1,4 +1,9 @@
 #-------------------------
+# Source .profile
+# .profile should make sure it is not sourced multiple times
+. ~/.profile
+
+#-------------------------
 # User defined settings
 
 # Add ~/bin to path
