@@ -38,8 +38,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Include .bash_aliases, if it exists
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ~/.config/dotfiles/bash/bash-aliases ]; then
+    .  ~/.config/dotfiles/bash/bash-aliases
 fi
 
 # Include .bash_local, if it exists
