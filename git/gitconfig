@@ -1,7 +1,9 @@
 [user]
 	name = Andrew Girardeau-Dale
-	email = agirardeaudale@users.noreply.github.com
+	email = agirardeaudale@gmail.com
 [http]
-	sslVerify = false
+       sslVerify = false
 [push]
-	default = simple
+       default = simple
+[include]
+        path = ~/.config/dotfiles/local/gitconfig-local
