@@ -34,6 +34,7 @@
     ],
 
     "glitterbot" : [
-        [ "~/dotfiles/local/glitterbot/", "~/.config/dotfiles/local" ]
+        [ "~/dotfiles/local/glitterbot/", "~/.config/dotfiles/local" ],
+        [ "~/dotfiles/scripts/write.py", "~/bin/write" ]
     ]
 }
