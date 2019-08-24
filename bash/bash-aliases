@@ -5,10 +5,13 @@ alias ll='ls -l'
 alias lla='ls -lA'
 
 treepyexcludes="__pycache__|__init__.py|*.py[cod]"
+treejsexcludes="node_modules"
 
 alias treea='tree -a'
 alias treep='tree -I "$treepyexcludes"'
 alias treepa='tree -a -I "$treepyexcludes|.git"'
+alias treej='tree -I "$treejsexcludes"'
+alias treeja='tree -a -I "$treejsexcludes|.git"'
 alias treed='tree -d'
 alias treel='tree -L'
 alias treedl='tree -d -L'
@@ -48,6 +51,10 @@ function portdetail {
 }
 
 alias activate='source env/bin/activate'
+
+function awsprof {
+    export AWS_DEFAULT_PROFILE=$1
+}
 
 if [ -f ~/.config/dotfiles/local/bash-aliases-local ]; then
     . ~/.config/dotfiles/local/bash-aliases-local
