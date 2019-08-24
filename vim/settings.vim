@@ -23,7 +23,7 @@ set nowrap
 set sidescroll=1
 
 " clipboard
-set clipboard=unnamed,unnamedplus
+set clipboard=unnamedplus
 
 "------------------------------------------------------------
 " Settings from internet {{{1
