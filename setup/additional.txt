@@ -1,0 +1,7 @@
+Firefox:
+    configure LeechBlock
+
+Programming/CLI:
+    install pip3: sudo apt install python3-pip
+    isntall NodeJS
+    install AWS CLI: pip install awscli --upgrade --user
