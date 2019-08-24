@@ -1,6 +1,3 @@
 alias python='python3'
 alias pip='pip3'
 
-alias chrono='nvim ~/notesync/chrono/chrono-`date "+%Y%m%d"`'
-alias draft='nvim ~/notesync/tmp/drafts/draft-`date "+%Y%m%d"`'
-

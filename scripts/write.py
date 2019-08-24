@@ -12,23 +12,24 @@ def new(argv):
 
     args = parser.parse_args(argv)
     directory = locations[args.category]
-    datestring = datetime.date.today().strftime('%y%m%d')
+    datestring = datetime.date.today().strftime('%Y%m%d')
     filename = f"{args.category}-{datestring}-{args.name}"
     
-    subprocess.call(["nvim", os.path.join(directory, filename)])
+    fullname = os.path.join(directory, filename)
+    print(f"Opening {fullname} for writing...")
+    subprocess.call(f"nvim {fullname}", shell=True)
 
 def edit(argv):
     print("Edit not implemented yet.")
 
 def list(argv):
-    parser = argparse.ArgumentParser(description="new file")
+    parser = argparse.ArgumentParser(description="list files")
     parser.add_argument("category", choices=locations.keys())
 
     args = parser.parse_args(argv)
     directory = locations[args.category]
 
-    #subprocess.call(["ls", directory])
-
+    print(f"Files in {directory}:")
     subprocess.call(f"ls -l {directory}", shell=True)
 
 def delete(argv):
@@ -41,7 +42,8 @@ subcommands = {
 
 locations = {
     "draft": "~/notesync/tmp/drafts",
-    "chrono": "~/notesync/chrono",
+    "thoughts": "~/notesync/personal/thoughts",
+    "journal": "~/notesync/personal/journal",
     "tmp": "~/notesync/tmp"}
 
 parser = argparse.ArgumentParser(description="Manage writing artifacts")
