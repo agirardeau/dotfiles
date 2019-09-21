@@ -24,9 +24,3 @@ if ! [ -f ~/.ssh/id_rsa ]; then
     echo "[setup]     git remote set-url origin git@github.com:agirardeaudale/dotfiles"
 fi
 
-# Print a suggestion to run the wsl-specific setup when running on wsl
-if grep -q Microsoft /proc/version; then
-    echo "[setup] Running on WSL. Consider running setup/windows/misc-setup-windows (with appropriate changes to path)."
-fi
-
-
