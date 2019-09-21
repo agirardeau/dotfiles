@@ -1,9 +1,8 @@
 {
     "common" : [
         [ "~/dotfiles/vim", "~/.config/dotfiles/vim" ],
-        [ "~/.config/dotfiles/vim/init.vim", "~/.vimrc"],
+        [ "~/.config/dotfiles/vim/init.vim", "~/.vim/init.vim"],
         [ "~/.vim", "~/.config/nvim" ],
-        [ "~/.vimrc", "~/.vim/init.vim" ],
 
         [ "~/dotfiles/bash", "~/.config/dotfiles/bash" ],
         [ "~/.config/dotfiles/bash/bashrc", "~/.bashrc" ],
