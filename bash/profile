@@ -1,12 +1,11 @@
-# if this file has already been loaded, exit, otherwise note that it has
-# been loaded
+# if this file hasn't already been loaded, load it and note that it has been
+# loaded.
 if [ -z "$PROFILE_SOURCED" ]; then
     export PROFILE_SOURCED=true
-else
-    exit 0
+
+    # load machine-specific profile
+    if [ -e ~/.config/dotfiles/local/profile-local ]; then
+        . ~/.config/dotfiles/local/profile-local
+    fi
 fi
 
-# load machine-specific profile
-if [ -e ~/.config/dotfiles/local/profile-local ]; then
-    . ~/.config/dotfiles/local/profile-local
-fi
