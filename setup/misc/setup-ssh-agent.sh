@@ -16,7 +16,8 @@ if ! [ -f ~/.ssh/id_rsa ]; then
         echo "[setup] Unable to start ssh-agent. Exiting."
         exit 1
     fi
-    ssh-keygen -f id_rsa -t rsa -N ''
+    mkdir ~/.ssh > /dev/null
+    ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''
     ssh-add ~/.ssh/id_rsa
     link="https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/"
     echo "[setup] Successfully created ssh key. Add it to you github account following $link."
