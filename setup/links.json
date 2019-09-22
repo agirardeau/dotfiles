@@ -35,5 +35,11 @@
     "glitterbot" : [
         [ "~/dotfiles/local/glitterbot/", "~/.config/dotfiles/local" ],
         [ "~/dotfiles/scripts/write.py", "~/bin/write" ]
+    ],
+
+    
+    "bubblebot" : [
+        [ "~/dotfiles/local/bubblebot/", "~/.config/dotfiles/local" ],
+        [ "~/dotfiles/scripts/write.py", "~/bin/write" ]
     ]
 }
