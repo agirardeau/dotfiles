@@ -7,6 +7,7 @@ alias lla='ls -lA'
 treepyexcludes="__pycache__|__init__.py|*.py[cod]"
 treejsexcludes="node_modules"
 
+alias tree='treewithcolorfix'
 alias treea='tree -a'
 alias treep='tree -I "$treepyexcludes"'
 alias treepa='tree -a -I "$treepyexcludes|.git"'
@@ -54,6 +55,24 @@ alias activate='source env/bin/activate'
 
 function awsprof {
     export AWS_DEFAULT_PROFILE=$1
+}
+
+function treewithcolorfix {
+    \tree $@ && echo " " | grep .*
+}
+
+function _dirreplace {
+    current_path=`realpath "$1"`
+    new_path=`echo "$current_path" | sed "s:/$2:/$3:"`
+
+    if [ "$new_path" = "$current_path" ]; then
+        echo "Target not in directory '$2'."
+        return
+    fi
+
+    new_directory=`dirname "$new_path"`
+    mkdir -p "$new_directory"
+    mv "$current_path" "$new_directory"
 }
 
 if [ -f ~/.config/dotfiles/local/bash-aliases-local ]; then
