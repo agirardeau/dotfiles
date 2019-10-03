@@ -63,7 +63,7 @@ function treewithcolorfix {
 
 function _dirreplace {
     current_path=`realpath "$1"`
-    new_path=`echo "$current_path" | sed "s:/$2:/$3:"`
+    new_path=`echo "$current_path" | sed "s:/$2/:/$3/:"`
 
     if [ "$new_path" = "$current_path" ]; then
         echo "Target not in directory '$2'."
@@ -71,8 +71,8 @@ function _dirreplace {
     fi
 
     new_directory=`dirname "$new_path"`
-    mkdir -p "$new_directory"
-    mv "$current_path" "$new_directory"
+    mkdir -p "$new_directory/"
+    mv "$current_path" "$new_directory/"
 }
 
 if [ -f ~/.config/dotfiles/local/bash-aliases-local ]; then
