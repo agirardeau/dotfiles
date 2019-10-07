@@ -58,7 +58,7 @@ function awsprof {
 }
 
 function treewithcolorfix {
-    \tree $@ && echo " " | grep .*
+    \tree $@ && echo " " | grep ".*"
 }
 
 function _dirreplace {
