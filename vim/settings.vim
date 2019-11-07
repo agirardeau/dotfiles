@@ -28,7 +28,7 @@ set clipboard=unnamedplus
 " AutoSave (vim-auto-save)
 let g:auto_save = 1 " enable AutoSave on Vim startup
 let g:auto_save_silent = 1  " do not display the AutoSave notification
-let g:auto_save_events = ["InsertLeave", "TextChanged", "CursorHoldI", "ComleteDone"]
+let g:auto_save_events = ["InsertLeave", "TextChanged", "CursorHoldI"]
 
 "------------------------------------------------------------
 " Settings from internet {{{1
