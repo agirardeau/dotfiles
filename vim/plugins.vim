@@ -11,6 +11,7 @@ Plug 'chrisbra/Recover.vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'godlygeek/tabular'
 Plug 'editorconfig/editorconfig-vim'
+Plug '907th/vim-auto-save'
 
 Plug 'hdima/python-syntax'
 Plug 'pangloss/vim-javascript'
