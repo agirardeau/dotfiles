@@ -162,7 +162,7 @@ bar {
 # for_window [class="spotify"] floating enable, border normal
 exec --no-startup-id nm-applet
 
-focus_follows_mouse no
+focus_follows_mouse yes
+#mouse_warping no
 
 bindsym $mod+Shift+n move container to output down
-bindsym $mod+Shift+m move container to output right

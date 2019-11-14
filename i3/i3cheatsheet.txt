@@ -3,7 +3,7 @@ Mod + HJKL             * move focus
 Mod + Shift + HJKL     * move focused window
 Mod + Shift + Q        * close window
 Mod + Enter            * terminal
-Mod + ;V               * split (horizontal/vertical)
+Mod + (; or V)         * split (horizontal/vertical)
 Mod + (number)         * focus workspace
 Mod + Shift + (number) * move focused container to workspace
 ---------------------- * ----------------------
@@ -26,3 +26,7 @@ Esc/Enter              * exit
 ---------------------- * ----------------------
 Mod + Shift + E        * log out
 Super + L              * lock screen
+
+
+# Reload saved workspace:
+i3-msg "workspace 1; append_layout ~/truehome/ws1"
