@@ -5,7 +5,7 @@
         [ "~/.vim", "~/.config/nvim" ],
 
         [ "~/dotfiles/bash", "~/.config/dotfiles/bash" ],
-        [ "~/.config/dotfiles/bash/bashrc", "~/.bashrc" ],
+        [ "~/.config/dotfiles/bash/bash-rc", "~/.bashrc" ],
         [ "~/.config/dotfiles/bash/profile", "~/.profile" ],
         [ "~/.config/dotfiles/bash/bash-profile", "~/.bash_profile" ],
         [ "~/.config/dotfiles/bash/dircolors", "~/.dircolors" ],

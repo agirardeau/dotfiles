@@ -1,0 +1,28 @@
+# Include .profile
+# .profile should make sure it is not sourced multiple times
+. ~/.profile
+
+# Include bash-settings, if it exists
+if [ -f ~/.config/dotfiles/bash/bash-settings ]; then
+    .  ~/.config/dotfiles/bash/bash-settings
+fi
+
+# Source programmable completion
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+for script in ~/.local/share/bash_completions.d/*; do
+    source $script
+done
+
+# Include bash-aliases, if it exists
+if [ -f ~/.config/dotfiles/bash/bash-aliases ]; then
+    .  ~/.config/dotfiles/bash/bash-aliases
+fi
+
+# Include .bash-rc-local, if it exists
+if [ -f ~/.config/dotfiles/local/bash-rc-local ]; then
+    . ~/.config/dotfiles/local/bash-rc-local
+fi 
+
