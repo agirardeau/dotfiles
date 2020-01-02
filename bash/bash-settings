@@ -4,8 +4,8 @@ export PATH="~/bin:${PATH}"
 # Set bash prompt
 export PS1='\u@\h:\w$ '
 
-# Make vim default editor for stuff like git commits
-export EDITOR=vim
+# Make neovim default editor for stuff like git commits
+export EDITOR=nvim
 
 # set up virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
