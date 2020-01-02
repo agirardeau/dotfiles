@@ -31,11 +31,12 @@ alias findr='find . -name'
 
 alias grepr='grep -rniI . -e'
 alias greprs='grep -rnI . -e'
+alias greprj='grep -rniI --exclude-dir=node_modules . -e'
 
 alias rmsw='rm .*.sw?'
 alias rmswr='find . -type f -name "*.sw?" -exec rm {} \;'
 
-alias cpr='cp -rv'
+alias cpr='cp -rpv'
 
 alias dur='du -sh *'
 
