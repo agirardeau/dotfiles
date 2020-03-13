@@ -40,6 +40,10 @@ alias cpr='cp -rv'
 alias dur='du -sh *'
 
 alias psfind='ps -A | grep'
+alias pskill='kill -9'
+function portfind {
+    lsof -i :$1
+}
 
 alias prettyjson='python -m json.tool'
 
