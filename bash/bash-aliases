@@ -45,6 +45,10 @@ function portfind {
     lsof -i :$1
 }
 
+function wipe {
+    rm $1 && touch $1
+}
+
 alias prettyjson='python -m json.tool'
 
 alias gitbr='git checkout -b'
