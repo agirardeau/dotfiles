@@ -35,6 +35,12 @@ def list(argv):
 def delete(argv):
     print("Delete not implemented yet.")
 
+def cd(argv):
+    print("Cd not implemented yet.")
+
+def cat(argv):
+    print("Cat not implemented yet.")
+
 subcommands = {
     "new": new,
     "edit": edit,
@@ -44,6 +50,7 @@ locations = {
     "draft": "~/notesync/tmp/drafts",
     "thoughts": "~/notesync/personal/thoughts",
     "journal": "~/notesync/personal/journal",
+    "notes": "~/notesync/endeavors/notes",
     "tmp": "~/notesync/tmp"}
 
 parser = argparse.ArgumentParser(description="Manage writing artifacts")
