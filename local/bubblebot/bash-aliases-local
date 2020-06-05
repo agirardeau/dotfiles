@@ -4,3 +4,5 @@ alias pip='pip3'
 alias vim='nvim'
 
 alias write='~/bin/write'
+
+alias node='node --experimental-repl-await'
