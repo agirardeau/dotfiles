@@ -10,3 +10,5 @@
 [credential]
 	helper = !aws codecommit credential-helper $@
 	UseHttpPath = true
+[pull]
+	ff = only
