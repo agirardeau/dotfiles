@@ -27,6 +27,9 @@ noremap <Leader>t :Tabular /*<CR>
 noremap <Leader>w :set wrap! lbr!<CR>
 noremap <Leader>s :syntax off<CR>
 
+" Opening split and switching to second buffer
+noremap <Leader>v :vsp \| b2<CR><C-w>h
+
 " scrolling with line wrap
 nmap j gj
 nmap k gk
