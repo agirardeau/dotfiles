@@ -6,9 +6,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'micha/vim-colors-solarized'
-Plug 'scrooloose/nerdtree'
-Plug 'chrisbra/Recover.vim'
-Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'godlygeek/tabular'
 Plug 'editorconfig/editorconfig-vim'
 Plug '907th/vim-auto-save'
@@ -16,6 +13,11 @@ Plug '907th/vim-auto-save'
 Plug 'hdima/python-syntax'
 Plug 'pangloss/vim-javascript'
 
+Plug 'chrisbra/Recover.vim'
+
+" Plug 'digitaltoad/vim-pug'
+" Plug 'Glench/Vim-Jinja2-Syntax'
+" Plug 'scrooloose/nerdtree'
 " Plug 'embear/vim-localvimrc'
 " Plug 'majutsushi/tagbar'
 " Plug 'rbgrouleff/bclose.vim'
@@ -31,4 +33,9 @@ Plug 'pangloss/vim-javascript'
 " Plug 'edkolev/tmuxline.vim'
 " Plug 'powerline/powerline'
 "
+
+if filereadable($HOME . '/.config/dotfiles/local/plugins-local.vim')
+    source $HOME/.config/dotfiles/local/plugins-local.vim
+endif
+
 call plug#end()
