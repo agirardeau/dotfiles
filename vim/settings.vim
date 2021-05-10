@@ -11,6 +11,7 @@ set syntax=c.doxygen
 set background=dark
 set t_Co=256
 let g:solarized_termcolors=256
+let g:solarized_contrast="high"
 colorscheme solarized
 
 " Split creation
@@ -23,7 +24,8 @@ set nowrap
 set sidescroll=1
 
 " clipboard
-set clipboard=unnamedplus
+set clipboard^=unnamed,unnamedplus
+vnoremap <leader>c :OSCYank<CR>
 
 " AutoSave (vim-auto-save)
 let g:auto_save = 1 " enable AutoSave on Vim startup

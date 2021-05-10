@@ -5,7 +5,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'micha/vim-colors-solarized'
+"Plug 'micha/vim-colors-solarized'
+Plug 'agirardeau/vim-solarized-adjusted'
 Plug 'godlygeek/tabular'
 Plug 'editorconfig/editorconfig-vim'
 Plug '907th/vim-auto-save'
@@ -15,6 +16,10 @@ Plug 'pangloss/vim-javascript'
 
 Plug 'chrisbra/Recover.vim'
 
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'ojroques/vim-oscyank', { 'branch': 'main' }
+
+" Plug 'roxma/vim-tmux-clipboard'
 " Plug 'digitaltoad/vim-pug'
 " Plug 'Glench/Vim-Jinja2-Syntax'
 " Plug 'scrooloose/nerdtree'
