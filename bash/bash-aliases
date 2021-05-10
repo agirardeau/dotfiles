@@ -1,3 +1,6 @@
+alias refresh-aliases=". ~/dotfiles/bash/bash-aliases"
+alias edit-aliases="nvim ~/local-dotfiles/bash-aliases-local ~/dotfiles/bash/bash-aliases"
+
 alias sudo="sudo "
 
 alias ls='ls --color=auto'
@@ -24,7 +27,7 @@ alias treedl='tree -d -L'
 
 alias tmux='tmux -2'
 alias tattach='tmux attach-session'
-alias tdetach='tmux detach-session'
+alias tdetach='tmux detach-client'
 alias tlist='tmux list-sessions'
 
 alias findr='find . -name'
@@ -37,6 +40,8 @@ alias rmsw='rm .*.sw?'
 alias rmswr='find . -type f -name "*.sw?" -exec rm {} \;'
 
 alias cpr='cp -rpv'
+
+alias cdhere='cd `realpath .`'
 
 alias dur='du -sh *'
 
