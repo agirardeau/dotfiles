@@ -30,6 +30,9 @@ noremap <Leader>s :syntax off<CR>
 " Opening split and switching to second buffer
 noremap <Leader>v :vsp \| b2<CR><C-w>h
 
+" Yank over ssh/tmux via vim-oscyank
+vnoremap <Leader>c :OSCYank<CR>
+
 " scrolling with line wrap
 nmap j gj
 nmap k gk

@@ -1,6 +1,9 @@
 "------------------------------------------------------------
 " User created settings
 
+" Set mapleader key (<leader>)
+let g:mapleader = ","
+
 " Store .swp files in /tmp
 set backupdir=/tmp//
 set directory=/tmp//
@@ -25,7 +28,6 @@ set sidescroll=1
 
 " clipboard
 set clipboard^=unnamed,unnamedplus
-vnoremap <leader>c :OSCYank<CR>
 
 " AutoSave (vim-auto-save)
 let g:auto_save = 1 " enable AutoSave on Vim startup
