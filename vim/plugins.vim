@@ -19,6 +19,32 @@ Plug 'chrisbra/Recover.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'ojroques/vim-oscyank', { 'branch': 'main' }
 
+" LSP
+Plug 'neovim/nvim-lspconfig' " Collection of common configurations for the Nvim LSP client
+
+" To enable more of the features of rust-analyzer, such as inlay hints and more
+Plug 'simrat39/rust-tools.nvim'
+
+" Completion
+Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }     " Framework
+Plug 'hrsh7th/cmp-nvim-lsp', { 'branch': 'main' } " LSP completion source
+Plug 'hrsh7th/cmp-path', { 'branch': 'main' }     " Path completion source
+Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }   " Buffer completion source
+"Plug 'hrsh7th/cmp-vsnip', { 'branch': 'main' }    " Snippet completion source
+
+" To enable more of the features of rust-analyzer, such as inlay hints and more
+Plug 'simrat39/rust-tools.nvim'
+
+" Snippet engine
+"Plug 'hrsh7th/vim-vsnip'
+
+
+
+" Fuzzy finder
+"Plug 'nvim-lua/popup.nvim'
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'nvim-telescope/telescope.nvim'
+
 " Plug 'roxma/vim-tmux-clipboard'
 " Plug 'digitaltoad/vim-pug'
 " Plug 'Glench/Vim-Jinja2-Syntax'
