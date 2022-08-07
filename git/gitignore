@@ -13,3 +13,4 @@ ignoreme/
 *.njsproj
 *.njsproj.user
 
+CMakeFiles/
