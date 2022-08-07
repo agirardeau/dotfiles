@@ -102,7 +102,16 @@ def get_entry_by_name_with_disambiguation(category, name):
 def get_entries_for_category(category):
     directory = CATEGORY_TO_DIRECTORY[category]
     filenames = os.listdir(os.path.expanduser(directory))
-    return reversed([Entry.from_filename(x) for x in filenames])
+
+    # Would love to use a list comprehension here but that
+    # won't let me filter out exceptions
+    entries = []
+    for filename in filenames:
+        try:
+            entries.append(Entry.from_filename(filename))
+        except ValueError:
+            pass
+    return reversed(entries)
 
 def validate_entry_name(name):
     if re.fullmatch('[-\w]+', name) is None:
