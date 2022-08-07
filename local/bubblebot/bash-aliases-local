@@ -11,3 +11,5 @@ alias winopen='explorer.exe'
 
 alias mountr='mount -t drvfs r: /mnt/r'
 alias mounts='mount -t drvfs s: /mnt/s'
+alias umounts='umount /mnt/s'
+alias remounts='umount /mnt/s && mount -t drvfs s: /mnt/s'
