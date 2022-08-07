@@ -12,13 +12,16 @@ nnoremap <C-k> k<C-y>
 vnoremap <C-j> j<C-e>
 vnoremap <C-k> k<C-y>
 
+map j gj
+map k gk
+
+" unhighlight
+noremap <C-L> :nohl<CR><C-L>
+
 " copy/paste
 xnoremap p pgvy
 noremap x "_x
 noremap s "_s
-
-map j gj
-map k gk
 
 " Tabular
 noremap <Leader>t :Tabular /*<CR>
