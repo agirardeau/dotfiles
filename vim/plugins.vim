@@ -6,13 +6,23 @@ endif
 call plug#begin('~/.vim/plugged')
 
 "Plug 'micha/vim-colors-solarized'
-Plug 'agirardeau/vim-solarized-adjusted'
+"Plug 'agirardeau/vim-solarized-adjusted'
 Plug 'godlygeek/tabular'
 Plug 'editorconfig/editorconfig-vim'
 Plug '907th/vim-auto-save'
 
-Plug 'hdima/python-syntax'
-Plug 'pangloss/vim-javascript'
+" Color schemes
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+"Plug 'ellisonleao/gruvbox.nvim'  " Requires NVim 0.8
+"Plug 'bluz71/vim-moonfly-colors', { 'branch': 'cterm-compat' }  " could remove the cterm-compat branch if I add termguicolors
+"Plug 'bluz71/vim-nightfly-colors', { 'branch': 'cterm-compat' }  " could remove the cterm-compat branch if I add termguicolors
+"Plug 'jacoborus/tender.vim'
+"Plug 'EdenEast/nightfox.nvim'  " Requires NVim 0.8
+"Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+
+"Plug 'hdima/python-syntax'
+"Plug 'pangloss/vim-javascript'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'chrisbra/Recover.vim'
 
@@ -34,6 +44,10 @@ Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }   " Buffer completion source
 
 " To enable more of the features of rust-analyzer, such as inlay hints and more
 Plug 'simrat39/rust-tools.nvim'
+
+" Tree sidebar
+"Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 
 " Snippet engine
 "Plug 'hrsh7th/vim-vsnip'
