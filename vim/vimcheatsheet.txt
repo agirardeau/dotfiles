@@ -87,13 +87,25 @@ SPLITS (Note - what I call panes or splits, vim often calls windows)
 <C-w><j> - move cursor one pane downward
 <C-w><k> - move cursor one pane upward
 
-<C-w><->   - maximize current pane
-<C-w><=>   - make panes equal in size
+<C-w><-> - maximize current pane
+<C-w><=> - make panes equal in size
 <C-w><r> - rotate panes within one row or column of panes
 
 TABS
 :q                 - close current tab
 :tabnew {filename} - open a buffer in a new tab for {filename}
+
+----------------------------------------
+- SETTINGS
+
+:se[t] {option}?        - print an option's value
+:se[t] {option}         - set an option to true (1)
+:se[t] no{option}       - set an option to false (0)
+:se[t] {option}!        - toggle option
+:se[t] {option}={value} - set option to value
+:se[t] {option}&        - reset option to default value
+
+:echo &{option} - print an option's value
 
 ----------------------------------------
 - PLUGINS
