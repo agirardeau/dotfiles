@@ -63,10 +63,13 @@ noremap <Leader>ep :NvimTreeClipboard<CR>
 noremap <Leader>eh :NvimTreeResize -5<CR>
 noremap <Leader>el :NvimTreeResize +5<CR>
 
-" Shortcut for Tagbar
-"nmap <C-m> :TagbarToggle<CR>
+" Diagnostics
+noremap <Leader>dj :lua vim.diagnostic.goto_next()<CR>
+noremap <Leader>dk :lua vim.diagnostic.goto_prev()<CR>
 
 " modify selected text using combining diacritics
+" (note (agirardeau, 2022.11.17): highlight text and run these to alter the
+" text)
 command! -range -nargs=0 Underline       call s:CombineSelection(<line1>, <line2>, '0332')
 "command! -range -nargs=0 Overline        call s:CombineSelection(<line1>, <line2>, '0305')
 "command! -range -nargs=0 DoubleUnderline call s:CombineSelection(<line1>, <line2>, '0333')

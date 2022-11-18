@@ -39,6 +39,32 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing extra messages when using completion
 set shortmess+=c
 
+" Overlay diagnostic signs on top of line numbers instead of making the line
+" number bar wider
+set signcolumn=number
+" Turn off virtext for diagnostics unless user hovers
+lua <<EOF
+vim.diagnostic.config({
+  virtual_text = {
+    severity = vim.diagnostic.severity.ERROR,
+    source = "if_many",
+    spacing = 12,
+  },
+  severity_sort = true,
+  float = {
+    border = "single",
+    format = function(diagnostic)
+      return string.format(
+        "%s (%s) [%s]",
+        diagnostic.message,
+        diagnostic.source,
+        diagnostic.code or diagnostic.user_data.lsp.code
+      )
+    end,
+  },
+})
+EOF
+
 "------------------------------------------------------------
 " Settings from internet {{{1
 " URL: http://vim.wikia.com/wiki/Example_vimrc
