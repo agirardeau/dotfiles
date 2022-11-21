@@ -82,6 +82,8 @@ function portdetail {
 
 alias activate='source env/bin/activate'
 
+alias tmpclean='find /tmp -type f -mtime +2 -delete'
+
 function awsprof {
     export AWS_DEFAULT_PROFILE=$1
 }
