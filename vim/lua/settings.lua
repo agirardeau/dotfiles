@@ -1,49 +1,39 @@
-"------------------------------------------------------------
-" User created settings
 
-" Store .swp files in /tmp
-set backupdir=/tmp//
-set directory=/tmp//
+-- Store .swp files in /tmp
+vim.opt.backupdir = "/tmp//"
+vim.opt.directory = "/tmp//"
 
-" Enable syntax highlighting
-"syntax enable
-"set syntax=c.doxygen
-set background=dark
-set t_Co=256
-"let g:solarized_termcolors=256
-"let g:solarized_contrast="high"
+-- Enable syntax highlighting
+vim.opt.background = "dark"
+--vim.opt.t_Co = 256
 
-" Split creation
-"  from: http://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
-set splitbelow
-set splitright
+-- Split creation
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
-" Word wrapping
-set nowrap
-set sidescroll=1
+-- Word wrapping
+vim.opt.wrap = false
 
-" clipboard
-set clipboard^=unnamed,unnamedplus
+-- Clipboard
+vim.opt.clipboard = "unnamed,unnamedplus"
 
-" AutoSave (vim-auto-save)
-let g:auto_save = 1 " enable AutoSave on Vim startup
-let g:auto_save_silent = 1  " do not display the AutoSave notification
-let g:auto_save_events = ["InsertLeave", "TextChanged", "CursorHoldI"]
+-- AutoSave (vim-auto-save)
+vim.g.auto_save = 1  -- enable AutoSave on Vim startup
+vim.g.auto_save_silent = 1  -- do not display the AutoSave notification
+vim.g.auto_save_events = {"InsertLeave", "TextChanged", "CursorHoldI"}
 
-" Set completeopt to have a better completion experience (:help completeopt)
-"   menuone: popup even when there's only one match
-"   noinsert: Do not insert text until a selection is made
-"   noselect: Do not select, force user to select one from the menu
-set completeopt=menuone,noinsert,noselect
+-- Set completeopt to have a better completion experience (:help completeopt)
+--  menuone: popup even when there's only one match
+--  noinsert: Do not insert text until a selection is made
+--  noselect: Do not select, force user to select one from the menu
+vim.opt.completeopt = "menuone,noinsert,noselect"
 
-" Avoid showing extra messages when using completion
-set shortmess+=c
+-- Avoid showing extra messages when using completion
+vim.opt.shortmess = "filnxtToOFc"
 
-" Overlay diagnostic signs on top of line numbers instead of making the line
-" number bar wider
-set signcolumn=number
-" Turn off virtext for diagnostics unless user hovers
-lua <<EOF
+-- Overlay diagnostic signs on top of line numbers instead of making the line
+-- number bar wider
+vim.opt.signcolumn = "number"
 vim.diagnostic.config({
   virtual_text = {
     severity = vim.diagnostic.severity.ERROR,
@@ -63,53 +53,39 @@ vim.diagnostic.config({
     end,
   },
 })
-EOF
 
-"------------------------------------------------------------
-" Settings from internet {{{1
-" URL: http://vim.wikia.com/wiki/Example_vimrc
-" Authors: http://vim.wikia.com/wiki/Vim_on_Freenode
-" Description: A minimal, but feature rich, example .vimrc. If you are a
-"              newbie, basing your first .vimrc on this file is a good choice.
-"              If you're a more advanced user, building your own .vimrc based
-"              on this file is still a good idea.
+-- Use case insensitive search, except when using capital letters
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
-" Use case insensitive search, except when using capital letters
-set ignorecase
-set smartcase
+-- Instead of failing a command because of unsaved changes, instead raise a
+-- dialogue asking if you wish to save changed files.
+vim.opt.confirm = true
 
-" Instead of failing a command because of unsaved changes, instead raise a
-" dialogue asking if you wish to save changed files.
-set confirm
+-- Use visual bell instead of beeping when doing something wrong
+vim.opt.visualbell = true
 
-" Use visual bell instead of beeping when doing something wrong
-set visualbell
-set noerrorbells
+-- Enable use of the mouse for all modes
+vim.opt.mouse = "a"
 
-" And reset the terminal code for the visual bell. If visualbell is set, and
-" this line is also included, vim will neither flash nor beep. If visualbell
-" is unset, this does nothing.
-set t_vb=
+-- Display line numbers on the left
+vim.opt.number = true
 
-" Enable use of the mouse for all modes
-set mouse=a
+-- Quickly time out on keycodes, but never time out on mappings
+vim.opt.timeout = false
+vim.opt.ttimeout = true
+vim.opt.ttimeoutlen = 200
 
-" Display line numbers on the left
-set number
+-- Indentation settings for using 2 spaces instead of tabs.
+-- Do not change 'tabstop' from its default value of 8 with this setup? 
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
 
-" Quickly time out on keycodes, but never time out on mappings
-set notimeout ttimeout ttimeoutlen=200
 
-" Indentation settings for using 2 spaces instead of tabs.
-" Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=2
-set softtabstop=4
-set expandtab
+--------------------------------------------------------------
+-- Settings for plugin `simrat39/rust-tools`
 
-"------------------------------------------------------------
-" Settings for plugin `simrat39/rust-tools`
-
-lua <<EOF
 local nvim_lsp = require'lspconfig'
 
 local opts = {
@@ -143,12 +119,10 @@ local opts = {
 }
 
 require('rust-tools').setup(opts)
-EOF
 
-"------------------------------------------------------------
-" Settings for plugin `hrsh7th/nvim-cmp`
+--------------------------------------------------------------
+-- Settings for plugin `hrsh7th/nvim-cmp`
 
-lua <<EOF
 local cmp = require'cmp'
 cmp.setup({
   -- Enable LSP snippets
@@ -181,12 +155,10 @@ cmp.setup({
     { name = 'buffer' },
   },
 })
-EOF
 
-"----------------------------------------------------------
-" Settings for plugin `nvim-treesitter`
+------------------------------------------------------------
+-- Settings for plugin `nvim-treesitter`
 
-lua <<EOF
 nvim_treesitter_configs = require'nvim-treesitter.configs'
 nvim_treesitter_configs.setup({
   ensure_installed = {
@@ -225,13 +197,10 @@ nvim_treesitter_configs.setup({
 
 })
 
-EOF
+------------------------------------------------------------
+-- Settings for plugin `folke/tokyonight.nvim`
 
-"----------------------------------------------------------
-" Settings for plugin `folke/tokyonight.nvim`
-
-lua <<EOF
-util = require("tokyonight.util")
+require("tokyonight.util")
 require("tokyonight").setup({
   -- use the night style
   style = "night",
@@ -261,6 +230,7 @@ require("tokyonight").setup({
   terminal_colors = true,
 })
 
-EOF
-colorscheme tokyonight
+vim.cmd("colorscheme tokyonight")
+
+
 

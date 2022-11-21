@@ -1,10 +1,10 @@
 vim.cmd([[
   source $HOME/.config/nvim/viml/plugins.vim
-  source $HOME/.config/nvim/viml/settings.vim
   source $HOME/.config/nvim/viml/keys.vim
 ]])
 
-require("luasettings")
+require("plugins")
+require("settings")
 
 vim.cmd([[
   if filereadable($HOME . '/.config/dotfiles/local/vimrc-local')

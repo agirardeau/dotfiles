@@ -47,7 +47,7 @@ Plug 'simrat39/rust-tools.nvim'
 
 " Tree sidebar
 "Plug 'nvim-tree/nvim-web-devicons'
-Plug 'nvim-tree/nvim-tree.lua'
+"Plug 'nvim-tree/nvim-tree.lua'
 
 " Snippet engine
 "Plug 'hrsh7th/vim-vsnip'
