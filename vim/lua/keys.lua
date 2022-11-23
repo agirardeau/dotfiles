@@ -34,7 +34,7 @@ utils.noremap("<Leader>w", ":set wrap! lbr!<CR>")
 utils.noremap("<Leader>s", ":syntax off<CR>")
 
 -- Opening split and switching to second buffer
-utils.noremap("<Leader>v", ":vsp \\| b2<CR><C-w>h")
+utils.noremap("<Leader>v", ":vsp | b2<CR><C-w>h")
 
 -- Yank over ssh/tmux via vim-oscyank
 utils.vnoremap("<Leader>c", ":OSCYank<CR>")
