@@ -16,14 +16,29 @@ return require('packer').startup(function(use)
   -- Let packer manage itself
   use 'wbthomason/packer.nvim'
 
+  use 'godlygeek/tabular'
+  use 'editorconfig/editorconfig-vim'
+  use '907th/vim-auto-save'
+  use 'chrisbra/Recover.vim'
 
-  --use {
-  --  'nvim-tree/nvim-web-devicons',
-  --}
+  use { 'folke/tokyonight.nvim', branch = 'main' }
+
+  use 'tmux-plugins/vim-tmux-focus-events'
+  use { 'ojroques/vim-oscyank', branch = 'main' }
+
+  use { 'nvim-treesitter/nvim-treesitter', ['do'] = ':TSUpdate' }
+  use 'neovim/nvim-lspconfig' -- Collection of common configurations for the Nvim LSP client
+  use 'simrat39/rust-tools.nvim' -- Enable more rust-analyzer features, such as inlay hints
+
+  -- Completion
+  use { 'hrsh7th/nvim-cmp', branch = 'main' }     -- Framework
+  use { 'hrsh7th/cmp-nvim-lsp', branch = 'main' } -- LSP completion source
+  use { 'hrsh7th/cmp-path', branch = 'main' }     -- Path completion source
+  use { 'hrsh7th/cmp-buffer', branch = 'main' }   -- Buffer completion source
+  --use {'hrsh7th/cmp-vsnip', branch = 'main' }    -- Snippet completion source
 
   use {
     'nvim-tree/nvim-tree.lua',
-    --requires = { 'nvim-tree/nvim-web-devicons' },  -- optional, for file icons
     setup = function() 
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
@@ -38,3 +53,9 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
+
+-- TODO: migrate loading of local plugins to lua config
+--if filereadable($HOME . '/.config/dotfiles/local/plugins-local.vim')
+--    source $HOME/.config/dotfiles/local/plugins-local.vim
+--endif
+-- TODO: get rid of the annoying background on TODOs

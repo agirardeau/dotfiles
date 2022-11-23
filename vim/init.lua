@@ -1,7 +1,3 @@
-vim.cmd([[
-  source $HOME/.config/nvim/viml/plugins.vim
-]])
-
 require("plugins")
 require("settings")
 require("keys")
