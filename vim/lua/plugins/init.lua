@@ -48,8 +48,3 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
-
--- TODO: migrate loading of local plugins to lua config
---if filereadable($HOME . '/.config/dotfiles/local/plugins-local.vim')
---    source $HOME/.config/dotfiles/local/plugins-local.vim
---endif
