@@ -1,16 +1,11 @@
 -- Install packer if it isn't present already
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    print("Bootstrapping packer...")
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local is_first_install = vim.fn.empty(vim.fn.glob(install_path)) > 0
+if is_first_install then
+  print("Bootstrapping packer...")
+  vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.cmd [[packadd packer.nvim]]
 end
-local packer_first_install = ensure_packer()
 
 return require('packer').startup(function(use)
   -- Let packer manage itself
@@ -49,7 +44,7 @@ return require('packer').startup(function(use)
   }
 
   -- Automatically set up configuration after cloning packer.nvim
-  if packer_first_install then
+  if is_first_install then
     require('packer').sync()
   end
 end)
@@ -58,4 +53,3 @@ end)
 --if filereadable($HOME . '/.config/dotfiles/local/plugins-local.vim')
 --    source $HOME/.config/dotfiles/local/plugins-local.vim
 --endif
--- TODO: get rid of the annoying background on TODOs
