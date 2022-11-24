@@ -82,155 +82,29 @@ vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 
-
---------------------------------------------------------------
--- Settings for plugin `simrat39/rust-tools`
-
-local nvim_lsp = require'lspconfig'
-
-local opts = {
-    tools = { -- rust-tools options
-        autoSetHints = true,
-        --hover_with_actions = true,  -- deprecated, suggested to set keybind to :RustHoverActions in on_attach instead
-        inlay_hints = {
-            show_parameter_hints = false,
-            parameter_hints_prefix = "",
-            other_hints_prefix = "",
-        },
-    },
-
-    -- all the opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
-    server = {
-        -- on_attach is a callback called when the language server attachs to the buffer
-        -- on_attach = on_attach,
-        settings = {
-            -- to enable rust-analyzer settings visit:
-            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-            ["rust-analyzer"] = {
-                -- enable clippy on save
-                checkOnSave = {
-                    command = "clippy"
-                },
-            }
-        }
-    },
+-- Prevent loading certain vim features
+local disabled_built_ins = {
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  "gzip",
+  "zip",
+  "zipPlugin",
+  "tar",
+  "tarPlugin",
+  "getscript",
+  "getscriptPlugin",
+  "vimball",
+  "vimballPlugin",
+  "2html_plugin",
+  "logipat",
+  "rrhelper",
+  "spellfile_plugin",
+  "matchit",
 }
 
-require('rust-tools').setup(opts)
-
---------------------------------------------------------------
--- Settings for plugin `hrsh7th/nvim-cmp`
-
-local cmp = require'cmp'
-cmp.setup({
-  -- Enable LSP snippets
-  snippet = {
-    expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    -- Add tab support
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    })
-  },
-
-  -- Installed sources
-  sources = {
-    { name = 'nvim_lsp' },
-    --{ name = 'vsnip' },
-    { name = 'path' },
-    { name = 'buffer' },
-  },
-})
-
-------------------------------------------------------------
--- Settings for plugin `nvim-treesitter`
-
-nvim_treesitter_configs = require'nvim-treesitter.configs'
-nvim_treesitter_configs.setup({
-  ensure_installed = {
-    'bash',
-    'c',
-    'cpp',
-    'diff',
-    'gitattributes',
-    'gitignore',
-    'help',
-    'html',
-    'javascript',
-    'json',
-    'lua',
-    'make',
-    'markdown',
-    'python',
-    'rust',
-    'sql',
-    'toml',
-    'vim',
-    'yaml',
-  },
-
-  disable = function(lang, buf)
-    local max_filesize = 500 * 1024 -- 500 KB
-    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-    if ok and stats and stats.size > max_filesize then
-      return true
-    end
-  end,
-
-  highlight = {
-    enable = true,
-  },
-
-})
-
-------------------------------------------------------------
--- Settings for plugin `folke/tokyonight.nvim`
-
-require("tokyonight.util")
-require("tokyonight").setup({
-  -- use the night style
-  style = "night",
-  -- disable italic for keywords
-  styles = {
-    keywords = { italic = false }
-  },
-  sidebars = { "qf", "vista_kind", "terminal", "packer" },
-  -- Change the "hint" color to the "orange" color, and make the "error" color bright red
-  on_colors = function(colors)
-    local charcoal = "#161616"
-    local darker_charcoal = "#121212"
-    local darkest_charcoal = "#040404"
-    local lighter_charcoal = "#404040"
-
-    colors.bg = charcoal
-    colors.bg_dark = darker_charcoal
-    colors.terminal_black = darker_charcoal
-    colors.bg_dark = darker_charcoal
-    colors.comment = "#6A6A6A"
-    colors.black = darkest_charcoal
-    colors.bg_popup = darker_charcoal
-    colors.bg_search = darker_charcoal
-    colors.bg_sidebar = darker_charcoal
-    colors.bg_visual = lighter_charcoal
-  end,
-  terminal_colors = true,
-})
-
-vim.cmd("colorscheme tokyonight")
-
-
+for _, plugin in pairs(disabled_built_ins) do
+  vim.g["loaded_" .. plugin] = 1
+end
 
