@@ -11,6 +11,12 @@ return require('packer').startup(function(use)
   -- Let packer manage itself
   use 'wbthomason/packer.nvim'
 
+  -- Luarocks
+  use_rocks {
+    'penlight',
+    'inspect',
+  }
+
   -- Misc
   use 'godlygeek/tabular'
   use 'editorconfig/editorconfig-vim'
@@ -49,17 +55,61 @@ return require('packer').startup(function(use)
     config = function()
       require('plugins.cmp')
     end,
+    requires = {
+      { 'hrsh7th/cmp-nvim-lsp', branch = 'main' },  -- LSP completion source
+      { 'hrsh7th/cmp-path', branch = 'main' },      -- Path completion source
+      { 'hrsh7th/cmp-buffer', branch = 'main' }     -- Buffer completion source
+      --{ 'hrsh7th/cmp-vsnip', branch = 'main' },     -- Snippet completion source
+    },
   }
-  use { 'hrsh7th/cmp-nvim-lsp', branch = 'main' } -- LSP completion source
-  use { 'hrsh7th/cmp-path', branch = 'main' }     -- Path completion source
-  use { 'hrsh7th/cmp-buffer', branch = 'main' }   -- Buffer completion source
-  --use {'hrsh7th/cmp-vsnip', branch = 'main' }     -- Snippet completion source
 
   -- NVim Tree
   use {
     'nvim-tree/nvim-tree.lua',
     config = function()
       require('plugins.nvim-tree')
+    end,
+  }
+
+  -- Telescope
+  use {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    requires = {
+      {'nvim-lua/plenary.nvim'},
+      {'BurntSushi/ripgrep'},
+      {'sharkdp/fd'},
+      {'nvim-telescope/telescope-fzf-native.nvim'},
+    },
+    after = {
+      'nvim-lspconfig',
+      'nvim-treesitter',
+    },
+    module = 'telescope',  -- Load the plugin on a call like require('telescope.builtin')
+    config = function()
+      require('plugins.telescope')
+      --require('telescope').setup({
+      --  defaults = {
+      --    mappings = {
+      --      i = {
+      --        ['<C-J>'] = 'move_selection_next',
+      --        ['<C-K>'] = 'move_selection_previous',
+      --        ['<C-E>'] = 'results_scrolling_down',
+      --        ['<C-Y>'] = 'results_scrolling_up',
+      --      },
+      --      n = {
+      --        ['<C-[>'] = 'close',
+      --        ['<C-E>'] = 'results_scrolling_down',
+      --        ['<C-Y>'] = 'results_scrolling_up',
+      --      },
+      --    },
+      --    layout_config = {
+      --      horizontal = {
+      --        prompt_position = 'top',
+      --      },
+      --    },
+      --  },
+      --})
     end,
   }
 
