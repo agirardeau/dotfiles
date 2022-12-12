@@ -5,6 +5,16 @@ Programming/CLI:
     install pip3:  sudo apt install python3-pip
     isntall NodeJS:  sudo apt install nodejs
     install AWS CLI:  pip install awscli --upgrade --user
+    install misc tools:
+        sudo apt install ripgrep
+        sudo apt install fd-find; ln -s $(which fdfind) ~/.local/bin/fd
+        cargo install -f --git https://github.com/jez/as-tree
+    install fzf (apt for updates, git + install script for completion and key binding setup
+        sudo apt install fzf
+        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+        ~/.fzf/install
+
+
 
 Firefox:
     configure LeechBlock
