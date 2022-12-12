@@ -108,6 +108,13 @@ TABS
 :echo &{option} - print an option's value
 
 ----------------------------------------
+- QUICKFIX LIST
+
+<C-Q>                     - Send all telescope results to quickfix list
+<M-Q>                     - Send selected telescope results to quickfix list
+:cdo s/foo/bar/g | update - Find and replace on items in the quickfix list
+
+----------------------------------------
 - PLUGINS
 
 TAGBAR
