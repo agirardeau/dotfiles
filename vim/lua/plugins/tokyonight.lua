@@ -29,5 +29,16 @@ require("tokyonight").setup({
   terminal_colors = true,
 })
 
-vim.cmd("colorscheme tokyonight")
+-- This doesn't work, I don't know why
+--vim.api.nvim_set_hl(0, "LineNr", {
+--  fg = "#FFFFFF",
+--  bg = "#000000",
+--  --fg = 0xFFFFFF,
+--  --bg = 0x000000,
+--  --ctermfg = "#FFFFFF",
+--  --ctermbg = "#000000",
+--  --guifg = "#FFFFFF",
+--  --guibg = "#000000",
+--})
+
 
