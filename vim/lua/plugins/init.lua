@@ -23,7 +23,13 @@ return require('packer').startup(function(use)
   use '907th/vim-auto-save'
   use 'chrisbra/Recover.vim'
 
-  use { 'folke/tokyonight.nvim', branch = 'main' }
+  use {
+    'folke/tokyonight.nvim',
+    branch = 'main',
+    config = function()
+      require('plugins.tokyonight')
+    end,
+  }
 
   -- Tmux
   use 'tmux-plugins/vim-tmux-focus-events'
@@ -78,38 +84,17 @@ return require('packer').startup(function(use)
     requires = {
       {'nvim-lua/plenary.nvim'},
       {'BurntSushi/ripgrep'},
-      {'sharkdp/fd'},
+      --{'sharkdp/fd'},
       {'nvim-telescope/telescope-fzf-native.nvim'},
     },
-    after = {
-      'nvim-lspconfig',
-      'nvim-treesitter',
-    },
-    module = 'telescope',  -- Load the plugin on a call like require('telescope.builtin')
+    --after = {
+    --  'nvim-lspconfig',
+    --  'nvim-treesitter',
+    --},
+    --cmd = 'Telescope',
+    --module = 'telescope',  -- Load the plugin on a call like require('telescope.builtin')
     config = function()
       require('plugins.telescope')
-      --require('telescope').setup({
-      --  defaults = {
-      --    mappings = {
-      --      i = {
-      --        ['<C-J>'] = 'move_selection_next',
-      --        ['<C-K>'] = 'move_selection_previous',
-      --        ['<C-E>'] = 'results_scrolling_down',
-      --        ['<C-Y>'] = 'results_scrolling_up',
-      --      },
-      --      n = {
-      --        ['<C-[>'] = 'close',
-      --        ['<C-E>'] = 'results_scrolling_down',
-      --        ['<C-Y>'] = 'results_scrolling_up',
-      --      },
-      --    },
-      --    layout_config = {
-      --      horizontal = {
-      --        prompt_position = 'top',
-      --      },
-      --    },
-      --  },
-      --})
     end,
   }
 
@@ -118,3 +103,4 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
+

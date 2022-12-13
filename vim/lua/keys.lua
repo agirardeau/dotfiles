@@ -60,25 +60,18 @@ utils.noremap("<Leader>dj", ":lua vim.diagnostic.goto_next()<CR>")
 utils.noremap("<Leader>dk", ":lua vim.diagnostic.goto_prev()<CR>")
 
 -- Telescope
-utils.noremap("<leader>ff", ":Telescope find_files<CR>")
-utils.noremap("<leader>fg", ":Telescope live_grep<CR>")
-utils.noremap("<leader>fb", ":Telescope buffers<CR>")
-utils.noremap("<leader>fh", ":Telescope help_tags<CR>")
-utils.noremap("<leader>ft", ":Telescope treesitter<CR>")
-utils.noremap("<leader>fi", ":Telescope builtin<CR>")
-utils.noremap("<leader>fp", ":Telescope pickers<CR>")
-utils.noremap("<leader>fc", ":Telescope commands<CR>")
-utils.noremap("<leader>fq", ":Telescope quickfix<CR>")
-utils.noremap("<leader>fx", ":Telescope oldfiles<CR>")
-utils.noremap("<leader>fh", ":Telescope command_history<CR>")
-utils.noremap("<leader>fs", ":Telescope search_history<CR>")
----- Note: the following would be a better way to configure telescope, but
--- it throws an error due to trying to require 'telescope' before the
--- plugin is loaded. The `module = 'telescope'` line in plugins/init.lua
--- is supposed to fix that but it doesn't for me. Maybe try again after
--- updating to neovim 0.8.
---local builtin = require('telescope.builtin')
---vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
---vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
---vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
---vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>ft', builtin.treesitter, {})
+vim.keymap.set('n', '<leader>fi', builtin.builtin, {})
+vim.keymap.set('n', '<leader>fp', builtin.pickers, {})
+vim.keymap.set('n', '<leader>fc', builtin.commands, {})
+vim.keymap.set('n', '<leader>fq', builtin.quickfix, {})
+vim.keymap.set('n', '<leader>fx', builtin.oldfiles, {})
+-- These two throw errors
+--vim.keymap.set('n', '<leader>fm', builtin.command_history, {})
+--vim.keymap.set('n', '<leader>fs', builtin.search_history, {})
+

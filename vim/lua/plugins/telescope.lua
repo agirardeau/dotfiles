@@ -5,15 +5,6 @@
 --  * Figure out why these can't be executed with require('telescope.builtin') in keys.lua
 --  * Get scroll_speed working
 
-local common_mappings = {
-  ['<C-E>'] = 'results_scrolling_down',
-  ['<C-Y>'] = 'results_scrolling_up',
-  ['<C-R>'] = 'cycle_history_prev',
-  ['<C-O)>'] = function()
-    require('telescope.builtin').resume()
-  end,
-}
-
 require('telescope').setup({
   defaults = {
     mappings = {
