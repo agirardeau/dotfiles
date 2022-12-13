@@ -6,6 +6,7 @@ vim.opt.directory = "/tmp//"
 -- Enable syntax highlighting
 vim.opt.background = "dark"
 --vim.opt.t_Co = 256
+vim.cmd("colorscheme tokyodark")
 
 -- Split creation
 vim.opt.splitbelow = true
