@@ -9,11 +9,11 @@ local predef = {
   Green = { fg = p.green },
   Blue = { fg = p.blue },
   Purple = { fg = p.purple },
-  BlueItalic = { fg = p.blue, italic = true },
-  GreenItalic = { fg = p.green, italic = true },
-  OrangeItalic = { fg = p.orange, italic = true },
-  RedItalic = { fg = p.red, italic = true },
-  YellowItalic = { fg = p.yellow, italic = true },
+  --BlueItalic = { fg = p.blue, italic = true },
+  --GreenItalic = { fg = p.green, italic = true },
+  --OrangeItalic = { fg = p.orange, italic = true },
+  --RedItalic = { fg = p.red, italic = true },
+  --YellowItalic = { fg = p.yellow, italic = true },
 }
 
 local common = {
@@ -82,11 +82,16 @@ local common = {
 }
 
 local syntax = {
-  Type = predef.BlueItalic,
-  Structure = predef.BlueItalic,
-  StorageClass = predef.BlueItalic,
-  Identifier = predef.OrangeItalic,
-  Constant = predef.OrangeItalic,
+  Type = predef.Blue,
+  Structure = predef.Blue,
+  StorageClass = predef.Blue,
+  Identifier = predef.Orange,
+  Constant = predef.Orange,
+  --Type = predef.BlueItalic,
+  --Structure = predef.BlueItalic,
+  --StorageClass = predef.BlueItalic,
+  --Identifier = predef.OrangeItalic,
+  --Constant = predef.OrangeItalic,
   PreProc = predef.Red,
   PreCondit = predef.Red,
   Include = predef.Red,
@@ -112,9 +117,13 @@ local syntax = {
   Title = predef.Yellow,
   Tag = predef.Orange,
   Delimiter = predef.Fg,
-  Comment = { fg = p.bg4, italic = true },
-  SpecialComment = { fg = p.bg4, italic = true },
-  Todo = { fg = p.blue, italic = true },
+  Comment = { fg = p.bg4 },
+  SpecialComment = { fg = p.bg4 },
+  Todo = { fg = p.blue },
+  DiagnosticError = { fg = p.diagnostic_red },
+  DiagnosticHint = { fg = p.diagnostic_purple },
+  DiagnosticInfo = { fg = p.diagnostic_blue },
+  DiagnosticWarn = { fg = p.diagnostic_yellow },
 }
 
 local plugins = {}
