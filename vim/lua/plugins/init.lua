@@ -7,7 +7,7 @@ if is_first_install then
   vim.cmd [[packadd packer.nvim]]
 end
 
-return require('packer').startup(function(use)
+return require('packer').startup({function(use)
   -- Let packer manage itself
   use 'wbthomason/packer.nvim'
 
@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
   use 'editorconfig/editorconfig-vim'
   use '907th/vim-auto-save'
   use 'chrisbra/Recover.vim'
+  use 'lewis6991/impatient.nvim'
 
   use {
     'folke/tokyonight.nvim',
@@ -83,7 +84,7 @@ return require('packer').startup(function(use)
     branch = '0.1.x',
     requires = {
       {'nvim-lua/plenary.nvim'},
-      {'BurntSushi/ripgrep'},
+      --{'BurntSushi/ripgrep'},
       --{'sharkdp/fd'},
       {'nvim-telescope/telescope-fzf-native.nvim'},
     },
@@ -98,9 +99,34 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- Neorg
+  -- Temporarily disable this since I'm not using it much and it's slow on startup. Probably
+  -- worth getting lazy loading working for it at some point.
+  -- It could be slow to load because the workspace directories are in ~/truehome/notesync/
+  -- which is symlinked from its home in /mnt/c/
+  --use {
+  --  "nvim-neorg/neorg",
+  --  -- Don't lazy load so that opening a journal or new todo is always available
+  --  --ft = "norg", 
+  --  run = ":Neorg sync-parsers",
+  --  requires = {
+  --    "nvim-lua/plenary.nvim",
+  --    "nvim-neorg/neorg-telescope",
+  --  },
+  --  config = function()
+  --    require('plugins.neorg')
+  --  end,
+  --}
+
   -- Automatically set up configuration after cloning packer.nvim
   if is_first_install then
     require('packer').sync()
   end
-end)
+end,
+config = {
+  profile = {
+    enable = true,
+    threshold = 1,  -- time in ms that a plugin load must consume to be included in profile
+  },
+}})
 

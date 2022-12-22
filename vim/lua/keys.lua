@@ -75,3 +75,18 @@ vim.keymap.set('n', '<leader>fx', builtin.oldfiles, {})
 --vim.keymap.set('n', '<leader>fm', builtin.command_history, {})
 --vim.keymap.set('n', '<leader>fs', builtin.search_history, {})
 
+-- Neorg
+utils.noremap("<Leader>ots", ":Neorg toc split<CR>")
+utils.noremap("<Leader>oti", ":Neorg toc inline<CR>")
+utils.noremap("<Leader>otq", ":Neorg toc toqflist<CR>")
+
+utils.noremap("<Leader>ojn", ":Neorg journal today<CR>")  -- "new"
+utils.noremap("<Leader>ojy", ":Neorg journal yesterday<CR>")
+utils.noremap("<Leader>ojw", ":Neorg journal tomorrow<CR>")
+utils.noremap("<Leader>ojd", ':exec ":Neorg journal custom ".input("date:")<CR>')
+--utils.noremap("<Leader>ojtu", ':Neorg journal toc update<CR>')
+--utils.noremap("<Leader>ojto", ':Neorg journal toc open<CR>')  -- opens without updating
+
+utils.noremap("<Leader>ogv", ":Neorg gtd views<CR>")  -- "new"
+utils.noremap("<Leader>ogc", ":Neorg gtd capture<CR>")  -- "new"
+utils.noremap("<Leader>oge", ":Neorg gtd edit<CR>")  -- "new"
