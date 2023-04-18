@@ -36,7 +36,7 @@ local common = {
   CursorLine = { bg = p.bg1 },
   ColorColumn = { bg = p.bg1 },
   CursorLineNr = { fg = p.fg },
-  LineNr = { fg = p.bg4 },
+  LineNr = { fg = p.bg4, bg = p.bg1 },
   Conceal = { fg = p.grey, bg = p.bg1 },
   DiffAdd = { fg = p.none, bg = p.diff_add },
   DiffChange = { fg = p.none, bg = p.diff_change },

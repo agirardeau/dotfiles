@@ -36,6 +36,9 @@ vim.opt.shortmess = "filnxtToOFc"
 -- number bar wider
 vim.opt.signcolumn = "number"
 vim.diagnostic.config({
+  underline = {
+    severity = "warn",
+  },
   virtual_text = {
     severity = vim.diagnostic.severity.ERROR,
     source = "if_many",
