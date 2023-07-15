@@ -1,5 +1,5 @@
 # Add ~/bin to path
-export PATH="/home/andrew/bin:/home/andrew/.local/bin:${PATH}"
+export PATH="~/bin:~/.local/bin:~/local-dotfiles/bin:${PATH}"
 
 # Set bash prompt
 export PS1='\u@\h:\w$ '
