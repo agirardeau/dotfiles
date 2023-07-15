@@ -3,8 +3,8 @@ Mod + HJKL             * move focus
 Mod + Shift + HJKL     * move focused window
 Mod + Shift + Q        * close window
 Mod + Enter            * terminal
-Mod + (; or V)         * split (horizontal/vertical)
-Mod + (number)         * focus workspace
+Mod + <; or V>         * split (horizontal/vertical)
+Mod + <number>         * focus workspace
 Mod + Shift + (number) * move focused container to workspace
 ---------------------- * ----------------------
 Mod + S                * layout stacked
@@ -13,7 +13,7 @@ Mod + E                * layout toggle split
 Mod + A                * focus parent
 Mod + Q                * focus child
 ---------------------- * ----------------------
-Mod + (mouse)          * drag windows
+Mod + <mouse>          * drag windows
 Mod + Shift + Space    * toggle floating
 Mod + Space            * change focus to floating
 ---------------------- * ----------------------
