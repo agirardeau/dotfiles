@@ -1,3 +1,4 @@
+alias refresh-rc=". ~/dotfiles/bash/bash-rc"
 alias refresh-aliases=". ~/dotfiles/bash/bash-aliases"
 alias edit-aliases="nvim ~/local-dotfiles/bash-aliases-local ~/dotfiles/bash/bash-aliases"
 
@@ -36,7 +37,8 @@ alias treel='tree -L'
 alias treedl='tree -d -L'
 
 alias tmux='tmux -2'
-alias tattach='tmux attach-session'
+#alias tattach='tmux attach-session'
+function tattach { tmux attach-session -t ${1:-0}; }
 alias tdetach='tmux detach-client'
 alias tlist='tmux list-sessions'
 
@@ -79,6 +81,8 @@ alias portlist='netstat -a | grep LISTEN | grep -v "unix  2"'
 function portdetail {
     lsof -i :$1
 }
+
+alias ipv6off='sysctl net.ipv6.conf.lo.disable_ipv6=0' # =-1 to re-enable
 
 alias activate='source env/bin/activate'
 
