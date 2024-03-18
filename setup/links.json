@@ -1,9 +1,6 @@
 {
     "common" : [
-        [ "~/dotfiles/vim", "~/.config/dotfiles/vim" ],
-        [ "~/.config/dotfiles/vim/init.lua", "~/.config/nvim/init.lua"],
-        [ "~/.config/dotfiles/vim/lua", "~/.config/nvim/lua"],
-        [ "~/.config/dotfiles/vim/colors", "~/.config/nvim/colors"],
+        [ "~/dotfiles/vim/nvim/", "~/.config/nvim" ],
 
         [ "~/dotfiles/bash", "~/.config/dotfiles/bash" ],
         [ "~/.config/dotfiles/bash/bash-rc", "~/.bashrc" ],
@@ -38,7 +35,6 @@
         [ "~/dotfiles/scripts/write.py", "~/bin/write" ]
     ],
 
-    
     "bubblebot" : [
         [ "~/dotfiles/local/bubblebot/", "~/.config/dotfiles/local" ],
         [ "~/dotfiles/scripts/write.py", "~/bin/write" ]

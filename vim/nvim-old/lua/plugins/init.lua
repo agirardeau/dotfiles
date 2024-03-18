@@ -23,6 +23,7 @@ return require('packer').startup({function(use)
   use '907th/vim-auto-save'
   use 'chrisbra/Recover.vim'
   use 'lewis6991/impatient.nvim'
+  use 'vim-skk/eskk.vim'
 
   use {
     'folke/tokyonight.nvim',

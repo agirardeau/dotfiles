@@ -1,4 +1,4 @@
-# Add ~/bin to path
+# Add ~/bin, ~/.local/bin, and ~/local-dotfiles/bin to path
 export PATH="~/bin:~/.local/bin:~/local-dotfiles/bin:${PATH}"
 
 # Set bash prompt
