@@ -1,6 +1,9 @@
 {
     "common" : [
-        [ "~/dotfiles/vim/nvim/", "~/.config/nvim" ],
+        [ "~/dotfiles/vim", "~/.config/dotfiles/vim" ],
+        [ "~/.config/dotfiles/vim/init.lua", "~/.config/nvim/init.lua"],
+        [ "~/.config/dotfiles/vim/lua", "~/.config/nvim/lua"],
+        [ "~/.config/dotfiles/vim/colors", "~/.config/nvim/colors"],
 
         [ "~/dotfiles/bash", "~/.config/dotfiles/bash" ],
         [ "~/.config/dotfiles/bash/bash-rc", "~/.bashrc" ],
