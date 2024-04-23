@@ -1,6 +1,23 @@
--- Load the 'impatient' plugin if it's available to speed up lua imports
-pcall(function() require("impatient") end)
-
 require("settings")
-require("plugins")
 require("keys")
+
+-- Bootstrap lazy.nvim plugin manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Load plugins
+require("lazy").setup("plugins")
+--require("lazy").setup("plugins.colors")
+--require("lazy").setup("plugins.languages")
+
+vim.cmd("colorscheme tokyodark")

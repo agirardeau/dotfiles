@@ -1,3 +1,3 @@
-
--- empty setup using defaults
-require("nvim-tree").setup()
+return {
+  "nvim-tree/nvim-tree.lua"
+}
