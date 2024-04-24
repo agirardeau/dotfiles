@@ -1,5 +1,10 @@
 return {
   {
+    dependencies = {
+      { 'hrsh7th/cmp-nvim-lsp' },  -- LSP completion source
+      { 'hrsh7th/cmp-path' },      -- Path completion source
+      { 'hrsh7th/cmp-buffer' }     -- Buffer completion source
+    },
     "hrsh7th/nvim-cmp",
     opts = function()
       local cmp = require('cmp')
@@ -49,4 +54,5 @@ return {
       }
     end,
   },
+
 }
