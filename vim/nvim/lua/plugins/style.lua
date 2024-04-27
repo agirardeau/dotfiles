@@ -31,12 +31,12 @@ return {
         },
       },
     },
-    config = function()
-      -- Call mason to install 
-      local mason = require("mason")
-      mason.
+    --config = function()
+    --  -- Call mason to install 
+    --  local mason = require("mason")
+    --  mason.
 
-    end,
+    --end,
   },
 
   {

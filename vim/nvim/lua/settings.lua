@@ -4,9 +4,7 @@ vim.opt.backupdir = "/tmp//"
 vim.opt.directory = "/tmp//"
 
 -- Enable syntax highlighting
-vim.opt.background = "dark"
---vim.opt.t_Co = 256
---vim.cmd("colorscheme tokyodark")
+--vim.opt.background = "dark"
 
 -- Split creation
 vim.opt.splitbelow = true
@@ -88,24 +86,32 @@ vim.opt.ttimeoutlen = 200
 
 -- Prevent loading certain vim features
 local disabled_built_ins = {
+  "2html_plugin",
+  "tohtml",
+  "getscript",
+  "getscriptPlugin",
+  "gzip",
+  "logipat",
   "netrw",
   "netrwPlugin",
   "netrwSettings",
   "netrwFileHandlers",
-  "gzip",
-  "zip",
-  "zipPlugin",
+  "matchit",
   "tar",
   "tarPlugin",
-  "getscript",
-  "getscriptPlugin",
-  "vimball",
-  "vimballPlugin",
-  "2html_plugin",
-  "logipat",
   "rrhelper",
   "spellfile_plugin",
-  "matchit",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
+  "tutor",
+  "rplugin",
+  "syntax",
+  "synmenu",
+  "optwin",
+  "compiler",
+  "bugreport",
 }
 
 for _, plugin in pairs(disabled_built_ins) do

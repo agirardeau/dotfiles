@@ -15,9 +15,20 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Load plugins
-require("lazy").setup("plugins")
---require("lazy").setup("plugins.colors")
---require("lazy").setup("plugins.languages")
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+  },
+  change_detection = { notify = false },
+  checker = {
+    enabled = true, -- automatically check for plugin updates
+    notify = false, -- get a notification when new updates are found
+  },
+
+  -- ui config
+  ui = {
+    border = "rounded",
+  },
+})
 
 vim.cmd("colorscheme tokyodark")
