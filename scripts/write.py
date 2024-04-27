@@ -29,8 +29,9 @@ def new(argv):
     #subprocess.call(f'nvim {fullname}', shell=True)
 
     entry = Entry(args.category, datetime.date.today(), args.name)
-    print(f'Opening {entry.get_fullpath()} for writing...')
-    subprocess.call(f'nvim {entry.get_fullpath()}', shell=True)
+    #print(f'Opening {entry.get_fullpath()} for writing...')
+    #subprocess.call(f'nvim {entry.get_fullpath()}', shell=True)
+    entry.open()
 
 
 def edit(argv):
@@ -40,8 +41,9 @@ def edit(argv):
     args = parser.parse_args(argv)
 
     entry = get_entry_by_name_with_disambiguation(args.category, args.name)
-    print(f'Opening {entry.get_fullpath()} for editing...')
-    subprocess.call(f'nvim {entry.get_fullpath()}', shell=True)
+    #print(f'Opening {entry.get_fullpath()} for editing...')
+    #subprocess.call(f'nvim {entry.get_fullpath()}', shell=True)
+    entry.open()
 
 def list(argv):
     parser = argparse.ArgumentParser(description='list entries')
@@ -150,6 +152,11 @@ class Entry:
 
     def to_date_name_string(self):
         return f"{self.date.strftime('%b %d, %Y (%a)')}: {self.name}"
+
+    def open(self):
+        print(f'Opening {self.get_fullpath()} for writing...')
+        os.chdir(os.path.expanduser(CATEGORY_TO_DIRECTORY[self.category]))
+        subprocess.call(f'nvim {self.get_filename()}', shell=True)
 
 
 SUBCOMMANDS = {
