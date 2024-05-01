@@ -1,6 +1,7 @@
 return {
   {
     "tiagovla/tokyodark.nvim",
+    priority = 100,
     config = function()
       -- Activate as default color scheme as soon as it's configured.
       -- TODO: remove this if it doesn't prevent the issue where the lazy.nvim
@@ -9,7 +10,10 @@ return {
     end,
   },
 
-  { "ellisonleao/gruvbox.nvim", lazy = true },
+  {
+    "ellisonleao/gruvbox.nvim",
+    lazy = true,
+  },
 
   {
     "folke/tokyonight.nvim",

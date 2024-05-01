@@ -69,18 +69,6 @@ return {
     },
   },
 
-  {
-    -- Install tools external to neovim, like formatters, linters, language
-    -- servers, and DAP (debugger) daemons. Leveraged in other configuration
-    -- files.
-    "williamboman/mason.nvim",
-    opts = {
-      ui = {
-        border = "rounded",
-      },
-    },
-  },
-
   -- Session management
   --{
   --  "folke/persistence.nvim",

@@ -31,4 +31,5 @@ require("lazy").setup({
   },
 })
 
-vim.cmd("colorscheme tokyodark")
+require("commands")
+--vim.cmd("colorscheme tokyodark")

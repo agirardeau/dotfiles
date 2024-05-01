@@ -85,4 +85,17 @@ function utils.has_active_lsp_client(servername)
   return false
 end
 
+-- Filters a list of potential completions based on a prefix and return the
+-- results sorted
+function utils.filter_completions(completions, prefix)
+  local ret = {}
+  for _, comp in ipairs(completions) do
+    if string.sub(comp, 1, string.len(prefix)) == prefix then
+      table.insert(ret, comp)
+    end
+  end
+  table.sort(ret)
+  return ret
+end
+
 return utils

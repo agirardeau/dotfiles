@@ -78,11 +78,10 @@ vim.opt.timeout = false
 vim.opt.ttimeout = true
 vim.opt.ttimeoutlen = 200
 
--- Indentation settings for using 2 spaces instead of tabs.
--- Do not change 'tabstop' from its default value of 8 with this setup? 
---vim.opt.shiftwidth = 2
---vim.opt.softtabstop = 4
---vim.opt.expandtab = true
+-- Default to inserting 2 spaces instead of tabs.
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
 
 -- Prevent loading certain vim features
 local disabled_built_ins = {
