@@ -5,7 +5,7 @@ return {
     opts = {
       -- Enable for vim configuration in dotfiles directory.
       override = function(root_dir, library)
-        if root_dir:find("/home/andrew/dotfiles/vim", 1, true) == 1 then
+        if root_dir:find("~/dotfiles/vim", 1, true) == 1 then
           library.enabled = true
           library.plugins = true
         end

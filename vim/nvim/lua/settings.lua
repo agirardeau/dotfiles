@@ -27,8 +27,11 @@ vim.g.auto_save_events = {"InsertLeave", "TextChanged", "CursorHoldI"}
 --  noselect: Do not select, force user to select one from the menu
 vim.opt.completeopt = "menuone,noinsert,noselect"
 
+-- Change how wildcard expansion on the command line works
+vim.opt.wildmode = "longest:full,full"
+
 -- Avoid showing extra messages when using completion
-vim.opt.shortmess = "filnxtToOFc"
+vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
 
 -- Overlay diagnostic signs on top of line numbers instead of making the line
 -- number bar wider
@@ -73,15 +76,59 @@ vim.opt.mouse = "a"
 -- Display line numbers on the left
 vim.opt.number = true
 
+-- Highlight the line the cursor is currently on
+vim.opt.cursorline = true
+
+-- Keep lines above and below cursor visible when scrolling to the top/bottom
+-- of the buffer
+vim.opt.scrolloff = 3
+vim.opt.sidescrolloff = 8
+
+-- Enable concealed text (folding?)
+vim.opt.conceallevel = 2
+
 -- Quickly time out on keycodes, but never time out on mappings
 vim.opt.timeout = false
 vim.opt.ttimeout = true
 vim.opt.ttimeoutlen = 200
 
 -- Default to inserting 2 spaces instead of tabs.
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 4
 vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.shiftround = true  -- round to multiple of shiftwidth when indenting 
+
+-- Automatically indent when starting new lines based on curly braces
+vim.opt.smartindent = true
+
+-- Automatic addition of comment headers, formatting of numbered lists
+vim.opt.formatoptions = "tcqjron"  -- default is "tcqj"
+
+-- Use ripgrep, set custom output format
+vim.opt.grepprg = "rg --vimgrep"
+vim.opt.grepformat = "%f:%l:%c:%m"  -- default is "%f:%l:%m,%f:%l%m,%f  %l%m"
+
+-- Maximum number of items in the popup menu
+vim.opt.pumheight = 10  -- default 0 (unbounded)
+
+-- Allow moving the cursor to move where there is no text in visual block mode
+vim.opt.virtualedit = "block"
+
+-- Keep the same line at the top of the window when creating a split
+vim.opt.splitkeep = "topline"
+
+-- Characters to fill special lines in the window
+vim.opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
+
+-- Fold based on indentation
+vim.opt.foldmethod = "indent"
+vim.opt.foldlevel = 99  -- start with folds open
 
 -- Prevent loading certain vim features
 local disabled_built_ins = {
