@@ -2,7 +2,6 @@ return {
   {
     -- Formatter configuration
     "stevearc/conform.nvim",
-    dependencies = { "williamboman/mason.nvim" },  -- Add mason as a dependency so that 
     cmd = { "ConformInfo" },
     keys = {
       {
@@ -54,6 +53,7 @@ return {
   {
     -- Language server configuration
     'neovim/nvim-lspconfig',
+    --dependencies = { "folke/noedev.nvim" },
     config = function()
       for _, server in ipairs(require("data").language_servers()) do
         require("lspconfig")[server.name].setup(server.opts or {})
@@ -79,5 +79,28 @@ return {
         border = "rounded",
       },
     },
+  },
+
+  {
+    -- Lua settings active for neovim plugin development only.
+    "folke/neodev.nvim",
+    opts = {
+      -- Enable for vim configuration in dotfiles directory.
+      override = function(root_dir, library)
+        vim.print("In neodev config...")
+        vim.print(root_dir)
+        if root_dir:find("~/dotfiles/vim", 1, true) == 1 then
+          library.enabled = true
+          library.plugins = true
+        end
+      end,
+    },
+  },
+
+  {
+    "mrcjkb/rustaceanvim",
+    ft = { "rust" },
+    -- Note: Tools like rust-analyzer and rustfmt should be installed with rustup
+    -- instead of mason.nvim.
   },
 }
