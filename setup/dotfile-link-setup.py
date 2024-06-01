@@ -100,14 +100,18 @@ if __name__ == "__main__":
             if update_link(link, target):
                 new_state.append(link)
 
-    print("")
+    found_stale_link = False
     for link in previous_state:
         if link not in [x[1] for x in link_data["common"] + link_data.get(NODE_NAME, [])]:
             if os.path.lexists(link):
+                if not found_stale_link:
+                    print("")
+                    found_stale_link = True
                 try:
                     remove_link(link)
                 except:
                     new_state.append(link)
+    print("")
 
     with open(state_file, "w") as f:
         json.dump(new_state, f)
