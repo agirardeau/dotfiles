@@ -87,17 +87,20 @@ if __name__ == "__main__":
 
     link_data = load_link_data()
 
+    print("")
     print("Constructing common links...")
     for target, link in link_data["common"]:
         if update_link(link, target):
             new_state.append(link)
 
     if NODE_NAME in link_data:
+        print("")
         print("Constructing links specific to {0}...".format(NODE_NAME))
         for target, link in link_data[NODE_NAME]:
             if update_link(link, target):
                 new_state.append(link)
 
+    print("")
     for link in previous_state:
         if link not in [x[1] for x in link_data["common"] + link_data.get(NODE_NAME, [])]:
             if os.path.lexists(link):
