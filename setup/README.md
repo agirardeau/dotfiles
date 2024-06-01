@@ -54,6 +54,16 @@
   git remote set-url origin git@github.com:agirardeau/dotfiles.git
   ```
 
+  The first time running an operation against github using ssh an error message
+  like the following will be printed, it should have no problems after that.
+
+  ```
+  The authenticity of host 'github.com (140.82.112.3)' can't be established.
+  ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+  This key is not known by any other names.
+  Are you sure you want to continue connecting (yes/no/[fingerprint])?
+  ```
+
 ### Get miscellaneous tools
 
 * Rust/Cargo
