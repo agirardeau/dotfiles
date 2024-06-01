@@ -25,7 +25,7 @@
         [ "~/dotfiles/scripts/run-in-directory.sh", "~/bin/run-in-directory" ],
         [ "~/dotfiles/scripts/sedw.sh", "~/bin/sedw" ],
         [ "~/dotfiles/scripts/setscreen.sh", "~/bin/setscreen" ],
-        [ "~/dotfiles/scripts/pen.py", "~/bin/pen" ]
+        [ "~/dotfiles/scripts/pen.py", "~/bin/pen" ],
         [ "~/dotfiles/setup/dotfile-link-setup.py", "~/bin/dotfile-link-setup" ]
     ],
 
