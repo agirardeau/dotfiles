@@ -25,6 +25,7 @@
         [ "~/dotfiles/scripts/run-in-directory.sh", "~/bin/run-in-directory" ],
         [ "~/dotfiles/scripts/sedw.sh", "~/bin/sedw" ],
         [ "~/dotfiles/scripts/setscreen.sh", "~/bin/setscreen" ],
+        [ "~/dotfiles/scripts/pen.py", "~/bin/pen" ]
         [ "~/dotfiles/setup/dotfile-link-setup.py", "~/bin/dotfile-link-setup" ]
     ],
 
@@ -35,12 +36,10 @@
     ],
 
     "glitterbot" : [
-        [ "~/dotfiles/local/glitterbot/", "~/.config/dotfiles/local" ],
-        [ "~/dotfiles/scripts/write.py", "~/bin/write" ]
+        [ "~/dotfiles/local/glitterbot/", "~/.config/dotfiles/local" ]
     ],
 
     "bubblebot" : [
-        [ "~/dotfiles/local/bubblebot/", "~/.config/dotfiles/local" ],
-        [ "~/dotfiles/scripts/write.py", "~/bin/write" ]
+        [ "~/dotfiles/local/bubblebot/", "~/.config/dotfiles/local" ]
     ]
 }
