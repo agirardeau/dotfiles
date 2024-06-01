@@ -1,5 +1,4 @@
 require("settings")
-require("keys")
 
 -- Bootstrap lazy.nvim plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -31,5 +30,6 @@ require("lazy").setup({
   },
 })
 
+require("keys")
 require("commands")
 --vim.cmd("colorscheme tokyodark")
