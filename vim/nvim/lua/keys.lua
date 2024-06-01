@@ -1,8 +1,5 @@
 local utils = require("utils")
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
 -- Find
 utils.noremap("n", "nzz")
 
