@@ -10,6 +10,9 @@
         [ "~/.config/dotfiles/bash/dircolors", "~/.dircolors" ],
         [ "~/.config/dotfiles/bash/completions/complete-setscreen.sh", "~/.local/share/bash_completions.d/complete-setscreen.sh" ],
 
+        [ "~/dotfiles/nushell/config.nu", "~/.config/nushell/config.nu" ],
+        [ "~/dotfiles/nushell/env.nu", "~/.config/nushell/env.nu" ],
+
         [ "~/dotfiles/git/gitignore", "~/.config/git/ignore" ],
         [ "~/dotfiles/git/gitconfig", "~/.config/git/config" ],
         [ "~/dotfiles/gradle/properties", "~/.gradle/gradle.properties" ],
