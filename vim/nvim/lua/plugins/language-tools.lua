@@ -102,4 +102,7 @@ return {
     -- Note: Tools like rust-analyzer and rustfmt should be installed with rustup
     -- instead of mason.nvim.
   },
+
+  --{ "LhKipp/nvim-nu" },
+  { "elkasztano/nushell-syntax-vim" },
 }

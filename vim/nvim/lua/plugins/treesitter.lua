@@ -4,6 +4,9 @@ return {
     opts = {
       highlight = { enable = true },
       indent = { enable = true },
+      --dependencies = {
+      --  { "nushell/tree-sitter-nu" },
+      --},
       ensure_installed = {
         "bash",
         "c",
@@ -18,6 +21,8 @@ return {
         "luap",
         "markdown",
         "markdown_inline",
+        --"nu",
+        --"nushell",
         "python",
         "query",
         "regex",

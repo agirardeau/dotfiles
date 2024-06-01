@@ -55,6 +55,16 @@ M.language_tools = {
     mason_package = "lua-language-server",
   },
 
+  -- Nushell
+  {
+    name = "nushell",
+    filetype = "nu",
+    category = "language_server",
+    opts = {
+      cmd = {"nu", "-n", "--lsp"},  -- -n flag ignores user config when running lsp
+    },
+  },
+
   -- Python
   {
     name = "isort",

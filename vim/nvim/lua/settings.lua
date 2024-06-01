@@ -85,7 +85,8 @@ vim.opt.scrolloff = 3
 vim.opt.sidescrolloff = 8
 
 -- Enable concealed text (folding?)
-vim.opt.conceallevel = 2
+--vim.opt.conceallevel = 2
+--vim.opt.vim_json_conceal = 0 -- Otherwise this hides quotes in json :S
 
 -- Quickly time out on keycodes, but never time out on mappings
 vim.opt.timeout = false
