@@ -5,22 +5,18 @@ vim.api.nvim_create_user_command(
   function(opts)
     -- If a filtype argument is provided, only search for configured packages
     -- for that filetype
-    local configured_packages = require("data").mason_packages({
-      filetype = opts.fargs[1],
-    })
-    local installed_packages = require("mason-registry").get_installed_package_names()
-    local present_packages = {}
-    local missing_packages = {}
-    for _, pkg in ipairs(configured_packages) do
-      if vim.list_contains(installed_packages, pkg) then
-        table.insert(present_packages, pkg)
-      else
-        table.insert(missing_packages, pkg)
-      end
-    end
-    if #missing_packages > 0 then
-      vim.cmd("MasonInstall " .. table.concat(missing_packages, " "))
-      vim.print("Installing new packages: " .. table.concat(missing_packages, ", "))
+    local filetype = opts.fargs[1]
+
+    local installed_package_names = require("mason-registry").get_installed_package_names()
+    local missing_package_names = require("data").mason_package_names(function(tool)
+      return not vim.list_contains(installed_package_names, tool.mason_package) and (
+        filetype == nil or filetype == tool.filetype
+      )
+    end)
+
+    if #missing_package_names > 0 then
+      vim.cmd("MasonInstall " .. table.concat(missing_package_names, " "))
+      vim.print("Installing new packages: " .. table.concat(missing_package_names, ", "))
     else
       vim.print("No new packages to install")
     end
@@ -36,20 +32,16 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_user_command(
   "AndrewMasonClean",
-  function(opts)
-    local configured_packages = require("data").mason_packages({
-      filetype = opts.fargs[1],
-    })
-    local installed_packages = require("mason-registry").get_installed_package_names()
-    local extraneous_packages = {}
-    for _, pkg in ipairs(installed_packages) do
-      if not vim.list_contains(configured_packages, pkg) then
-        table.insert(extraneous_packages, pkg)
-      end
-    end
-    if #extraneous_packages > 0 then
-      vim.cmd("MasonUninstall " .. table.concat(extraneous_packages, " "))
-      vim.print("Removing extraneous packages: " .. table.concat(extraneous_packages, ", "))
+  function()
+    local configured_package_names = require("data").mason_package_names()
+    local installed_package_names = require("mason-registry").get_installed_package_names()
+    local extraneous_package_names = vim.tbl_filter(function(pkg_name)
+      return not vim.list_contains(configured_package_names, pkg_name)
+    end, installed_package_names)
+
+    if #extraneous_package_names > 0 then
+      vim.cmd("MasonUninstall " .. table.concat(extraneous_package_names, " "))
+      vim.print("Removing extraneous packages: " .. table.concat(extraneous_package_names, ", "))
     else
       vim.print("Mason packages are clean")
     end

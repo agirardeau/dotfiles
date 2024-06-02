@@ -1,3 +1,12 @@
+-- Predicate that returns true if a language tool is either in mason's list of
+-- installed packages or is not mason managed
+local function tool_installed_or_unmanaged(tool)
+  return tool.mason_package == nil or vim.list_contains(
+    require("data").mason_package_names(),
+    tool.mason_package
+  )
+end
+
 return {
   {
     -- Formatter configuration
@@ -14,8 +23,8 @@ return {
       },
     },
     opts = {
-      formatters_by_ft = require("data").formatter_names_by_filetype(),
-      formatters = require("data").formatter_opts_by_name(),
+      formatters_by_ft = require("data").formatter_names_by_filetype(tool_installed_or_unmanaged),
+      formatters = require("data").formatter_opts_by_name(tool_installed_or_unmanaged),
     },
   },
 
@@ -25,7 +34,7 @@ return {
     opts = {
       --events = { "BufWritePost", "BufReadPost", "InsertLeave" },
       events = { "BufWritePost" },
-      linters_by_ft = require("data").linter_names_by_filetype(),
+      linters_by_ft = require("data").linter_names_by_filetype(tool_installed_or_unmanaged),
     },
     config = function(_, opts)
       local function debounce(ms, fn)
@@ -55,7 +64,7 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = { "folke/neodev.nvim" },
     config = function()
-      for _, server in ipairs(require("data").language_servers()) do
+      for _, server in ipairs(require("data").language_servers(tool_installed_or_unmanaged)) do
         require("lspconfig")[server.name].setup(server.opts or {})
       end
     end,

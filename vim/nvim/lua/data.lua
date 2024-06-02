@@ -120,29 +120,35 @@ M.language_tools = {
   },
 }
 
-function M.formatters()
+local always_true_predicate = function(_) return true end
+
+function M.formatters(predicate)
+  predicate = predicate or always_true_predicate
   return vim.tbl_filter(function(tool)
-    return tool.category == "formatter" and tool.enabled ~= false
+    return tool.category == "formatter" and tool.enabled ~= false and predicate(tool)
   end, M.language_tools)
 end
 
-function M.linters()
+function M.linters(predicate)
+  predicate = predicate or always_true_predicate
   return vim.tbl_filter(function(tool)
-    return tool.category == "linter" and tool.enabled ~= false
+    return tool.category == "linter" and tool.enabled ~= false and predicate(tool)
   end, M.language_tools)
 end
 
-function M.language_servers()
+function M.language_servers(predicate)
+  predicate = predicate or always_true_predicate
   return vim.tbl_filter(function(tool)
-    return tool.category == "language_server" and tool.enabled ~= false
+    return tool.category == "language_server" and tool.enabled ~= false and predicate(tool)
   end, M.language_tools)
 end
 
 -- Returns a table where keys are filetypes and values are lists of formatter
 -- names.
-function M.formatter_names_by_filetype()
+-- Optionally accepts a predicate to apply to the formatters.
+function M.formatter_names_by_filetype(predicate)
   local ret = {}
-  for _, tool in ipairs(M.formatters()) do
+  for _, tool in ipairs(M.formatters(predicate)) do
     ret[tool.filetype] = vim.list_extend(ret[tool.filetype] or {}, {tool.name})
   end
   return ret
@@ -150,9 +156,10 @@ end
 
 -- Returns a table where keys are the names of formatters and values are opts
 -- tables for them.
-function M.formatter_opts_by_name()
+-- Optionally accepts a predicate to apply to the formatters.
+function M.formatter_opts_by_name(predicate)
   local ret = {}
-  for _, tool in ipairs(M.formatters()) do
+  for _, tool in ipairs(M.formatters(predicate)) do
     ret[tool.name] = tool.opts
   end
   return ret
@@ -160,26 +167,22 @@ end
 
 -- Returns a table where keys are filetypes and values are lists of linter
 -- names.
-function M.linter_names_by_filetype()
+-- Optionally accepts a predicate to apply to the linters.
+function M.linter_names_by_filetype(predicate)
   local ret = {}
-  for _, tool in ipairs(M.linters()) do
+  for _, tool in ipairs(M.linters(predicate)) do
     ret[tool.filetype] = vim.list_extend(ret[tool.filetype] or {}, {tool.name})
   end
   return ret
 end
 
 -- Returns a list of mason package names.
--- Optionally accepts an opts table with filters, allowed keys are `filetype`
--- and `category`.
-function M.mason_packages(opts)
-  opts = opts or {}
+-- Optionally accepts a predicate to apply to the packages.
+function M.mason_package_names(predicate)
+  predicate = predicate or always_true_predicate
   local ret = {}
   for _, tool in ipairs(M.language_tools) do
-    if tool.mason_package == nil or tool.enabled == false then
-      goto continue
-    elseif opts.filetype ~= nil and opts.filetype ~= tool.filetype then
-      goto continue
-    elseif opts.category ~= nil and opts.category ~= tool.category then
+    if tool.mason_package == nil or tool.enabled == false or not predicate(tool) then
       goto continue
     end
     table.insert(ret, tool.mason_package)
