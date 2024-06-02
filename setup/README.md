@@ -71,28 +71,25 @@
   ```sh
   # This doesn't use apt because it's desirable to have a per-user rustup that's
   # separate from system rustup
+  #
+  # In the installation options, choose custom installation and disable adding
+  # path to .bashrc/.profile/.bash_profile, dotfiles already takes care of that.
+  # May need to reload configurations with `refresh-rc`.
   curl https://sh.rustup.rs -sSf | sh
-  rustup
   ```
 
-* Nushell
+* C compiler
 
   ```sh
-  apt install pkg-config libssl-dev
-  cargo install nu
+  sudo apt install clang
   ```
-
-  > [!NOTE]
-  > It would be nice to install nushell as a binary rather than compiling, but
-  > there isn't an ubuntu package. They recommend using Homebrew or manually
-  > downloading the build executable.
 
 * Various utils
 
   ```sh
   sudo apt install tree
   sudo apt install ripgrep
-  sudo apt install fd-find; ln -s $(which fdfind) ~/.local/bin/fd
+  sudo apt install fd-find; mkdir -p ~/.local/bin; ln -s $(which fdfind) ~/.local/bin/fd
   cargo install -f --git https://github.com/jez/as-tree
   sudo apt install fzf
   ```
@@ -104,6 +101,17 @@
   ~/.fzf/install
   ```
 
+* Nushell
+
+  ```sh
+  sudo apt install pkg-config libssl-dev
+  cargo install nu
+  ```
+
+  > NOTE - It would be nice to install nushell as a binary rather than
+  > compiling, but there isn't an ubuntu package. They recommend using
+  > Homebrew or manually downloading the build executable.
+
 * Neovim
 
   ```sh
@@ -113,6 +121,12 @@
   ```
 
   Note that appimage might be encouraged over ppa in the future.
+
+  To install mason packages, run:
+
+  ```
+  :AndrewMasonInstall
+  ```
 
 ## WSL
 
