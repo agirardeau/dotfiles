@@ -1,5 +1,6 @@
 # Add ~/bin, ~/.local/bin, and ~/local-dotfiles/bin to path
-export PATH="$HOME/bin:/$HOME/.local/bin:/$HOME/local-dotfiles/bin:${PATH}"
+export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+export PATH="$HOME/bin:/$HOME/.local/bin:/$HOME/local-dotfiles/bin:${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:${PATH}"
 
 # Set bash prompt
 export PS1='\u@\h:\w$ '
