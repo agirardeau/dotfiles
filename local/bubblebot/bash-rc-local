@@ -1,3 +1,6 @@
-cd ~/truehome
+if [ -d ~/truehome ]; then
+  cd ~/truehome
+fi
+
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/x86_64-linux-gnu/
