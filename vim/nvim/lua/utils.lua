@@ -98,4 +98,33 @@ function utils.filter_completions(completions, prefix)
   return ret
 end
 
+-- Return a debounced version of the provided function. When the returned
+-- function is called, it schedules an execution in the future. Calling the
+-- returned function again before the execution happens will have no effect.
+function utils.debounce_first(ms, fn)
+  local timer = vim.uv.new_timer()
+  return function(...)
+    local argv = { ... }
+    timer:start(ms, 0, function()
+      timer:stop()
+      vim.schedule_wrap(fn)(unpack(argv))
+    end)
+  end
+end
+
+-- Return a debounced version of the provided function. When the returned
+-- function is called, it cancels all previous executions, and schedules
+-- a new execution in the future.
+function utils.debounce_last(ms, fn)
+  local timer = vim.uv.new_timer()
+  return function(...)
+    local argv = { ... }
+    timer:stop()
+    timer:start(ms, 0, function()
+      vim.schedule_wrap(fn)(unpack(argv))
+    end)
+  end
+end
+
+
 return utils

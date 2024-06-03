@@ -2,7 +2,7 @@
 -- installed packages or is not mason managed
 local function tool_installed_or_unmanaged(tool)
   return tool.mason_package == nil or vim.list_contains(
-    require("data").mason_package_names(),
+    require("mason-registry").get_installed_package_names(),
     tool.mason_package
   )
 end
@@ -11,6 +11,7 @@ return {
   {
     -- Formatter configuration
     "stevearc/conform.nvim",
+    dependencies = { "williamboman/mason.nvim" } ,
     cmd = { "ConformInfo" },
     keys = {
       {
@@ -22,39 +23,39 @@ return {
         desc = "Format buffer",
       },
     },
-    opts = {
-      formatters_by_ft = require("data").formatter_names_by_filetype(tool_installed_or_unmanaged),
-      formatters = require("data").formatter_opts_by_name(tool_installed_or_unmanaged),
-    },
+    config = function()
+      local conform = require("conform")
+      local data = require("data")
+      conform.formatters_by_ft = data.formatter_names_by_filetype({
+        enabled = true,
+        predicate = tool_installed_or_unmanaged,
+      })
+      conform.formatters = data.formatter_opts_by_name({
+        enabled = true,
+        predicate = tool_installed_or_unmanaged,
+      })
+    end,
   },
 
   {
     -- Linter configuration
     "mfussenegger/nvim-lint",
+    dependencies = { "williamboman/mason.nvim" } ,
     opts = {
-      --events = { "BufWritePost", "BufReadPost", "InsertLeave" },
-      events = { "BufWritePost" },
-      linters_by_ft = require("data").linter_names_by_filetype(tool_installed_or_unmanaged),
+      events = { "BufWritePost", "BufReadPost", "InsertLeave" },
+      --events = { "BufWritePost" },
     },
     config = function(_, opts)
-      local function debounce(ms, fn)
-        local timer = vim.uv.new_timer()
-        return function(...)
-          local argv = { ... }
-          timer:start(ms, 0, function()
-            timer:stop()
-            vim.schedule_wrap(fn)(unpack(argv))
-          end)
-        end
-      end
-
-      local function lint()
-        require("lint").try_lint()
-      end
+      require("lint").linters_by_ft = require("data").linter_names_by_filetype({
+        enabled = true,
+        predicate = tool_installed_or_unmanaged,
+      })
 
       vim.api.nvim_create_autocmd(opts.events, {
         group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
-        callback = debounce(100, lint),
+        callback = require("utils").debounce_last(100, function()
+          require("lint").try_lint()
+        end),
       })
     end,
   },
@@ -62,9 +63,16 @@ return {
   {
     -- Language server configuration
     'neovim/nvim-lspconfig',
-    dependencies = { "folke/neodev.nvim" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "folke/neodev.nvim",
+    },
     config = function()
-      for _, server in ipairs(require("data").language_servers(tool_installed_or_unmanaged)) do
+      local servers = require("data").language_servers({
+        enabled = true,
+        predicate = tool_installed_or_unmanaged,
+      })
+      for _, server in ipairs(servers) do
         require("lspconfig")[server.name].setup(server.opts or {})
       end
     end,
@@ -74,6 +82,7 @@ return {
     -- Debug adapter (DAP) configuration
     "rcarriga/nvim-dap-ui",
     dependencies = {
+      "williamboman/mason.nvim",
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio",
     },

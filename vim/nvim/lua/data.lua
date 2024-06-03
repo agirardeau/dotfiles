@@ -1,6 +1,6 @@
 local M = {}
 
-M.language_tools = {
+local language_tools = {
   -- Javascript
   {
     name = "prettierd",
@@ -16,13 +16,21 @@ M.language_tools = {
     mason_package = "quick-lint-js",
   },
 
+  -- Json
+  {
+    name = "jsonlint",
+    filetype = "json",
+    category = "linter",
+    mason_package = "jsonlint",
+  },
+
   -- Jsonnet
+  -- Requires Go to be installed
   {
     name = "jsonnetfmt",
     filetype = "jsonnet",
     category = "formatter",
     mason_package = "jsonnetfmt",
-    enabled = false,
   },
 
   {
@@ -30,7 +38,6 @@ M.language_tools = {
     filetype = "jsonnet",
     category = "language_server",
     mason_package = "jsonnet-language-server",
-    enabled = false,
   },
 
   -- Lua
@@ -46,6 +53,10 @@ M.language_tools = {
     filetype = "lua",
     category = "linter",
     mason_package = "selene",
+    -- Disabled since configuring path to selene.toml config file is difficult,
+    -- see https://github.com/Kampfkarren/selene/issues/526. Also, the lua lsp
+    -- seems to do a good enough job of diagnostics.
+    enabled = false,
   },
 
   {
@@ -53,6 +64,14 @@ M.language_tools = {
     filetype = "lua",
     category = "language_server",
     mason_package = "lua-language-server",
+  },
+
+  -- Markdown
+  {
+    name = "vale",
+    filetype = "markdown",
+    category = "linter",
+    mason_package = "vale",
   },
 
   -- Nushell
@@ -118,86 +137,195 @@ M.language_tools = {
       prepend_args = { "-i", "2" },
     },
   },
+
+  -- Text
+  {
+    name = "vale",
+    filetype = "text",
+    category = "linter",
+    mason_package = "vale",
+  },
 }
 
-local always_true_predicate = function(_) return true end
-
-function M.formatters(predicate)
-  predicate = predicate or always_true_predicate
-  return vim.tbl_filter(function(tool)
-    return tool.category == "formatter" and tool.enabled ~= false and predicate(tool)
-  end, M.language_tools)
+local function extend_filters(base, new)
+  return vim.tbl_extend("force", base or {}, new or {})
 end
 
-function M.linters(predicate)
-  predicate = predicate or always_true_predicate
-  return vim.tbl_filter(function(tool)
-    return tool.category == "linter" and tool.enabled ~= false and predicate(tool)
-  end, M.language_tools)
+-- Return a filtered list of defined language toos.
+-- opts:
+--   enabled: If set, only include tools with matching `enabled` value
+--   filetype:  If set, only include tools with matching `filetype` value
+--   category: If set, only include tools with matching `category` value
+--   is_managed: If set, only include tools with matching tool.mason_package ~= nil
+--   predicate: If set, only include tools where predicate(tool) == true
+--   sort: If true, sort the output using default order
+function M.language_tools(opts)
+  opts = opts or {}
+  local ret = {}
+  for _, tool in ipairs(language_tools) do
+    if (opts.enabled == nil or (tool.enabled ~= false) == opts.enabled)
+        and (opts.filetype == nil or tool.filetype == opts.filetype)
+        and (opts.category == nil or tool.category == opts.category)
+        and (opts.is_managed == nil or (tool.mason_package ~= nil) == opts.is_managed)
+        and (opts.predicate == nil or opts.predicate(tool)) then
+      table.insert(ret, vim.tbl_extend("keep", tool, {
+        enabled = true,
+        opts = {},
+      }))
+    end
+  end
+  local order_category = function(category)
+    if category == "formatter" then return 1
+    elseif category == "linter" then return 2
+    elseif category == "language_server" then return 3
+    elseif category == "debug_adapter" then return 4
+    else return 5
+    end
+  end
+  if opts.sort == true then
+    table.sort(ret, function(a, b)
+      if a.filetype < b.filetype then
+        return true
+      elseif a.filetype > b.filetype then
+        return false
+      elseif order_category(a.category) < order_category(b.category) then
+        return true
+      elseif order_category(a.category) > order_category(b.category) then
+        return false
+      else
+        return a.name < b.name
+      end
+    end)
+  elseif type(opts.sort) == "function" then
+    table.sort(ret, opts.sort)
+  elseif opts.sort ~= nil and opts.sort ~= false then
+    vim.print("Unrecognized value for opts.sort in data.language_tools()")
+  end
+  return ret
 end
 
-function M.language_servers(predicate)
-  predicate = predicate or always_true_predicate
-  return vim.tbl_filter(function(tool)
-    return tool.category == "language_server" and tool.enabled ~= false and predicate(tool)
-  end, M.language_tools)
+function M.formatters(filters)
+  return M.language_tools(vim.tbl_extend("keep", filters or {}, {
+    category = "formatter",
+  }))
+end
+
+function M.formatters_enabled(filters)
+  return M.formatters(vim.tbl_extend("keep", filters or {}, {
+    enabled = true,
+  }))
+end
+
+function M.linters(filters)
+  return M.language_tools(vim.tbl_extend("keep", filters or {}, {
+    category = "linter",
+  }))
+end
+
+function M.linters_enabled(filters)
+  return M.linters(vim.tbl_extend("keep", filters or {}, {
+    enabled = true,
+  }))
+end
+
+function M.language_servers(filters)
+  return M.language_tools(vim.tbl_extend("keep", filters or {}, {
+    category = "language_server",
+  }))
+end
+
+function M.language_servers_enabled(filters)
+  return M.language_servers(vim.tbl_extend("keep", filters or {}, {
+    enabled = true,
+  }))
+end
+
+function M.debug_adapters(filters)
+  return M.language_tools(vim.tbl_extend("keep", filters or {}, {
+    category = "debug_adapter",
+  }))
+end
+
+function M.debug_adapters_enabled(filters)
+  return M.debug_adapters(vim.tbl_extend("keep", filters or {}, {
+    enabled = true,
+  }))
 end
 
 -- Returns a table where keys are filetypes and values are lists of formatter
 -- names.
--- Optionally accepts a predicate to apply to the formatters.
-function M.formatter_names_by_filetype(predicate)
+function M.formatter_names_by_filetype(filters)
   local ret = {}
-  for _, tool in ipairs(M.formatters(predicate)) do
+  for _, tool in ipairs(M.formatters(filters)) do
     ret[tool.filetype] = vim.list_extend(ret[tool.filetype] or {}, {tool.name})
   end
   return ret
 end
 
+function M.enabled_formatter_names_by_filetype(filters)
+  return M.formatter_names_by_filetype(vim.tbl_extend("keep", filters or {}, {
+    enabled = true,
+  }))
+end
+
 -- Returns a table where keys are the names of formatters and values are opts
 -- tables for them.
--- Optionally accepts a predicate to apply to the formatters.
-function M.formatter_opts_by_name(predicate)
+function M.formatter_opts_by_name(filters)
   local ret = {}
-  for _, tool in ipairs(M.formatters(predicate)) do
+  for _, tool in ipairs(M.formatters(filters)) do
     ret[tool.name] = tool.opts
   end
   return ret
 end
 
+function M.enabled_formatter_opts_by_name(filters)
+  return M.formatter_opts_by_name(vim.tbl_extend("keep", filters or {}, {
+    enabled = true,
+  }))
+end
+
 -- Returns a table where keys are filetypes and values are lists of linter
 -- names.
--- Optionally accepts a predicate to apply to the linters.
-function M.linter_names_by_filetype(predicate)
+function M.linter_names_by_filetype(filters)
   local ret = {}
-  for _, tool in ipairs(M.linters(predicate)) do
+  for _, tool in ipairs(M.linters(filters)) do
     ret[tool.filetype] = vim.list_extend(ret[tool.filetype] or {}, {tool.name})
   end
   return ret
 end
 
+function M.enabled_linter_names_by_filetype(filters)
+  return M.linter_names_by_filetype(vim.tbl_extend("keep", filters or {}, {
+    enabled = true,
+  }))
+end
+
 -- Returns a list of mason package names.
--- Optionally accepts a predicate to apply to the packages.
-function M.mason_package_names(predicate)
-  predicate = predicate or always_true_predicate
-  local ret = {}
-  for _, tool in ipairs(M.language_tools) do
-    if tool.mason_package == nil or tool.enabled == false or not predicate(tool) then
-      goto continue
+function M.mason_package_names(filters)
+  local pkg_set = {}
+  for _, tool in ipairs(M.language_tools(filters)) do
+    if tool.mason_package ~= nil then
+      pkg_set[tool.mason_package] = true
     end
-    table.insert(ret, tool.mason_package)
-    ::continue::
   end
-  return ret
+  return vim.tbl_keys(pkg_set)
+end
+
+function M.enabled_mason_package_names(filters)
+  return M.mason_package_names(vim.tbl_extend("keep", filters or {}, {
+    enabled = true,
+  }))
 end
 
 -- Returns a list of filetypes present in the config.
 function M.filetypes()
   local ft_set = {}
-  for _, tool in ipairs(M.language_tools) do
+  for _, tool in ipairs(language_tools) do
     ft_set[tool.filetype] = true
   end
-  return vim.tbl_keys(ft_set)
+  local ft_list = vim.tbl_keys(ft_set)
+  table.sort(ft_list)
+  return ft_list
 end
 
 M.icons = {
