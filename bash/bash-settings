@@ -8,6 +8,9 @@ export PS1='\u@\h:\w$ '
 # Make neovim default editor for stuff like git commits
 export EDITOR=nvim
 
+# Homebrew settings
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 # set up virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 venvpath="/usr/local/bin/virtualenvwrapper.sh"
@@ -21,9 +24,11 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # configure fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --exact'
+if command -v fzf &> /dev/null; then
+  eval `fzf --bash`
+  export FZF_DEFAULT_COMMAND='fd --type f'
+  export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --exact'
+fi
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return

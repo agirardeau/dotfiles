@@ -1,5 +1,6 @@
 $env.CARGO_HOME = ($env.HOME | path join .cargo)
 $env.HOMEBREW_PREFIX = /home/linuxbrew/.linuxbrew
+$env.HOMEBREW_NO_AUTO_UPDATE = 1
 
 $env.PATH = ($env.PATH
   | split row (char esep)
