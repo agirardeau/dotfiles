@@ -64,7 +64,73 @@
   Are you sure you want to continue connecting (yes/no/[fingerprint])?
   ```
 
-### Get miscellaneous tools
+### Tool setup - Homebrew style
+
+> EXPERIMENTAL
+
+* Update system packages and get build tools (gcc, etc)
+
+  ```sh
+  sudo apt update
+  sudo apt upgrade
+  sudo apt install build-essential
+  sudo apt install golang-go  # For jsonnet language tools
+  sudo apt install python3-pip python3-venv  # For python development/language tools
+  ```
+
+* Homebrew
+
+  Follow the instructions at https://docs.brew.sh/Homebrew-on-Linux#install. As
+  of June 2024, this entails running the following:
+
+  ```sh
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  ```
+
+* Various utils
+
+  ```sh
+  brew install tree
+  brew install ripgrep
+  brew install ripgrep-all
+  brew install fd
+  brew install as-tree
+  brew install fzf
+  brew install unzip
+  brew install node  # For javascript development + python/lua language tools
+  ```
+
+  Consider fzf setting up for nushell with
+  https://github.com/nushell/nushell/issues/5785#issuecomment-1243733398
+
+* Nushell
+
+  ```sh
+  brew install nushell
+  ```
+
+* Neovim
+
+  ```sh
+  brew install neovim
+  ```
+
+  To install mason packages, run:
+
+  ```
+  :AndrewMasonInstall [filetype]
+  ```
+
+* Rust/Cargo
+
+  Follow instructions at https://www.rust-lang.org/tools/install. As of June
+  2024, this entails running the following:
+
+  ```sh
+  curl https://sh.rustup.rs -sSf | sh
+  ```
+
+### Tool setup - Apt (older)
 
 * Rust/Cargo
 
@@ -101,6 +167,9 @@
   ~/.fzf/install
   ```
 
+  Consider fzf setting up for nushell with
+  https://github.com/nushell/nushell/issues/5785#issuecomment-1243733398
+
 * Nushell
 
   ```sh
@@ -125,7 +194,7 @@
   To install mason packages, run:
 
   ```
-  :AndrewMasonInstall
+  :AndrewMasonInstall [filetype]
   ```
 
 ## WSL
