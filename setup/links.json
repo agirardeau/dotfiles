@@ -40,6 +40,9 @@
     ],
 
     "bubblebot" : [
-        [ "~/dotfiles/local/bubblebot/", "~/.config/dotfiles/local" ]
+        [ "~/dotfiles/local/bubblebot/", "~/.config/dotfiles/local" ],
+        [ "/mnt/c/Users/andrew", "~/winhome" ],
+        [ "~/truehome/links", "~/links" ],
+        [ "~/truehome/wintruehome", "~/winhome/truehome" ]
     ]
 }

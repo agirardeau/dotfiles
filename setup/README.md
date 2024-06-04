@@ -1,8 +1,19 @@
 # Setup Instructions
 
-## Unix
+## 'Nix
 
 ### Dotfile setup
+
+> NOTE - might make more sense to set up ssh, add the key to github, then pull
+> down dotfiles. That would allow the dotfile repo to be private (and avoid
+> having to run `git remote set-url` for it)
+>
+> That could probably be done with something like this (would want
+> to move the ssh setup script from dotfiles to a bootstrap repo):
+> 
+> ```sh
+> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/agirardeau/dotfiles/HEAD/setup/common/setup-ssh-agent.sh)"
+> ```
 
 * Clone repo:
 
@@ -199,9 +210,30 @@
 
 ## WSL
 
-In addition to the Unix setup, set up win32yank:
+(In addition to 'nix setup)
+
+### Directory setup
 
 ```sh
+mkdir -p ~/truehome/links
+mkdir -p ~/truehome/repos
+cd ~/truehome/repos
+git clone git@github.com:agirardeau/sandbox
+```
+
+### Win32Yank
+
+> NOTE - I'm not sure if this is still necessary. I think the idea is to install
+> neovim on Windows with scoop so that WSL can grab the version of win32yank it
+> installs.
+
+```bat
+# Windows
+scoop install [neovim?]
+```
+
+```sh
+# WSL
 ln -s /mnt/c/Users/Andrew/scoop/apps/neovim/current/Neovim/bin/win32yank.exe /usr/bin/win32yank
 ```
 
@@ -228,5 +260,13 @@ In `cmd`:
 ```bat
 scoop install nu
 ```
+
+### Neovim
+
+```bat
+scoop install neovim
+```
+
+
 
 
