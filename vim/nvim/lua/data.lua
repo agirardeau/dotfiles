@@ -72,6 +72,7 @@ local language_tools = {
     filetype = "markdown",
     category = "linter",
     mason_package = "vale",
+    enabled = false,
   },
 
   -- Nushell
@@ -144,6 +145,7 @@ local language_tools = {
     filetype = "text",
     category = "linter",
     mason_package = "vale",
+    enabled = false,
   },
 }
 
