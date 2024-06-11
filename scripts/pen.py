@@ -14,6 +14,7 @@ CATEGORY_TO_DIRECTORY = {
     'tmp': '~/truehome/notesync/tmp'}
 DICTIONARY_TO_CATEGORY = {v: k for k, v in CATEGORY_TO_DIRECTORY.items()}
 
+
 def new(argv):
     parser = argparse.ArgumentParser(description='new entry')
     parser.add_argument('category', choices=CATEGORY_TO_DIRECTORY.keys())
@@ -45,6 +46,7 @@ def edit(argv):
     #subprocess.call(f'nvim {entry.get_fullpath()}', shell=True)
     entry.open()
 
+
 def list(argv):
     parser = argparse.ArgumentParser(description='list entries')
     parser.add_argument('category', choices=CATEGORY_TO_DIRECTORY.keys())
@@ -58,6 +60,7 @@ def list(argv):
     #print(f'Files in {directory}:')
     #subprocess.call(f'ls -l {directory}', shell=True)
 
+
 def delete(argv):
     parser = argparse.ArgumentParser(description='delete entry')
     parser.add_argument('category', choices=CATEGORY_TO_DIRECTORY.keys())
@@ -68,6 +71,7 @@ def delete(argv):
     print(f'Deleting {entry.get_fullpath()}...')
     os.remove(entry.get_realpath())
 
+
 def cat(argv):
     parser = argparse.ArgumentParser(description='print entry')
     parser.add_argument('category', choices=CATEGORY_TO_DIRECTORY.keys())
@@ -77,16 +81,20 @@ def cat(argv):
     entry = get_entry_by_name_with_disambiguation(args.category, args.name)
     subprocess.call(f'cat {entry.get_fullpath()}', shell=True)
 
+
 def mv(argv):
     print('mv not implemented yet.')
+
 
 def cd(argv):
     # Can't implement? python subprocess can't change directory of parent process
     print('cd not implemented yet.')
 
+
 def categories(argv):
     for category, directory in CATEGORY_TO_DIRECTORY.items():
         print(f'{category:12} | {directory}')
+
 
 def get_entry_by_name_with_disambiguation(category, name):
     entries = [x for x in get_entries_for_category(category) if x.name == name]
@@ -100,6 +108,7 @@ def get_entry_by_name_with_disambiguation(category, name):
             print(f'{index+1}) {entry.to_date_name_string()}')
         selection = int(input())
         return entries[selection-1]
+
 
 def get_entries_for_category(category):
     directory = CATEGORY_TO_DIRECTORY[category]
@@ -115,13 +124,15 @@ def get_entries_for_category(category):
             pass
     return reversed(entries)
 
+
 def validate_entry_name(name):
-    if re.fullmatch('[-\w]+', name) is None:
+    if re.fullmatch(r'[-\w]+', name) is None:
         raise ValueError(f'Name \'{name}\' contains non-word characters.')
     return name
 
+
 class Entry:
-    FILENAME_RE = re.compile('(?P<category>\w+)-(?P<datestr>\d+)-(?P<name>[-\w]+)')
+    FILENAME_RE = re.compile(r'(?P<category>\w+)-(?P<datestr>\d+)-(?P<name>[-\w]+)')
 
     def __init__(self, category, date, name):
         self.category = category
