@@ -109,6 +109,7 @@
   brew install fzf
   brew install unzip
   brew install node  # For javascript development + python/lua language tools
+  go install github.com/m-manu/rsync-sidekick@latest
   ```
 
   Consider fzf setting up for nushell with
