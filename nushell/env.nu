@@ -9,6 +9,7 @@ $env.PATH = ($env.PATH
   | append ($env.HOME | path join bin)
   | append ($env.HOME | path join local-dotfiles bin)
   | append ($env.HOME | path join .local bin)
+  | append ($env.HOME | path join go bin)
   | append ($env.CARGO_HOME | path join bin)
   | append ($env.HOMEBREW_PREFIX | path join bin)
   | append ($env.HOMEBREW_PREFIX | path join sbin)
