@@ -9,7 +9,56 @@ alias node='node --experimental-repl-await'
 
 alias winopen='explorer.exe'
 
-alias mountr='mount -t drvfs r: /mnt/r'
-alias mounts='mount -t drvfs s: /mnt/s'
+alias mountr='mount -t drvfs -o uid=${UID?},gid=${UID?} r: /mnt/r'
+alias mounts='mount -t drvfs -o uid=${UID?},gid=${UID?} s: /mnt/s'
+alias mountt='mount -t drvfs -o uid=${UID?},gid=${UID?} t: /mnt/t'
+alias umountr='umount /mnt/r'
 alias umounts='umount /mnt/s'
+alias umountt='umount /mnt/t'
+alias remountr='umount /mnt/r && mount -t drvfs r: /mnt/r'
 alias remounts='umount /mnt/s && mount -t drvfs s: /mnt/s'
+alias remountt='umount /mnt/t && mount -t drvfs t: /mnt/t'
+
+function hdd-backup {
+  if [[ -d /mnt/r/sync ]]; then
+    found=0
+    if [[ -d /mnt/s/sync-follower ]]; then
+      found=1
+      echo "Found /mnt/s/sync-follower/, syncing..."
+      rsync-better /mnt/r/sync/ /mnt/s/sync-follower/
+    fi
+    if [[ -d /mnt/t/sync-follower ]]; then
+      found=1
+      echo "Found /mnt/t/sync-follower/, syncing..."
+      rsync-better /mnt/r/sync/ /mnt/t/sync-follower/
+    fi
+    if [[ $found = "0" ]]; then
+      echo "Didn't find either /mnt/s/sync-follower/ or /mnt/r/sync-follwer/, not syncing anything."
+    fi
+  else
+    echo "/mnt/r/sync/ not found."
+  fi
+}
+
+function hdd-backup-local {
+  if [[ -d /mnt/r/sync ]]; then
+    rsync-better /mnt/r/sync/ /mnt/r/sync-backup/
+  else
+    echo "/mnt/r/sync/ not found."
+  fi
+}
+
+# Usage: rsync-better ~/foo/ ~/bar/
+# Include slashes at the end of directories!
+function rsync-better {
+  if [[ -z `command -v rsync-sidekick` ]]; then
+    echo "rsync-sidekick not found. Install to avoid recopying files due to renames, see https://github.com/m-manu/rsync-sidekick."
+  else
+    echo ""
+    echo "Reflecting renamed files in remote via rsync-sidekick..."
+    rsync-sidekick $1 $2
+  fi
+  echo ""
+  rsync -av --del --force --stats $1 $2
+  echo ""
+}
