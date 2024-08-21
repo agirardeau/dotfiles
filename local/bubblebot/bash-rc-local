@@ -1,5 +1,7 @@
 if [ -d ~/truehome ]; then
-  cd ~/truehome
+  if [ `realpath $PWD` == "/home/andrew" ]; then
+    cd ~/truehome
+  fi
 fi
 
 
