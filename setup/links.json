@@ -24,7 +24,7 @@
         [ "~/dotfiles/scripts/dice", "~/bin/dice" ],
         [ "~/dotfiles/scripts/gitlog.sh", "~/bin/gitlog" ],
         [ "~/dotfiles/scripts/newcontainer.sh", "~/bin/newcontainer" ],
-        [ "~/dotfiles/scripts/sprint.nu", "~/bin/sprint" ],
+        [ "~/dotfiles/scripts/meta.nu", "~/bin/meta" ],
         [ "~/dotfiles/scripts/run-in-directory.sh", "~/bin/run-in-directory" ],
         [ "~/dotfiles/scripts/sedw.sh", "~/bin/sedw" ],
         [ "~/dotfiles/scripts/setscreen.sh", "~/bin/setscreen" ],
