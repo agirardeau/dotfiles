@@ -85,7 +85,7 @@
   sudo apt update
   sudo apt upgrade
   sudo apt install build-essential
-  sudo apt install golang-go  # For jsonnet language tools
+  sudo apt install golang-go  # For jsonnet language tools, taskfiles
   sudo apt install python3-pip python3-venv  # For python development/language tools
   ```
 
@@ -108,6 +108,7 @@
   brew install as-tree
   brew install fzf
   brew install unzip
+  brew install jq
   brew install node  # For javascript development + python/lua language tools
   go install github.com/google/go-jsonnet/cmd/jsonnet@latest
   go install github.com/m-manu/rsync-sidekick@latest
