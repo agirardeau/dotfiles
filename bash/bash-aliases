@@ -17,6 +17,7 @@ treepyexcludes="__pycache__|__init__.py|*.py[cod]"
 treejsexcludes="node_modules"
 treecexcludes="CMakeFiles"
 treersexcludes="target"
+treecsexcludes="bin|obj|.vscode"
 
 alias tree='treewithcolorfix'
 alias treea='tree -a'
@@ -32,6 +33,8 @@ alias treepr='tree -a -I "$treersexcludes|$treepyexcludes"'
 alias treepra='tree -a -I "$treersexcludes|$treepyexcludes|.git"'
 alias treec='tree -I "$treecexcludes"'
 alias treeca='tree -a -I "$treecexcludes|.git"'
+alias treecs='tree -I "$treecsexcludes"'
+alias treecsa='tree -a -I "$treecsexcludes|.git"'
 alias treed='tree -d'
 alias treel='tree -L'
 alias treedl='tree -d -L'
