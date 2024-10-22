@@ -16,7 +16,7 @@ DICTIONARY_TO_CATEGORY = {v: k for k, v in CATEGORY_TO_DIRECTORY.items()}
 
 
 def new(argv):
-    parser = argparse.ArgumentParser(description='new entry')
+    parser = argparse.ArgumentParser(description='open new entry')
     parser.add_argument('category', choices=CATEGORY_TO_DIRECTORY.keys())
     parser.add_argument('name', type=validate_entry_name)
     args = parser.parse_args(argv)
@@ -33,6 +33,16 @@ def new(argv):
     #print(f'Opening {entry.get_fullpath()} for writing...')
     #subprocess.call(f'nvim {entry.get_fullpath()}', shell=True)
     entry.open()
+
+
+def touch(argv):
+    parser = argparse.ArgumentParser(description='create new entry')
+    parser.add_argument('category', choices=CATEGORY_TO_DIRECTORY.keys())
+    parser.add_argument('name', type=validate_entry_name)
+    args = parser.parse_args(argv)
+
+    entry = Entry(args.category, datetime.date.today(), args.name)
+    entry.touch()
 
 
 def edit(argv):
@@ -169,9 +179,13 @@ class Entry:
         os.chdir(os.path.expanduser(CATEGORY_TO_DIRECTORY[self.category]))
         subprocess.call(f'nvim {self.get_filename()}', shell=True)
 
+    def touch(self):
+        print(f'Creating {self.get_fullpath()}...')
+        subprocess.call(f'touch {self.get_fullpath()}', shell=True)
 
 SUBCOMMANDS = {
     'new': new,
+    'touch': touch,
     'edit': edit,
     'list': list,
     'delete': delete,
