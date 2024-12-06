@@ -4,13 +4,13 @@ alias edit-aliases="nvim ~/local-dotfiles/bash-aliases-local ~/dotfiles/bash/bas
 
 alias sudo="sudo "
 
-alias ls='ls --color=auto'
+alias ls='ls -l --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 alias la='ls -A'
-alias ll='ls -l'
+alias ll='ls'
 alias lla='ls -lA'
 
 treepyexcludes="__pycache__|__init__.py|*.py[cod]"
