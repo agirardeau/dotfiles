@@ -12,6 +12,9 @@ vim.opt.splitright = true
 
 -- Word wrapping
 vim.opt.wrap = false
+vim.opt.breakindent = true
+vim.opt.breakindentopt = "list:2"
+vim.opt.formatlistpat = "^\\s*[>*] "
 
 -- Clipboard
 vim.opt.clipboard = "unnamed,unnamedplus"
