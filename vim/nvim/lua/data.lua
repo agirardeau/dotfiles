@@ -120,12 +120,14 @@ local language_tools = {
     name = "rustfmt",
     filetype = "rust",
     category = "formatter",
+    enabled = false,
   },
 
   {
     name = "rust_analyzer",
     filetype = "rust",
     category = "language_server",
+    enabled = false,
   },
 
   -- Sh
