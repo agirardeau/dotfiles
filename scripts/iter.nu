@@ -49,45 +49,71 @@ def "main push" [name?: string] {
   null
 }
 
+def stat [filename: string] {
+  ls -l ($filename | path dirname) | where {($in.name | path basename) == ($filename | path basename)} | first
+}
+
+def update_symlink [src: string, dest: string] {
+  if ($src | path exists) {
+    if ($src | path type) != symlink {
+      print $"  File at ($src) is not a symlink."
+      print "  Exiting."
+      exit 1
+    }
+    print $"  Unlinking ($src | path basename) from ($src | stat $in | get target | path basename)..."
+    rm $src
+  }
+
+  print $"  Pointing ($src | path basename) to ($dest | path basename)..."
+  ln -s $dest $src
+}
+
 # Shared logic
 def new_iteration [name: string] {
+  print $"Creating new ($name)"
   let iteration_dir = $iteration_base_dir | path join $name
   let new_date_formatted = date now | format date %Y.%m.%d
   let new_filename = [$name, -, $new_date_formatted] | str join
   let new_path = $iteration_dir | path join $new_filename
   let symlink_path = $notesync_dir | path join $name
+  let symlink_path_last = $notesync_dir | path join $"($name)-last"
 
   if ($new_path | path exists) {
-    print $"File already exists for ($new_date_formatted)."
+    print $"  File already exists for ($new_date_formatted)."
     print "Exiting."
     exit 1
   }
 
   let existing_files = ls $iteration_dir
   if ($existing_files | length) == 0 {
-    print $"Creating ($new_filename)..."
+    print $"  Creating ($new_filename)..."
     touch $new_path
   } else {
     let last_record = $existing_files | last
     let last_path = $last_record.name
     let last_filename = $last_path | path basename
 
-    print $"Copying ($last_filename) to ($new_filename)..."
+    print $"  Copying ($last_filename) to ($new_filename)..."
     cp $last_path $new_path
 
-    if ($symlink_path | path exists) {
-      if ($symlink_path | path type) != symlink {
-        print $"File at ($notesync_partial_path | path join $name) is not a symlink."
-        print "Exiting."
-        exit 1
-      }
-      print $"Unlinking ($name) from ($last_filename)..."
-      rm $symlink_path
-    }
+#if ($symlink_path | path exists) {
+#      if ($symlink_path | path type) != symlink {
+#        print $"File at ($notesync_partial_path | path join $name) is not a symlink."
+#        print "Exiting."
+#        exit 1
+#      }
+#      print $"Unlinking ($name) from ($last_filename)..."
+#      rm $symlink_path
+#    }
   }
 
-  print $"Pointing ($name) to ($new_filename)..."
-  ln -s $new_path $symlink_path
+#  print $"Pointing ($name) to ($new_filename)..."
+#  ln -s $new_path $symlink_path
+  update_symlink $symlink_path $new_path
+
+  if ($existing_files | length) >= 1 {
+    update_symlink $symlink_path_last ($existing_files | last | get name)
+  }
 }
 
 def list_iterations [name: string] {
@@ -103,7 +129,7 @@ def push_iteration [name: string] {
 }
 
 def get_iteration_type_names [] {
-  ls -s $iteration_base_dir | where type == dir | get name
+  ls -s $iteration_base_dir | where type == dir | get name | filter {$in != 'test'}
 }
 
 
