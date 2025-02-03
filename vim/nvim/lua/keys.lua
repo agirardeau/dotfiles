@@ -8,8 +8,8 @@ utils.noremap("<C-j>", "j<C-e>")
 utils.noremap("<C-k>", "k<C-y>")
 
 -- Scrolling with line wrap
-utils.map("j", "gj")
-utils.map("k", "gk")
+utils.noremap("j", "gj")
+utils.noremap("k", "gk")
 
 -- Unhighlight
 utils.noremap("<C-L>", ":nohl<CR><C-L>")
