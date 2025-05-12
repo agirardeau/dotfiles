@@ -1,6 +1,6 @@
 # See default values at crates/nu-utils/src/sample_config/default_env.nu
 $env.CARGO_HOME = ($env.HOME | path join .cargo)
-$env.HOMEBREW_PREFIX = /home/linuxbrew/.linuxbrew
+$env.HOMEBREW_PREFIX = ("/" | path join home linuxbrew .linuxbrew)
 $env.HOMEBREW_NO_AUTO_UPDATE = 1
 
 $env.PATH = ($env.PATH
@@ -17,7 +17,7 @@ $env.PATH = ($env.PATH
   | uniq)
 
 def create_left_prompt [] {
-    let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
+    let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
         '' => '~'
         $relative_pwd => ([~ $relative_pwd] | path join)
