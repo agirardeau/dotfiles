@@ -137,11 +137,18 @@
 
 * Rust/Cargo
 
-  Follow instructions at https://www.rust-lang.org/tools/install. As of June
-  2024, this entails running the following:
+  Follow instructions at https://www.rust-lang.org/tools/install. As of January
+  2025, this entails running the following for WSL:
 
   ```sh
-  curl https://sh.rustup.rs -sSf | sh
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  ```
+
+  Consider installing libssldev for tools like dioxus-cli (from
+  https://docs.rs/openssl/latest/openssl/#automatic):
+
+  ```sh
+  sudo apt-get install pkg-config libssl-dev
   ```
 
 ### Tool setup - Apt (older)
