@@ -12,7 +12,7 @@ CATEGORY_TO_DIRECTORY = {
     'journal': '~/truehome/notesync/personal/journal',
     'notes': '~/truehome/notesync/endeavors/notes',
     'tmp': '~/truehome/notesync/tmp'}
-DICTIONARY_TO_CATEGORY = {v: k for k, v in CATEGORY_TO_DIRECTORY.items()}
+#DIRECTORY_TO_CATEGORY = {v: k for k, v in CATEGORY_TO_DIRECTORY.items()}
 
 
 def new(argv):
@@ -21,17 +21,17 @@ def new(argv):
     parser.add_argument('name', type=validate_entry_name)
     args = parser.parse_args(argv)
 
-    #directory = CATEGORY_TO_DIRECTORY[args.category]
-    #datestring = datetime.date.today().strftime('%Y%m%d')
-    #filename = f'{args.category}-{datestring}-{args.name}'
+    # directory = CATEGORY_TO_DIRECTORY[args.category]
+    # datestring = datetime.date.today().strftime('%Y%m%d')
+    # filename = f'{args.category}-{datestring}-{args.name}'
     #
-    #fullname = os.path.join(directory, filename)
-    #print(f'Opening {fullname} for writing...')
-    #subprocess.call(f'nvim {fullname}', shell=True)
+    # fullname = os.path.join(directory, filename)
+    # print(f'Opening {fullname} for writing...')
+    # subprocess.call(f'nvim {fullname}', shell=True)
 
     entry = Entry(args.category, datetime.date.today(), args.name)
-    #print(f'Opening {entry.get_fullpath()} for writing...')
-    #subprocess.call(f'nvim {entry.get_fullpath()}', shell=True)
+    # print(f'Opening {entry.get_fullpath()} for writing...')
+    # subprocess.call(f'nvim {entry.get_fullpath()}', shell=True)
     entry.open()
 
 
@@ -92,32 +92,40 @@ def cat(argv):
     subprocess.call(f'cat {entry.get_fullpath()}', shell=True)
 
 
-def mv(argv):
+def mv(_):
     print('mv not implemented yet.')
 
 
-def cd(argv):
+def cd(_):
     # Can't implement? python subprocess can't change directory of parent process
     print('cd not implemented yet.')
 
 
-def categories(argv):
+def categories(_):
     for category, directory in CATEGORY_TO_DIRECTORY.items():
         print(f'{category:12} | {directory}')
 
 
 def get_entry_by_name_with_disambiguation(category, name):
     entries = [x for x in get_entries_for_category(category) if x.name == name]
-    if len(entries) == 0:
+    num_entries = len(entries)
+    if num_entries == 0:
         print(f'No {category} entry with name {name}.')
         sys.exit()
     elif len(entries) == 1:
         return entries[0]
     else:
         for index, entry in enumerate(entries):
-            print(f'{index+1}) {entry.to_date_name_string()}')
-        selection = int(input())
-        return entries[selection-1]
+            print(f'{num_entries - index}) {entry.to_date_name_string()}')
+        print('Select entry (default 1, \'q\' to quit):')
+        selection_str = input()
+        if selection_str == 'q':
+            sys.exit(0)
+        elif selection_str == '':
+            selection = 1
+        else:
+            selection = int(selection_str)
+        return entries[num_entries - selection]
 
 
 def get_entries_for_category(category):
@@ -132,12 +140,12 @@ def get_entries_for_category(category):
             entries.append(Entry.from_filename(filename))
         except ValueError:
             pass
-    return reversed(entries)
+    return entries
 
 
 def validate_entry_name(name):
     if re.fullmatch(r'[-\w]+', name) is None:
-        raise ValueError(f'Name \'{name}\' contains non-word characters.')
+        raise ValueError(f'Name \'{name}\' contains non-word, non-hyphen characters.')
     return name
 
 
@@ -182,6 +190,7 @@ class Entry:
     def touch(self):
         print(f'Creating {self.get_fullpath()}...')
         subprocess.call(f'touch {self.get_fullpath()}', shell=True)
+
 
 SUBCOMMANDS = {
     'new': new,
