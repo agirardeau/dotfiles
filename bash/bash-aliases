@@ -1,6 +1,6 @@
 alias refresh-rc=". ~/dotfiles/bash/bash-rc"
 alias refresh-aliases=". ~/dotfiles/bash/bash-aliases"
-alias edit-aliases="nvim ~/local-dotfiles/bash-aliases-local ~/dotfiles/bash/bash-aliases"
+alias edit-aliases="nvim ~/local-dotfiles/bash-aliases ~/dotfiles/bash/bash-aliases-local"
 
 alias sudo="sudo "
 
@@ -42,6 +42,8 @@ alias treecsa='tree -a -I "$treecsexcludes|.git"'
 alias treed='tree -d'
 alias treel='tree -L'
 alias treedl='tree -d -L'
+
+function cdl { cd `realpath "$1"`; }
 
 alias tmux='tmux -2'
 #alias tattach='tmux attach-session'
