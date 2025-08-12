@@ -124,8 +124,9 @@ def new_iteration [name: string] {
   mkdir $iteration_dir
   let existing_files = ls $iteration_dir
   let num_existing_files = ($existing_files | length)
+  let new_iteration_exists = $new_path | path exists
 
-  if ($new_path | path exists) {
+  if ($new_iteration_exists) {
     print $"  File already exists for `($new_date_formatted)`, skipping."
   } else if ($has_template) {
     print $"  Copying `templates/($name)` to `($new_filename)`..."
@@ -143,8 +144,12 @@ def new_iteration [name: string] {
   update_symlink $symlink_path $new_path
 
   mut updated_previous_symlink: bool = false
-  if $num_existing_files >= 1 {
-    let previous_iter_path = $existing_files | last | get name
+  if ($num_existing_files >= 1 and not $new_iteration_exists) or $num_existing_files >= 2  {
+    let previous_iter_path = if $new_iteration_exists {
+      $existing_files | last 2 | first | get name
+    } else {
+      $existing_files | last | get name
+    }
     $updated_previous_symlink = update_symlink $symlink_path_last $previous_iter_path
   }
 
