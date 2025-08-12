@@ -84,18 +84,21 @@ def stat [filename: string] {
   ls -l ($filename | path dirname) | where {($in.name | path basename) == ($filename | path basename)} | first
 }
 
-def update_symlink [src: string, dest: string] {
+def update_symlink [src: string, dest: string]: nothing -> bool {
   let src_name = $src | path basename
   let dest_name = $dest | path basename
 
   if ($src | path exists) {
     let prev_name = $src | stat $in | get target | path basename
-    print $"  Moving `($src_name)` from `($prev_name)` to `($dest_name)`..."
+    if ($dest_name == $prev_name) {
+      print $"  Symlink `($src_name)` already points to `($dest_name)`."
+      return false
+    }
+    print $"  Pointing `($src_name)` to `($dest_name)` \(was `($prev_name)`\) ..."
 
     if ($src | path type) != symlink {
       print $"  File at `($src)` is not a symlink."
-      print "  Exiting."
-      exit 1
+      return false
     }
     rm $src
   } else {
@@ -103,6 +106,7 @@ def update_symlink [src: string, dest: string] {
   }
 
   ln -s $dest $src
+  true
 }
 
 # Shared logic
@@ -117,15 +121,13 @@ def new_iteration [name: string] {
   let template_path = $iteration_base_dir | path join config templates $name
   let has_template = $template_path | path exists
 
-  if ($new_path | path exists) {
-    print $"  File already exists for `($new_date_formatted)`, skipping."
-    return
-  }
-
   mkdir $iteration_dir
   let existing_files = ls $iteration_dir
   let num_existing_files = ($existing_files | length)
-  if ($has_template) {
+
+  if ($new_path | path exists) {
+    print $"  File already exists for `($new_date_formatted)`, skipping."
+  } else if ($has_template) {
     print $"  Copying `templates/($name)` to `($new_filename)`..."
     cp $template_path $new_path
   } else if $num_existing_files == 0 {
@@ -140,12 +142,13 @@ def new_iteration [name: string] {
 
   update_symlink $symlink_path $new_path
 
+  mut updated_previous_symlink: bool = false
   if $num_existing_files >= 1 {
     let previous_iter_path = $existing_files | last | get name
-    update_symlink $symlink_path_last $previous_iter_path
+    $updated_previous_symlink = update_symlink $symlink_path_last $previous_iter_path
   }
 
-  if ($has_template and ($num_existing_files >= 2)) {
+  if ($has_template and ($num_existing_files >= 2) and $updated_previous_symlink) {
     let penultimate_path = $existing_files | last 2 | first | get name
     let penultimate_filename = $penultimate_path | path basename
     if (check_files_equal $template_path $penultimate_path) {
