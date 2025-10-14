@@ -16,13 +16,8 @@ def main [] {
 # If the iteration has a template, copies the template into the new instance.
 # Otherwise, duplicates the previous instance.
 def "main new" [name: string] {
-  if ($name == active) {
+  if ($name == all) {
     $active_iterations | each {|name|
-      print ""
-      new_iteration $name
-    }
-  } else if ($name == all) {
-    get_iteration_type_names | each {|name|
       print ""
       new_iteration $name
     }
@@ -48,12 +43,8 @@ def "main list" [name?: string] {
   print ""
   if ($name == null) {
     ls $iteration_base_dir | where type == dir
-  } else if ($name == active) {
-    $active_iterations | each {|name|
-      list_iterations $name
-    }
   } else if ($name == all) {
-    get_iteration_type_names | each {|name|
+    $active_iterations | each {|name|
       list_iterations $name
     }
   } else {
@@ -65,12 +56,8 @@ def "main list" [name?: string] {
 
 def "main push" [name?: string] {
   print ""
-  if ($name == active) {
+  if ($name == all) {
     $active_iterations | each {|name|
-      push_iteration $name
-    }
-  } else if ($name == all) {
-    get_iteration_type_names | each {|name|
       push_iteration $name
     }
   } else {
