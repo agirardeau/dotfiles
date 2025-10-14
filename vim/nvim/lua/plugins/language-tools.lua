@@ -69,11 +69,13 @@ return {
     },
     config = function()
       local servers = require("data").language_servers({
-        enabled = true,
         predicate = tool_installed_or_unmanaged,
       })
       for _, server in ipairs(servers) do
-        require("lspconfig")[server.name].setup(server.opts or {})
+        vim.lsp.config(server.name, server.opts or {})
+        if server.enabled then
+          vim.lsp.enable({server.name})
+        end
       end
     end,
   },

@@ -160,7 +160,7 @@ end
 --   enabled: If set, only include tools with matching `enabled` value
 --   filetype:  If set, only include tools with matching `filetype` value
 --   category: If set, only include tools with matching `category` value
---   is_managed: If set, only include tools with matching tool.mason_package ~= nil
+--   is_managed: If set, only include tools with matching value for (tool.mason_package ~= nil)
 --   predicate: If set, only include tools where predicate(tool) == true
 --   sort: If true, sort the output using default order
 function M.language_tools(opts)

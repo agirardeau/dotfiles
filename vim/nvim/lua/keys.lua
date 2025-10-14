@@ -1,4 +1,5 @@
 local utils = require("utils")
+local which_key = require("which-key")
 
 -- Find
 utils.noremap("n", "nzz")
@@ -29,7 +30,10 @@ utils.noremap("<Leader>t", ":Tabular /*<CR>")
 
 -- Formatting
 utils.noremap("<Leader>w", ":set wrap! lbr!<CR>")
-utils.noremap("<Leader>s", ":syntax off<CR>")
+
+-- Misc
+which_key.add({ "<leader>m", group = "Misc" })
+utils.noremap("<Leader>ms", ":syntax off<CR>")
 
 -- Opening split and switching to second buffer
 utils.noremap("<Leader>v", ":vsp | b2<CR><C-w>h")
@@ -38,6 +42,7 @@ utils.noremap("<Leader>v", ":vsp | b2<CR><C-w>h")
 utils.vnoremap("<Leader>c", ":OSCYank<CR>")
 
 -- NvimTree
+which_key.add({ "<leader>e", group = "NvimTree (disabled?)" })
 utils.noremap("<Leader>ee", ":NvimTreeFocus<CR>")
 utils.noremap("<Leader>ef", ":NvimTreeFindFile<CR>")
 utils.noremap("<Leader>eg", ":NvimTreeFindFileToggle<CR>")
@@ -54,26 +59,30 @@ utils.noremap("<Leader>eh", ":NvimTreeResize -5<CR>")
 utils.noremap("<Leader>el", ":NvimTreeResize +5<CR>")
 
 -- Diagnostics
-utils.noremap("<Leader>dj", ":lua vim.diagnostic.goto_next()<CR>")
-utils.noremap("<Leader>dk", ":lua vim.diagnostic.goto_prev()<CR>")
+which_key.add({ "<leader>d", group = "Diagnostics" })
+vim.keymap.set("n", "<Leader>dj", vim.diagnostic.goto_next, { desc = "Next" })
+vim.keymap.set("n", "<Leader>dk", vim.diagnostic.goto_prev, { desc = "Previous" })
+vim.keymap.set("n", "<leader>df", vim.lsp.buf.code_action, { desc = "Fix" })
 
 -- Telescope
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>ft', builtin.treesitter, {})
-vim.keymap.set('n', '<leader>fi', builtin.builtin, {})
-vim.keymap.set('n', '<leader>fp', builtin.pickers, {})
-vim.keymap.set('n', '<leader>fc', builtin.commands, {})
-vim.keymap.set('n', '<leader>fq', builtin.quickfix, {})
-vim.keymap.set('n', '<leader>fx', builtin.oldfiles, {})
+which_key.add({ "<leader>f", group = "Find (Telescope)" })
+local ts_builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", ts_builtin.find_files, { desc = "Files" })
+vim.keymap.set("n", "<leader>fg", ts_builtin.live_grep, { desc = "Grep live" })
+vim.keymap.set("n", "<leader>fb", ts_builtin.buffers, { desc = "Buffers" })
+vim.keymap.set("n", "<leader>fh", ts_builtin.help_tags, { desc = "Help tags" })
+vim.keymap.set("n", "<leader>ft", ts_builtin.treesitter, { desc = "Treesitter" })
+vim.keymap.set("n", "<leader>fi", ts_builtin.builtin, { desc = "Builtin" })
+vim.keymap.set("n", "<leader>fp", ts_builtin.pickers, { desc = "Pickers" })
+vim.keymap.set("n", "<leader>fc", ts_builtin.commands, { desc = "Commands" })
+vim.keymap.set("n", "<leader>fq", ts_builtin.quickfix, { desc = "Quickfix" })
+vim.keymap.set("n", "<leader>fx", ts_builtin.oldfiles, { desc = "Oldfiles" })
 -- These two throw errors
---vim.keymap.set('n', '<leader>fm', builtin.command_history, {})
---vim.keymap.set('n', '<leader>fs', builtin.search_history, {})
+--vim.keymap.set("n", "<leader>fm", builtin.command_history, {})
+--vim.keymap.set("n", "<leader>fs", builtin.search_history, {})
 
 -- Neorg
+which_key.add({ "<leader>o", group = "Neorg (disabled?)" })
 utils.noremap("<Leader>ots", ":Neorg toc split<CR>")
 utils.noremap("<Leader>oti", ":Neorg toc inline<CR>")
 utils.noremap("<Leader>otq", ":Neorg toc toqflist<CR>")
@@ -82,8 +91,8 @@ utils.noremap("<Leader>ojn", ":Neorg journal today<CR>")  -- "new"
 utils.noremap("<Leader>ojy", ":Neorg journal yesterday<CR>")
 utils.noremap("<Leader>ojw", ":Neorg journal tomorrow<CR>")
 utils.noremap("<Leader>ojd", ':exec ":Neorg journal custom ".input("date:")<CR>')
---utils.noremap("<Leader>ojtu", ':Neorg journal toc update<CR>')
---utils.noremap("<Leader>ojto", ':Neorg journal toc open<CR>')  -- opens without updating
+--utils.noremap("<Leader>ojtu", ":Neorg journal toc update<CR>")
+--utils.noremap("<Leader>ojto", ":Neorg journal toc open<CR>")  -- opens without updating
 
 utils.noremap("<Leader>ogv", ":Neorg gtd views<CR>")  -- "new"
 utils.noremap("<Leader>ogc", ":Neorg gtd capture<CR>")  -- "new"

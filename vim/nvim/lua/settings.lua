@@ -87,6 +87,9 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 3
 vim.opt.sidescrolloff = 8
 
+-- Add a border to floating windows
+vim.opt.winborder = "rounded"
+
 -- Enable concealed text (folding?)
 --vim.opt.conceallevel = 2
 --vim.opt.vim_json_conceal = 0 -- Otherwise this hides quotes in json :S
@@ -163,6 +166,22 @@ local disabled_built_ins = {
   "compiler",
   "bugreport",
 }
+
+-- Treat empty filetype as `text`
+vim.api.nvim_create_autocmd({"BufReadPost", "BufNewFile"}, {
+  pattern = "*",
+  -- TODO: Only run this for extensionless files
+  -- Not sure why the below pattern doesn't work, asked on reddit at
+  -- https://www.reddit.com/r/neovim/comments/1o67m2v/comment/nji4zow/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+  --pattern = "^[^.]*$",
+  callback = function()
+    local ft = vim.filetype.match({ buf = 0 })
+    --print("THIS RAN! FT = " .. (ft or "") .. ", NEW FT = " .. (ft or "text"))
+    -- Set filetype event if we aren't setting a default value of `text`. Otherwise filetype
+    -- detection would run again, wasting cycles.
+    vim.bo.filetype = ft or "text"
+  end,
+})
 
 for _, plugin in pairs(disabled_built_ins) do
   vim.g["loaded_" .. plugin] = 1

@@ -12,9 +12,18 @@ return {
   { "editorconfig/editorconfig-vim" },
   { "907th/vim-auto-save" },
   { "chrisbra/Recover.vim" },  -- Adds a `diff` option for comparing swp files. Perhaps not necessary since vim-auto-save prevents most swp files.
-  { "echasnovski/mini.bufremove", version = "*" },
-  { "echasnovski/mini.surround", version = "*" },
-  { "echasnovski/mini.ai", version = "*" },
+  { "nvim-mini/mini.bufremove", version = "*" },
+  { "nvim-mini/mini.ai", version = "*" },
+  {
+    "nvim-mini/mini.surround",
+    version = "*",
+    opts = {
+      mappings = {
+        add = "<Leader>sa",
+        delete = "<Leader>sd",
+      },
+    },
+  },
 
   {
     "echasnovski/mini.pairs",
