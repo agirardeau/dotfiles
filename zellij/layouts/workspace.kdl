@@ -1,0 +1,17 @@
+// Config for zellij's default layouts:
+// https://github.com/zellij-org/zellij/tree/80de7f462c80dab77f3535981a2428a3fc1ffc11/zellij-utils/assets/layouts
+
+layout {
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    children
+    pane size=1 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+  tab name="todos" cwd="~/truehome/notesync"
+  tab name="keys" cwd="~/truehome/notesync"
+  tab name="dotfiles" cwd="~/dotfiles"
+}

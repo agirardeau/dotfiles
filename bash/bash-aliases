@@ -51,6 +51,10 @@ function tattach { tmux attach-session -t ${1:-0}; }
 alias tdetach='tmux detach-client'
 alias tlist='tmux list-sessions'
 
+# Zellij
+alias zj='zellij attach --create workspace'
+alias zjl='zellij --layout'
+
 alias findr='find . -name'
 
 alias grepr='grep -rniI . -e'

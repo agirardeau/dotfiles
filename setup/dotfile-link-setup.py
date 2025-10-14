@@ -10,6 +10,7 @@ NODE_NAME = platform.node()
 XDG_CACHE_HOME_DEFAULT = "~/.cache"
 STATE_FILENAME = "dotfile-link-state.json"
 
+
 def update_link(link, target):
     """Returns True if after execution a link exists, regardless of if it
     points to the intended target. The link will be pointing to the wrong
@@ -31,11 +32,12 @@ def update_link(link, target):
 
     return True
 
+
 def create_link(link, target):
     (link_directory, _) = os.path.split(link)
 
     if not os.path.exists(target):
-        print("No file to link to at {0}".format(target))
+        print("! No file to link to at {0}".format(target))
         raise IOError()
 
     try:
@@ -46,19 +48,21 @@ def create_link(link, target):
     try:
         os.symlink(target, link)
     except OSError as e:
-        print("Unable to create link for {0} at {1}: {2}"
+        print("! Unable to create link for {0} at {1}: {2}"
                 .format(target, link, str(e)))
         raise
 
-    print("Created link for {0} at {1}".format(target, link))
+    print("> Created link for {0} at {1}".format(target, link))
+
 
 def remove_link(link):
     try:
         os.unlink(link)
-        print("Removed obsolete link at {0}".format(link))
+        print("> Removed obsolete link at {0}".format(link))
     except OSError as e:
-        print("Unable to remove obsolete link at {0}: {1}".format(link, str(e)))
+        print("! Unable to remove obsolete link at {0}: {1}".format(link, str(e)))
         raise
+
 
 def load_link_data():
     with open(LINK_FILE, "r") as f:
@@ -67,8 +71,10 @@ def load_link_data():
     return {x : [[replace_tilde(a[0]), replace_tilde(a[1])] for a in link_data[x]]
             for x in link_data}
 
+
 def replace_tilde(path_string):
     return path_string.replace("~", HOME, 1)
+
 
 if __name__ == "__main__":
     xdg_cache_home = replace_tilde(os.getenv("XDG_CACHE_HOME", XDG_CACHE_HOME_DEFAULT))
