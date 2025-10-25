@@ -168,19 +168,25 @@ local disabled_built_ins = {
 }
 
 -- Treat empty filetype as `text`
-vim.api.nvim_create_autocmd({"BufReadPost", "BufNewFile"}, {
-  pattern = "*",
-  -- TODO: Only run this for extensionless files
-  -- Not sure why the below pattern doesn't work, asked on reddit at
-  -- https://www.reddit.com/r/neovim/comments/1o67m2v/comment/nji4zow/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-  --pattern = "^[^.]*$",
-  callback = function()
-    local ft = vim.filetype.match({ buf = 0 })
-    --print("THIS RAN! FT = " .. (ft or "") .. ", NEW FT = " .. (ft or "text"))
-    -- Set filetype event if we aren't setting a default value of `text`. Otherwise filetype
-    -- detection would run again, wasting cycles.
-    vim.bo.filetype = ft or "text"
-  end,
+-- Using vim.filetype.add() instead of vim.api.nvim_create_autocmd() per
+-- https://www.reddit.com/r/neovim/comments/1o67m2v/comment/nji4zow/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+vim.filetype.add({
+  -- Can't use `filename` instead of `pattern` because filename only allows
+  -- exact matches, not lua-pattern (aka shitty regex)
+  pattern = {
+    ['.*'] = {
+      priority = -math.huge,
+      function(path, _)
+        if vim.fn.isdirectory(path) == 1 then
+          return
+        end
+        local name = vim.fn.fnamemodify(path, ':t')
+        if not name:find('%.') then
+          return 'text'
+        end
+      end,
+    },
+  },
 })
 
 for _, plugin in pairs(disabled_built_ins) do
