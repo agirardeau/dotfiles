@@ -71,6 +71,8 @@ def stat [filename: string] {
   ls -l ($filename | path dirname) | where {($in.name | path basename) == ($filename | path basename)} | first
 }
 
+# Returns a boolean indicating whether the symlink was updated (NOT whether the
+# command did or did not encounter an error)
 def update_symlink [src: string, dest: string]: nothing -> bool {
   let src_name = $src | path basename
   let dest_name = $dest | path basename
@@ -81,15 +83,19 @@ def update_symlink [src: string, dest: string]: nothing -> bool {
       print $"  Symlink `($src_name)` already points to `($dest_name)`."
       return false
     }
-    print $"  Pointing `($src_name)` to `($dest_name)` \(was `($prev_name)`\) ..."
 
     if ($src | path type) != symlink {
       print $"  File at `($src)` is not a symlink."
       return false
     }
+
+    print $"  Pointing `($src_name)` to `($dest_name)` \(was `($prev_name)`\) ..."
+    rm $src
+  } else if ($src | path type) == symlink {
+    print $"  Pointing `($src_name)` to `($dest_name)` \(was broken\) ..."
     rm $src
   } else {
-    print $"  Setting `($src_name)` to `($dest_name)`..."
+    print $"  Pointing `($src_name)` to `($dest_name)`..."
   }
 
   ln -s $dest $src
