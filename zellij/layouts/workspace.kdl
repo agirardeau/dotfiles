@@ -11,6 +11,7 @@ layout {
       plugin location="zellij:status-bar"
     }
   }
+  tab name="misc" cwd="~/truehome/notesync"
   tab name="todos" cwd="~/truehome/notesync"
   tab name="keys" cwd="~/truehome/notesync"
   tab name="dotfiles" cwd="~/dotfiles"

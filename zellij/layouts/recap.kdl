@@ -8,6 +8,5 @@ layout {
       plugin location="zellij:status-bar"
     }
   }
-  tab name="zorg" cwd="~/truehome/repos/agshared/aghub"
-  tab name="zorg-term" cwd="~/truehome/repos/agshared/aghub"
+  tab name="recap" cwd="~/truehome/repos/agshared/aghub"
 }

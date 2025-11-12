@@ -63,6 +63,8 @@ keybinds clear-defaults=true {
         bind "Ctrl t" { SwitchToMode "normal"; }
         bind "x" { CloseTab; SwitchToMode "normal"; }
         bind "tab" { GoToNextTab; }
+        bind "Shift h" { MoveTab "Left"; }
+        bind "Shift l" { MoveTab "Right"; }
         bind "Ctrl tab" { GoToPreviousTab; }
     }
     resize {
