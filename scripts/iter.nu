@@ -178,7 +178,7 @@ def push_iteration [name: string] {
 }
 
 def get_iteration_type_names [] {
-  ls -s $iteration_base_dir | where type == dir | get name | filter {$in != 'test' and $in != 'config'}
+  ls -s $iteration_base_dir | where type == dir | get name | where {$in != 'test' and $in != 'config'}
 }
 
 
