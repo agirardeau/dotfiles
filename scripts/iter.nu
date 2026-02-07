@@ -15,15 +15,18 @@ def main [] {
 #
 # If the iteration has a template, copies the template into the new instance.
 # Otherwise, duplicates the previous instance.
-def "main new" [name: string] {
+def "main new" [name: string, --create] {
   if ($name == all) {
     $active_iterations | each {|name|
       print ""
       new_iteration $name
     }
-  } else {
+  } else if ($name in (get_iteration_type_names)) {
     print ""
     new_iteration $name
+  } else {
+    print ""
+    print $"`($name)` is not an iteration type name. Use `--create` to create."
   }
   print ""
   null  # don't print output of if block (empty list for `each` command)
