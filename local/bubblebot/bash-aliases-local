@@ -48,6 +48,35 @@ function hdd-backup-local {
   fi
 }
 
+function hdd-backup-dryrun {
+  if [[ -d /mnt/r/sync ]]; then
+    found=0
+    if [[ -d /mnt/s/sync-follower ]]; then
+      found=1
+      echo "Found /mnt/s/sync-follower/, syncing..."
+      rsync-better-dryrun /mnt/r/sync/ /mnt/s/sync-follower/
+    fi
+    if [[ -d /mnt/t/sync-follower ]]; then
+      found=1
+      echo "Found /mnt/t/sync-follower/, syncing..."
+      rsync-better-dryrun /mnt/r/sync/ /mnt/t/sync-follower/
+    fi
+    if [[ $found = "0" ]]; then
+      echo "Didn't find either /mnt/s/sync-follower/ or /mnt/r/sync-follwer/, not syncing anything."
+    fi
+  else
+    echo "/mnt/r/sync/ not found."
+  fi
+}
+
+function hdd-backup-local-dryrun {
+  if [[ -d /mnt/r/sync ]]; then
+    rsync-better-dryrun /mnt/r/sync/ /mnt/r/sync-backup/ --dry-run
+  else
+    echo "/mnt/r/sync/ not found."
+  fi
+}
+
 # Usage: rsync-better ~/foo/ ~/bar/
 # Include slashes at the end of directories!
 function rsync-better {
@@ -59,6 +88,22 @@ function rsync-better {
     rsync-sidekick $1 $2
   fi
   echo ""
-  rsync -av --del --force --stats $1 $2
+  rsync -av --del --force --stats $1 $2 $3
+  echo ""
+}
+
+# Duplicating this instead of adding a flag bc parsing bash options is super complicated (see getopt)
+# Usage: rsync-better ~/foo/ ~/bar/
+# Include slashes at the end of directories!
+function rsync-better-dryrun {
+  if [[ -z `command -v rsync-sidekick` ]]; then
+    echo "rsync-sidekick not found. Install to avoid recopying files due to renames, see https://github.com/m-manu/rsync-sidekick."
+  else
+    echo ""
+    echo "Reflecting renamed files in remote via rsync-sidekick..."
+    rsync-sidekick $1 $2
+  fi
+  echo ""
+  rsync -av --del --force --stats --dry-run $1 $2
   echo ""
 }
