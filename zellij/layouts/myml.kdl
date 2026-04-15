@@ -3,12 +3,22 @@ layout {
     pane size=1 borderless=true {
       plugin location="zellij:tab-bar"
     }
-    children
+    pane split_direction="vertical" {
+      pane
+      children
+    }
     pane size=1 borderless=true {
       plugin location="zellij:status-bar"
     }
   }
-  tab name="myml-wt1" cwd="~/truehome/repos/myml/wt1"
-  tab name="myml-wt2" cwd="~/truehome/repos/myml/wt2"
-  tab name="myml-main" cwd="~/truehome/repos/myml/main"
+
+  tab name="wt1" cwd="~/truehome/repos/myml/wt1" {
+    pane command="claude --name myml-wt1"
+  }
+  tab name="wt2" cwd="~/truehome/repos/myml/wt2/" {
+    pane command="claude --name myml-wt2"
+  }
+  tab name="main" cwd="~/truehome/repos/myml/main" {
+    pane
+  }
 }
