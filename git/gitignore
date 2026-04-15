@@ -14,3 +14,5 @@ ignoreme/
 *.njsproj.user
 
 CMakeFiles/
+
+**/.claude/settings.local.json
