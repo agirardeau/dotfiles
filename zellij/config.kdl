@@ -2,7 +2,6 @@
 copy_command "clip.exe"
 pane_frames false
 theme "tokyo-night"
-default_layout "workspace"
 // Without this, if I close zellij with vim running, when I reopen it, it
 // prompts me to restart vim, which is nice, but when I quit vim it reopens
 // it repeatedly
@@ -57,6 +56,13 @@ keybinds clear-defaults=true {
         bind "l" { GoToNextTab; SwitchToMode "normal"; }
         // This doesn't work, see https://github.com/zellij-org/zellij/issues/3728
         //bind "n" { NewTab; SwitchToMode "normal"; SwitchToMode "renametab"; TabNameInput 0; }
+        // This works, but creates an annoying floating window
+        //bind "n" {
+        //    Run "bash" "-lc" "zellij action new-tab --name 'foo' && zellij action switch-mode renametab" {
+        //        floating true
+        //        close_on_exit true
+        //    }
+        //}
         bind "n" { NewTab; SwitchToMode "normal"; }
         bind "r" { SwitchToMode "renametab"; TabNameInput 0; }
         bind "s" { ToggleActiveSyncTab; SwitchToMode "normal"; }

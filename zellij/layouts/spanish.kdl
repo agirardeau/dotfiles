@@ -1,0 +1,24 @@
+layout {
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane split_direction="vertical" {
+      pane
+      children
+    }
+    pane size=1 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+
+  tab name="wt1" cwd="~/truehome/repos/agprivate/wt1/language/spanish" {
+    pane command="claude"
+  }
+  tab name="wt2" cwd="~/truehome/repos/agprivate/wt1/language/spanish" {
+    pane command="claude"
+  }
+  tab name="main" cwd="~/truehome/repos/agprivate/main/language/spanish" {
+    pane
+  }
+}

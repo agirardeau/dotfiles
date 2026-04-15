@@ -8,6 +8,7 @@ layout {
       plugin location="zellij:status-bar"
     }
   }
-  tab name="zorg-wt1" cwd="~/truehome/repos/agshared/wt1/aghub"
-  tab name="zorg-main" cwd="~/truehome/repos/agshared/main/aghub"
+  tab name="myml-wt1" cwd="~/truehome/repos/myml/wt1"
+  tab name="myml-wt2" cwd="~/truehome/repos/myml/wt2"
+  tab name="myml-main" cwd="~/truehome/repos/myml/main"
 }
