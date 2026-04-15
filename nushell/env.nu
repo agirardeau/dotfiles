@@ -16,6 +16,10 @@ $env.PATH = ($env.PATH
   | append ($env.HOMEBREW_PREFIX | path join sbin)
   | uniq)
 
+$env.NU_PLUGIN_DIRS = [
+  ($env.HOMEBREW_PREFIX | path join opt nushell bin)
+]
+
 def create_left_prompt [] {
     let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
