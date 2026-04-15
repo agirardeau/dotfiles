@@ -11,9 +11,8 @@
 > That could probably be done with something like this (would want
 > to move the ssh setup script from dotfiles to a bootstrap repo):
 > 
-> ```sh
-> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/agirardeau/dotfiles/HEAD/setup/common/setup-ssh-agent.sh)"
-> ```
+>     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/agirardeau/dotfiles/HEAD/setup/common/setup-ssh-agent.sh)"
+>
 
 * Clone repo:
 
@@ -78,6 +77,7 @@
 ### Tool setup - Homebrew style
 
 > EXPERIMENTAL
+  > Another option in consideration - nix: `nix: curl -L https://nixos.org/nix/install | sh -s -- --daemon`
 
 * Update system packages and get build tools (gcc, etc)
 
@@ -144,12 +144,47 @@
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   ```
 
+  Add useful components to the default toolchain
+  ```sh
+  rustup component add rust-analyzer
+  ```
+
   Consider installing libssldev for tools like dioxus-cli (from
   https://docs.rs/openssl/latest/openssl/#automatic):
 
   ```sh
   sudo apt-get install pkg-config libssl-dev
   ```
+
+  <!--
+  NOTE - Not using rust tools on windows with vscode anymore
+
+  For VSCode, have to also install rustup on Windows host. Download and run
+  `rustup-init.ext` from [win.rustup.rs](win.rustup.rs). Options on the command
+  line:
+
+  * Install linker + Windows API libraries? No (3)
+  * Customize installation? Yes (2)
+    * Default host triple: `x86_64-pc-windows-gnu`
+    * Default toolchain: `stable`
+  * Do some combination of the following:
+    * Add the linux target with `rustup target add x86_64-unknown-linux-gnu`
+    * Add a `rust-toolchain.toml` file to workspace root with:
+
+      ```toml
+      [toolchain]
+      channel = "stable"
+      targets = ["x86_64-unknown-linux-gnu"]
+      profile = "default"
+      ```
+
+    * Add to `C:\Users\andrew\.cargo\config.toml`:
+
+      ```toml
+      [build]
+      target = "x86_64-unknown-linux-gnu"
+      ```
+  -->
 
 ### Tool setup - Apt (older)
 
