@@ -13,7 +13,7 @@ layout {
   }
 
   tab name="wt1" cwd="~/truehome/repos/agshared/wt1/aghub" {
-    pane command="claude --name zorg-wt1"
+    pane command="claude" args="--name zorg-wt2"
   }
   tab name="main" cwd="~/truehome/repos/agshared/main/aghub" {
     pane
