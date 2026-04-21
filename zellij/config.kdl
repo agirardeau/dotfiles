@@ -20,7 +20,6 @@ keybinds clear-defaults=true {
         bind "s" { SwitchToMode "scroll"; }
         bind "t" { SwitchToMode "tab"; }
         bind "p" { SwitchToMode "pane"; }
-        bind "f" { SwitchToMode "entersearch"; }
 
         // Shortcuts
         bind "q" { Quit; }
@@ -30,8 +29,6 @@ keybinds clear-defaults=true {
         bind "o" { GoToNextTab; SwitchToMode "locked"; }
         bind "Ctrl u" { GoToPreviousTab; }
         bind "Ctrl o" { GoToNextTab; }
-        //bind "tab" { GoToNextTab; }
-        //bind "Ctrl tab" { GoToPreviousTab; }
         bind "1" { GoToTab 1; SwitchToMode "locked"; }
         bind "2" { GoToTab 2; SwitchToMode "locked"; }
         bind "3" { GoToTab 3; SwitchToMode "locked"; }
@@ -66,12 +63,6 @@ keybinds clear-defaults=true {
         bind "l" { GoToNextTab; SwitchToMode "locked"; }
         bind "Ctrl h" { GoToPreviousTab; }
         bind "Ctrl l" { GoToNextTab; }
-        //bind "tab" { GoToNextTab; }
-        //bind "Ctrl tab" { GoToPreviousTab; }
-        //bind "left" { GoToPreviousTab; }
-        //bind "down" { GoToNextTab; }
-        //bind "up" { GoToPreviousTab; }
-        //bind "right" { GoToNextTab; }
         bind "1" { GoToTab 1; SwitchToMode "locked"; }
         bind "2" { GoToTab 2; SwitchToMode "locked"; }
         bind "3" { GoToTab 3; SwitchToMode "locked"; }
@@ -118,10 +109,6 @@ keybinds clear-defaults=true {
         bind "Ctrl l" { MoveFocus "right"; }
         bind "Ctrl j" { MoveFocus "down"; }
         bind "Ctrl k" { MoveFocus "up"; }
-        //bind "left" { MoveFocus "left"; }
-        //bind "down" { MoveFocus "down"; }
-        //bind "up" { MoveFocus "up"; }
-        //bind "right" { MoveFocus "right"; }
         bind "p" { SwitchFocus; }
 
         // Creation / Movement / Deletion
@@ -139,7 +126,7 @@ keybinds clear-defaults=true {
         bind "j" { TogglePaneEmbedOrFloating; SwitchToMode "locked"; }
         bind "i" { TogglePanePinned; SwitchToMode "locked"; }
         bind "w" { ToggleFloatingPanes; SwitchToMode "locked"; }
-        //bind "f" { TogglePaneFrames; SwitchToMode "locked"; }
+        bind "f" { TogglePaneFrames; SwitchToMode "locked"; }
     }
     resize {
         bind "h" { Resize "Increase left"; }
@@ -151,10 +138,6 @@ keybinds clear-defaults=true {
         bind "K" { Resize "Decrease up"; }
         bind "J" { Resize "Decrease down"; }
 
-        //bind "left" { Resize "Increase left"; }
-        //bind "down" { Resize "Increase down"; }
-        //bind "up" { Resize "Increase up"; }
-        //bind "right" { Resize "Increase right"; }
         bind "+" { Resize "Increase"; }
         bind "-" { Resize "Decrease"; }
         bind "=" { Resize "Increase"; }
@@ -164,10 +147,6 @@ keybinds clear-defaults=true {
         bind "l" { MovePane "right"; }
         bind "k" { MovePane "up"; }
         bind "j" { MovePane "down"; }
-        //bind "left" { MovePane "left"; }
-        //bind "right" { MovePane "right"; }
-        //bind "up" { MovePane "up"; }
-        //bind "down" { MovePane "down"; }
 
         bind "n" { MovePane; }
         bind "p" { MovePaneBackwards; }
@@ -237,15 +216,15 @@ keybinds clear-defaults=true {
     shared_among "scroll" "search" {
         bind "PageDown" { PageScrollDown; }
         bind "PageUp" { PageScrollUp; }
-        bind "left" { PageScrollUp; }
-        bind "down" { ScrollDown; }
-        bind "up" { ScrollUp; }
-        bind "right" { PageScrollDown; }
+        //bind "left" { PageScrollUp; }
+        //bind "down" { ScrollDown; }
+        //bind "up" { ScrollUp; }
+        //bind "right" { PageScrollDown; }
         bind "d" { HalfPageScrollDown; }
-        bind "h" { PageScrollUp; }
+        //bind "h" { PageScrollUp; }
         bind "j" { ScrollDown; }
         bind "k" { ScrollUp; }
-        bind "l" { PageScrollDown; }
+        //bind "l" { PageScrollDown; }
         bind "u" { HalfPageScrollUp; }
     }
     scroll {
@@ -259,56 +238,46 @@ keybinds clear-defaults=true {
         bind "p" { Search "up"; }
         bind "w" { SearchToggleOption "Wrap"; }
     }
+    // Enter
+    shared_except "locked" "entersearch" "scroll" "search"{
+        bind "enter" { SwitchToMode "locked"; }
+    }
+    shared_among "scroll" "search" {
+        bind "enter" { ScrollToBottom; SwitchToMode "locked"; }
+    }
+    entersearch {
+        bind "enter" { SwitchToMode "search"; }
+    }
+    // Ctrl c
+    shared_except "locked" "scroll" "search" "entersearch" "renametab" "renamepane" {
+        bind "Ctrl c" { SwitchToMode "locked"; }
+    }
+    shared_among "scroll" "search" "entersearch" {
+        bind "Ctrl c" { ScrollToBottom; SwitchToMode "locked"; }
+    }
+    renamepane {
+        bind "Ctrl c" { UndoRenamePane; SwitchToMode "pane"; }
+    }
+    renametab {
+        bind "Ctrl c" { UndoRenameTab; SwitchToMode "tab"; }
+    }
+    // Esc / Ctrl [
     shared_except "locked" "entersearch" "renametab" "renamepane" {
         bind "Ctrl [" { SwitchToMode "locked"; }
         bind "esc" { SwitchToMode "locked"; }
     }
-    shared_except "locked" "entersearch" "scroll" "search"{
-        bind "Ctrl c" { SwitchToMode "locked"; }
-        bind "enter" { SwitchToMode "locked"; }
-    }
-    shared_among "scroll" "search" {
-        bind "Ctrl c" { ScrollToBottom; SwitchToMode "locked"; }
-        bind "enter" { ScrollToBottom; SwitchToMode "locked"; }
-    }
     entersearch {
         bind "Ctrl [" { SwitchToMode "scroll"; }
-        bind "Ctrl c" { SwitchToMode "scroll"; }
         bind "esc" { SwitchToMode "scroll"; }
-        bind "enter" { SwitchToMode "search"; }
     }
     renamepane {
         bind "Ctrl [" { UndoRenamePane; SwitchToMode "pane"; }
         bind "esc" { UndoRenamePane; SwitchToMode "pane"; }
     }
     renametab {
-        bind "esc" { UndoRenameTab; SwitchToMode "tab"; }
         bind "Ctrl [" { UndoRenameTab; SwitchToMode "tab"; }
+        bind "esc" { UndoRenameTab; SwitchToMode "tab"; }
     }
-    //
-    //
-    //shared_except "locked" {
-    //    bind "Alt left" { MoveFocusOrTab "left"; }
-    //    bind "Alt down" { MoveFocus "down"; }
-    //    bind "Alt up" { MoveFocus "up"; }
-    //    bind "Alt right" { MoveFocusOrTab "right"; }
-    //    bind "Alt +" { Resize "Increase"; }
-    //    bind "Alt -" { Resize "Decrease"; }
-    //    bind "Alt =" { Resize "Increase"; }
-    //    bind "Alt [" { PreviousSwapLayout; }
-    //    bind "Alt ]" { NextSwapLayout; }
-    //    bind "Alt f" { ToggleFloatingPanes; }
-    //    bind "Alt h" { MoveFocusOrTab "left"; }
-    //    bind "Alt i" { MoveTab "left"; }
-    //    bind "Alt j" { MoveFocus "down"; }
-    //    bind "Alt k" { MoveFocus "up"; }
-    //    bind "Alt l" { MoveFocusOrTab "right"; }
-    //    bind "Alt n" { NewPane; }
-    //    bind "Alt o" { MoveTab "right"; }
-    //    bind "Alt p" { TogglePaneInGroup; }
-    //    bind "Alt Shift p" { ToggleGroupMarking; }
-    //    bind "Ctrl q" { Quit; }
-    //}
 }
 
 // Plugin aliases - can be used to change the implementation of Zellij

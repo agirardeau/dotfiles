@@ -1,3 +1,4 @@
+pane_frames true
 layout {
   default_tab_template {
     pane size=1 borderless=true {
@@ -13,7 +14,7 @@ layout {
   }
 
   tab name="wt1" cwd="~/truehome/repos/agshared/wt1/aghub" {
-    pane command="claude" args="--name zorg-wt2"
+    pane command="claude" args="--name zorg-wt1"
   }
   tab name="main" cwd="~/truehome/repos/agshared/main/aghub" {
     pane
