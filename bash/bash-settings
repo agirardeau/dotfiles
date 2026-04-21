@@ -11,6 +11,11 @@ export EDITOR=nvim
 # Homebrew settings
 export HOMEBREW_NO_AUTO_UPDATE=1
 
+# Set RUSTC_WRAPPER if sccache is installed
+if command -v sccache > /dev/null 2>&1; then
+    export RUSTC_WRAPPER=sccache
+fi
+
 # set up virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 venvpath="/usr/local/bin/virtualenvwrapper.sh"
