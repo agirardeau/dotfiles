@@ -24,8 +24,6 @@
         [ "~/dotfiles/zellij/layouts", "~/.config/zellij/layouts" ],
 
         [ "~/dotfiles/scripts/ag.nu", "~/bin/ag" ],
-        [ "~/dotfiles/scripts/ctagdisplay.py", "~/bin/ctagdisplay" ],
-        [ "~/dotfiles/scripts/chess.py", "~/bin/chess" ],
         [ "~/dotfiles/scripts/dice.py", "~/bin/dice" ],
         [ "~/dotfiles/scripts/gitlog.sh", "~/bin/gitlog" ],
         [ "~/dotfiles/i3/bin/newcontainer.sh", "~/bin/newcontainer" ],
