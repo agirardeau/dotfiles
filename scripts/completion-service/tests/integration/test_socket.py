@@ -56,7 +56,21 @@ def tearDownModule():
 def query(cwd, comp_line):
     with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as s:
         s.connect(_daemon_sock_path)
-        s.sendall(f'{cwd}\n{comp_line}'.encode())
+        s.sendall(f'COMPLETE\n{cwd}\n{comp_line}'.encode())
+        s.shutdown(socket.SHUT_WR)
+        chunks = []
+        while True:
+            chunk = s.recv(4096)
+            if not chunk:
+                break
+            chunks.append(chunk)
+        return b''.join(chunks).decode()
+
+
+def reload_daemon():
+    with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as s:
+        s.connect(_daemon_sock_path)
+        s.sendall(b'RELOAD\n')
         s.shutdown(socket.SHUT_WR)
         chunks = []
         while True:
@@ -88,6 +102,70 @@ class TestSocket(unittest.TestCase):
         self.assertEqual(set(query('/tmp', 'ag ').split('\n')), {'repo', 'help'})
         self.assertEqual(query('/tmp', 'ag repo '), 'create')
         self.assertEqual(set(query('/tmp', 'ag ').split('\n')), {'repo', 'help'})
+
+    def test_reload_is_selective(self):
+        config_dir = os.path.join(_daemon_tmp.name, 'config')
+        path_stay = os.path.join(config_dir, 'stycmd.toml')
+        path_change = os.path.join(config_dir, 'chgcmd.toml')
+        try:
+            with open(path_stay, 'w') as f:
+                f.write('[root]\nvalues = ["stay_val"]\n')
+            with open(path_change, 'w') as f:
+                f.write('[root]\nvalues = ["old_val"]\n')
+
+            # Populate cache for both commands
+            self.assertEqual(query('/tmp', 'stycmd '), 'stay_val')
+            self.assertEqual(query('/tmp', 'chgcmd '), 'old_val')
+
+            # Overwrite chgcmd (changes mtime), leave stycmd untouched
+            original_mtime_ns = os.stat(path_change).st_mtime_ns
+            with open(path_change, 'w') as f:
+                f.write('[root]\nvalues = ["new_val"]\n')
+            # Guarantee mtime differs even if both writes land on the same clock tick
+            os.utime(path_change, ns=(original_mtime_ns + 1_000_000_000, original_mtime_ns + 1_000_000_000))
+
+            self.assertEqual(reload_daemon(), 'OK')
+
+            # chgcmd evicted — picks up new config
+            self.assertEqual(query('/tmp', 'chgcmd '), 'new_val')
+
+            # stycmd not evicted — delete the file to prove the value is served from cache
+            os.unlink(path_stay)
+            self.assertEqual(query('/tmp', 'stycmd '), 'stay_val')
+        finally:
+            for p in (path_stay, path_change):
+                try:
+                    os.unlink(p)
+                except FileNotFoundError:
+                    pass
+
+    def test_reload_picks_up_new_config(self):
+        config_dir = os.path.join(_daemon_tmp.name, 'config')
+        new_toml_path = os.path.join(config_dir, 'newcmd.toml')
+        try:
+            with tempfile.TemporaryDirectory() as cwd:
+                # First query caches None for newcmd (no config file yet)
+                query(cwd, 'newcmd ')
+
+                # Write a config file for newcmd
+                with open(new_toml_path, 'w') as f:
+                    f.write('[root]\nvalues = ["alpha", "beta"]\n')
+
+                # Cache still holds None for newcmd, so file listing is returned (empty dir → '')
+                result_before = query(cwd, 'newcmd ')
+                self.assertEqual(result_before, '')
+
+                # Reload clears the cache
+                self.assertEqual(reload_daemon(), 'OK')
+
+                # Now the daemon reads the new config
+                result_after = query(cwd, 'newcmd ')
+                self.assertEqual(set(result_after.split('\n')), {'alpha', 'beta'})
+        finally:
+            try:
+                os.unlink(new_toml_path)
+            except FileNotFoundError:
+                pass
 
 
 if __name__ == '__main__':

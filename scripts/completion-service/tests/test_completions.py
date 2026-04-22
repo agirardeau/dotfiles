@@ -82,9 +82,11 @@ class TestCompletions(unittest.TestCase):
                 f.write(content)
         self._orig_config_dir = run.CONFIG_DIR
         run.CONFIG_DIR = config_dir
+        run._config_cache.clear()
 
     def tearDown(self):
         run.CONFIG_DIR = self._orig_config_dir
+        run._config_cache.clear()
         self.tmp.cleanup()
 
     def test_values_node(self):
@@ -117,6 +119,59 @@ class TestCompletions(unittest.TestCase):
 
     def test_empty_input_returns_empty(self):
         self.assertEqual(run.completions('/tmp', ''), '')
+
+
+class TestReloadConfig(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.config_dir = os.path.join(self.tmp.name, 'config')
+        os.makedirs(self.config_dir)
+        self._orig_config_dir = run.CONFIG_DIR
+        run.CONFIG_DIR = self.config_dir
+        run._config_cache.clear()
+
+    def tearDown(self):
+        run.CONFIG_DIR = self._orig_config_dir
+        run._config_cache.clear()
+        self.tmp.cleanup()
+
+    def _write(self, name, content):
+        path = os.path.join(self.config_dir, f'{name}.toml')
+        with open(path, 'w') as f:
+            f.write(content)
+        return path
+
+    def test_unchanged_entry_survives_reload(self):
+        self._write('cmda', '[root]\nvalues = ["x"]\n')
+        path_b = self._write('cmdb', '[root]\nvalues = ["y"]\n')
+        run.load_config('cmda')
+        run.load_config('cmdb')
+        cached_mtime_ns = run._config_cache['cmdb'][1]
+        self._write('cmdb', '[root]\nvalues = ["z"]\n')
+        # Guarantee mtime differs even if both writes land on the same clock tick
+        os.utime(path_b, ns=(cached_mtime_ns + 1_000_000_000, cached_mtime_ns + 1_000_000_000))
+        run.reload_config()
+        self.assertIn('cmda', run._config_cache)
+        self.assertNotIn('cmdb', run._config_cache)
+
+    def test_new_file_evicts_none_entry(self):
+        run.load_config('newcmd')
+        self._write('newcmd', '[root]\nvalues = ["a"]\n')
+        run.reload_config()
+        self.assertNotIn('newcmd', run._config_cache)
+
+    def test_deleted_file_evicts_entry(self):
+        path = self._write('delcmd', '[root]\nvalues = ["a"]\n')
+        run.load_config('delcmd')
+        os.unlink(path)
+        run.reload_config()
+        self.assertNotIn('delcmd', run._config_cache)
+
+    def test_truly_unchanged_none_survives_reload(self):
+        run.load_config('ghost')  # no file, caches None
+        run.reload_config()
+        self.assertIn('ghost', run._config_cache)
+        self.assertIsNone(run._config_cache['ghost'][0])
 
 
 if __name__ == '__main__':
