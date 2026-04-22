@@ -22,6 +22,7 @@
         [ "~/dotfiles/zellij/config.kdl", "~/.config/zellij/config.kdl" ],
         [ "~/dotfiles/zellij/layouts", "~/.config/zellij/layouts" ],
 
+        [ "~/dotfiles/scripts/ag.nu", "~/bin/ag" ],
         [ "~/dotfiles/scripts/ctagdisplay.py", "~/bin/ctagdisplay" ],
         [ "~/dotfiles/scripts/dice", "~/bin/dice" ],
         [ "~/dotfiles/scripts/gitlog.sh", "~/bin/gitlog" ],
