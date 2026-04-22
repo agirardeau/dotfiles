@@ -2,10 +2,11 @@
 
 import os
 import json
+import tomllib
 import platform
 
 HOME = os.path.expanduser("~")
-LINK_FILE = os.path.join(os.path.dirname(os.path.realpath(__file__)), "links.json")
+LINK_FILE = os.path.join(os.path.dirname(os.path.realpath(__file__)), "links.toml")
 NODE_NAME = platform.node()
 XDG_STATE_HOME_DEFAULT = "~/.local/state"
 STATE_FILENAME = "dotfile-link-state.json"
@@ -65,8 +66,8 @@ def remove_link(link):
 
 
 def load_link_data():
-    with open(LINK_FILE, "r") as f:
-        link_data = json.load(f)
+    with open(LINK_FILE, "rb") as f:
+        link_data = tomllib.load(f)
 
     return {x : [[replace_tilde(a[0]), replace_tilde(a[1])] for a in link_data[x]]
             for x in link_data}
