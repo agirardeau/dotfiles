@@ -26,10 +26,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-for script in ~/.local/share/bash_completions.d/*; do
-    source $script
-done
-
 # Include bash-aliases, if it exists
 if [ -f ~/.config/dotfiles/bash/bash-aliases ]; then
     .  ~/.config/dotfiles/bash/bash-aliases
