@@ -1,0 +1,8 @@
+[Unit]
+Description=ag CLI completion service socket
+
+[Socket]
+ListenStream=%t/ag-completion.sock
+
+[Install]
+WantedBy=sockets.target

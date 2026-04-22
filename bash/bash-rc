@@ -16,6 +16,11 @@ if [ -f ~/.config/dotfiles/bash/bash-settings ]; then
     .  ~/.config/dotfiles/bash/bash-settings
 fi
 
+# Include completions, if it exists
+if [ -f ~/.config/dotfiles/bash/completions ]; then
+    .  ~/.config/dotfiles/bash/completions
+fi
+
 # Source programmable completion
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion

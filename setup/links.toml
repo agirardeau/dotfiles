@@ -7,7 +7,6 @@ common = [
     [ "~/.config/dotfiles/bash/profile", "~/.profile" ],
     [ "~/.config/dotfiles/bash/bash-profile", "~/.bash_profile" ],
     [ "~/.config/dotfiles/bash/dircolors", "~/.dircolors" ],
-    [ "~/.config/dotfiles/bash/completions/complete-setscreen.sh", "~/.local/share/bash_completions.d/complete-setscreen.sh" ],
 
     [ "~/dotfiles/nushell/config.nu", "~/.config/nushell/config.nu" ],
     [ "~/dotfiles/nushell/env.nu", "~/.config/nushell/env.nu" ],
@@ -23,6 +22,8 @@ common = [
     [ "~/dotfiles/zellij/layouts", "~/.config/zellij/layouts" ],
 
     [ "~/dotfiles/scripts/ag.nu", "~/bin/ag" ],
+    [ "~/dotfiles/scripts/completion-service/ag-completion-service.socket", "~/.config/systemd/user/ag-completion-service.socket" ],
+    [ "~/dotfiles/scripts/completion-service/ag-completion-service.service", "~/.config/systemd/user/ag-completion-service.service" ],
     [ "~/dotfiles/scripts/dice.py", "~/bin/dice" ],
     [ "~/dotfiles/scripts/gitlog.sh", "~/bin/gitlog" ],
     [ "~/dotfiles/i3/bin/newcontainer.sh", "~/bin/newcontainer" ],

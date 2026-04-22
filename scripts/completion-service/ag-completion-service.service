@@ -1,0 +1,8 @@
+[Unit]
+Description=ag CLI completion service
+Requires=ag-completion-service.socket
+
+[Service]
+Type=simple
+ExecStart=/home/linuxbrew/.linuxbrew/bin/python3 %h/dotfiles/scripts/completion-service/run.py
+StandardError=journal

@@ -40,6 +40,13 @@
   . ~/.bashrc
   ```
 
+* Add systemd daemons:
+
+  ```sh
+  systemctl --user daemon-reload
+  systemctl --user enable --now ag-completion-service.socket
+  ```
+
 ### SSH setup
 
 * Setup agent, generate keys:
